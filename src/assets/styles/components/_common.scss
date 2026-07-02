@@ -1,0 +1,104 @@
+.system-section {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.system-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  h2 {
+    margin: 0;
+    color: var(--color-primary-800);
+    font-size: 20px;
+  }
+}
+
+.system-panel,
+.system-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.system-button {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: white;
+  color: var(--color-primary-800);
+  padding: 0 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.system-button--primary {
+  border-color: var(--color-primary-800);
+  background: var(--color-primary-800);
+  color: white;
+}
+
+.system-button--success {
+  border-color: var(--color-green-600);
+  background: var(--color-green-600);
+  color: white;
+}
+
+.system-button--ghost {
+  background: transparent;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 10px;
+  background: #e2f8f4;
+  color: var(--color-teal-700);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.loading-text {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.material-symbols-rounded {
+  display: inline-block;
+  direction: ltr;
+  font-family: 'Material Symbols Rounded';
+  font-feature-settings: 'liga';
+  font-size: 24px;
+  font-style: normal;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 500,
+    'GRAD' 0,
+    'opsz' 24;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
