@@ -6,43 +6,43 @@ definePageMeta({
 const mackData = [
   {
     title: '申請專案輸入',
-    icon: 'star',
+    icon: 'post_add',
     link: '/cases',
     subtitle: '新增/查詢專案輸入申請案件'
   },
   {
     title: '處分案例',
-    icon: 'star',
+    icon: 'work_history',
     link: '/cases',
     subtitle: '違規產地標示不明'
   },
   {
     title: '海關答聯單',
-    icon: 'star',
+    icon: 'anchor',
     link: '/cases',
     subtitle: '通關疑義公文與白聯單查詢'
   },
   {
     title: '貿易法規重要函文/函釋',
-    icon: 'star',
+    icon: 'balance',
     link: '/cases',
     subtitle: '重要法規函釋彙整查詢'
   },
   {
     title: '聲明異議/訴願/行政訴訟',
-    icon: 'star',
+    icon: 'record_voice_over',
     link: '/cases',
     subtitle: ''
   },
   {
     title: '民眾意見信箱處理',
-    icon: 'star',
+    icon: 'mail',
     link: '/cases',
     subtitle: '民眾陳情及意見回覆紀錄'
   },
   {
     title: '立法院質詢書面及回應',
-    icon: 'star',
+    icon: 'chat',
     link: '/cases',
     subtitle: '書面質詢與回應彙整'
   },
@@ -103,6 +103,15 @@ const mackLinkList = [
     link: 'https://www.bsmi.gov.tw/wSite/mp?mp=1'
   }
 ]
+
+const goTo = (link: string) => {
+  if (link.startsWith('http')) {
+    window.open(link, '_blank', 'noopener,noreferrer')
+    return
+  }
+
+  navigateTo(link)
+}
 </script>
 
 <template>
@@ -112,50 +121,54 @@ const mackLinkList = [
         <p class="home__main-title">貿易業務知識資料庫</p>
       </div>
       <div class="home__main-content">
-        <template v-for="(item, index) in mackData" :key="index">
-          <div class="home__card">
-            <div class="home__card-content">
-              <span class="home__card-icon material-symbols-rounded">
-                {{ item.icon }}
-              </span>
-              <span class="home__card-title">
-                {{ item.title }}
-              </span>
-              <span class="home__card-subtitle">
-                {{ item.subtitle }}
-              </span>
-            </div>
-            <div class="home__card-link">
-              <el-button class="home__card-action" circle color="#f0f5fc">
-                <span class="material-symbols-rounded"> arrow_right_alt </span>
-              </el-button>
-            </div>
+        <div v-for="item in mackData" :key="item.title" class="home__card" @click="goTo(item.link)">
+          <div class="home__card-content">
+            <span class="home__card-icon material-symbols-rounded">
+              {{ item.icon }}
+            </span>
+            <span class="home__card-title">
+              {{ item.title }}
+            </span>
+            <span class="home__card-subtitle">
+              {{ item.subtitle }}
+            </span>
           </div>
-        </template>
+          <div class="home__card-link">
+            <el-button class="home__card-action" circle color="#f0f5fc">
+              <span class="material-symbols-rounded"> arrow_right_alt </span>
+            </el-button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="home__sidebar">
       <div class="home__sidebar-section">
         <p class="home__sidebar-title">異動紀錄</p>
-        <template v-for="(item, index) in mackNewList" :key="item.id">
-          <div class="home__sidebar-item home__sidebar-item--news">
-            <div class="home__new-item-header">
-              <span class="home__new-item-type">{{ item.type }}</span>
-              <span class="home__new-item-date">{{ item.date }}</span>
-            </div>
-            <span class="home__new-item-title">{{ item.title }}</span
-            ><span class="home__new-item-description">{{ item.description }}</span>
+        <div
+          v-for="item in mackNewList"
+          :key="item.description"
+          class="home__sidebar-item home__sidebar-item--news"
+          @click="goTo(item.id)"
+        >
+          <div class="home__new-item-header">
+            <span class="home__new-item-type">{{ item.type }}</span>
+            <span class="home__new-item-date">{{ item.date }}</span>
           </div>
-        </template>
+          <span class="home__new-item-title">{{ item.title }}</span
+          ><span class="home__new-item-description">{{ item.description }}</span>
+        </div>
       </div>
       <div class="home__sidebar-section">
         <p class="home__sidebar-title">常用連結</p>
-        <template v-for="(item, index) in mackLinkList" :key="index">
-          <div class="home__sidebar-item home__sidebar-item--link">
-            <span class="home__link-item-icon material-symbols-rounded"> link </span>
-            <p class="home__link-item-title">{{ item.title }}</p>
-          </div>
-        </template>
+        <div
+          v-for="item in mackLinkList"
+          :key="item.link"
+          class="home__sidebar-item home__sidebar-item--link"
+          @click="goTo(item.link)"
+        >
+          <span class="home__link-item-icon material-symbols-rounded"> link </span>
+          <p class="home__link-item-title">{{ item.title }}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -166,8 +179,16 @@ const mackLinkList = [
   display: grid;
   gap: 20px;
   margin-bottom: 30px;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
   padding: 0 50px;
+
+  @media (max-width: 1365px) {
+    padding: 0;
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+  }
 
   &__main {
     display: flex;
@@ -196,6 +217,10 @@ const mackLinkList = [
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__card {
@@ -210,14 +235,26 @@ const mackLinkList = [
     box-shadow: rgba(44, 63, 90, 0.09) 0px 1px 4px;
 
     &:hover {
-      box-shadow: rgba(44, 63, 90, 0.15) 0px 4px 12px;
+      box-shadow: #2c3f5a26 0px 4px 12px;
       border: 2px solid #2f5d98;
       cursor: pointer;
 
       .home__card-action {
         background-color: #2f579a;
-        color: #fff;
+
+        span {
+          color: #fff;
+        }
       }
+    }
+  }
+
+  &__card-action {
+    .material-symbols-rounded {
+      color: #657285;
+      font-variation-settings:
+        'wght' 200,
+        'opsz' 20;
     }
   }
 
@@ -336,6 +373,7 @@ const mackLinkList = [
     align-items: center;
     margin-bottom: 8px;
     padding: 8px 12px;
+    border: 2px solid transparent;
     border-radius: 10px;
 
     &:hover {
