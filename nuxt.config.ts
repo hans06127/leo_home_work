@@ -14,7 +14,13 @@ export default defineNuxtConfig({
     }
   ],
   imports: {
-    dirs: ['composables', 'composables/**', 'constants', 'constants/**']
+    dirs: ['composables', 'composables/**', 'constants', 'constants/**'],
+    presets: [
+      {
+        from: 'lodash-es',
+        imports: [{ name: 'default', as: '_' }]
+      }
+    ]
   },
   runtimeConfig: {
     public: {

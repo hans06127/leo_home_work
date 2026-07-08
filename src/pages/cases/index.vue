@@ -74,13 +74,21 @@ type TabKey = keyof typeof mockTabData
 
 const activeName = ref<TabKey>('export')
 const openCategory = ref('')
-const openSubMenuIndex = ref('1')
 const activeMenuItemIndex = ref('')
 const searchQuery = ref('')
 
-const getCurrentMenus = () => mockTabData[activeName.value] ?? []
+type MenuItem = {
+  index: string
+  title: string
+}
+
+type MenuCategory = {
+  categoryId: string
+  list: MenuItem[]
+}
+
 const currentMenus = computed(() =>
-  getCurrentMenus().map((menu, menuIndex) => ({
+  mockTabData[activeName.value].map((menu, menuIndex) => ({
     categoryId: menu.categoryId,
     categoryName: menu.categoryName,
     icon: 'icon' in menu ? menu.icon : 'inventory_2',
@@ -93,15 +101,19 @@ const currentMenus = computed(() =>
   }))
 )
 
-const triggerFirstItem = (category: { list: Array<{ index: string; title: string }> }) => {
+const selectMenuItem = (itemIndex: string) => {
+  activeMenuItemIndex.value = itemIndex
+  handleSearcher(itemIndex)
+}
+
+const triggerFirstItem = (category: MenuCategory) => {
   const firstItem = category.list[0]
   if (!firstItem) {
     activeMenuItemIndex.value = ''
     return
   }
 
-  activeMenuItemIndex.value = firstItem.index
-  handleSearcher(firstItem.index)
+  selectMenuItem(firstItem.index)
 }
 
 const initFirstCategory = () => {
@@ -110,24 +122,28 @@ const initFirstCategory = () => {
 
   if (!firstCategory) {
     openCategory.value = ''
-    openSubMenuIndex.value = ''
     activeMenuItemIndex.value = ''
     return
   }
 
   openCategory.value = firstCategory.categoryId
-  openSubMenuIndex.value = '1'
   triggerFirstItem(firstCategory)
 }
 
-const handleCategoryClick = (
-  categoryId: string,
-  menuIndex: number,
-  category: { list: Array<{ index: string; title: string }> }
-) => {
-  openCategory.value = categoryId
-  openSubMenuIndex.value = String(menuIndex + 1)
+const handleCategoryOpen = (menuIndex: string) => {
+  const category = currentMenus.value[Number(menuIndex) - 1]
+  if (!category) return
+
+  openCategory.value = category.categoryId
   triggerFirstItem(category)
+}
+
+const handleMenuSelect = (itemIndex: string) => {
+  selectMenuItem(itemIndex)
+  const category = currentMenus.value.find((menu) =>
+    menu.list.some((item) => item.index === itemIndex)
+  )
+  if (category) openCategory.value = category.categoryId
 }
 
 const handleSearcher = (item: string) => {
@@ -181,9 +197,10 @@ onMounted(() => {
             <div class="cases__sidebar-menu-header">主要類別</div>
             <el-menu
               :default-active="activeMenuItemIndex"
-              :default-openeds="openSubMenuIndex ? [openSubMenuIndex] : []"
-              :unique-opened="true"
-              :key="`${activeName}-${openSubMenuIndex}`"
+              :default-openeds="['1']"
+              :key="activeName"
+              @open="handleCategoryOpen"
+              @select="handleMenuSelect"
             >
               <el-sub-menu
                 v-for="(menu, index) in currentMenus"
@@ -195,10 +212,7 @@ onMounted(() => {
                 ]"
               >
                 <template #title>
-                  <div
-                    class="cases__sidebar-menu-category-title"
-                    @click="handleCategoryClick(menu.categoryId, index, menu)"
-                  >
+                  <div class="cases__sidebar-menu-category-title">
                     <span class="material-symbols-rounded"> {{ menu.icon }} </span>
                     <span class="cases__sidebar-menu-category-label">
                       {{ menu.categoryName }}
@@ -207,12 +221,7 @@ onMounted(() => {
                   </div>
                 </template>
 
-                <el-menu-item
-                  v-for="item in menu.list"
-                  :key="item.title"
-                  :index="item.index"
-                  @click="handleSearcher(item.index)"
-                >
+                <el-menu-item v-for="item in menu.list" :key="item.title" :index="item.index">
                   <div class="cases__sidebar-menu-item">
                     <span>
                       {{ item.title }}
