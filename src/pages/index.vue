@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import { ElMessage } from 'element-plus'
+
 definePageMeta({
   title: '首頁'
 })
 
-const mackData = [
+const mockData = [
   {
     title: '申請專案輸入',
     icon: 'post_add',
-    link: '/cases',
+    link: '',
     subtitle: '新增/查詢專案輸入申請案件'
   },
   {
@@ -19,42 +21,42 @@ const mackData = [
   {
     title: '海關答聯單',
     icon: 'anchor',
-    link: '/cases',
+    link: '',
     subtitle: '通關疑義公文與白聯單查詢'
   },
   {
     title: '貿易法規重要函文/函釋',
     icon: 'balance',
-    link: '/cases',
+    link: '',
     subtitle: '重要法規函釋彙整查詢'
   },
   {
     title: '聲明異議/訴願/行政訴訟',
     icon: 'record_voice_over',
-    link: '/cases',
+    link: '',
     subtitle: ''
   },
   {
     title: '民眾意見信箱處理',
     icon: 'mail',
-    link: '/cases',
+    link: '',
     subtitle: '民眾陳情及意見回覆紀錄'
   },
   {
     title: '立法院質詢書面及回應',
     icon: 'chat',
-    link: '/cases',
+    link: '',
     subtitle: '書面質詢與回應彙整'
   },
   {
     title: '重要大書記',
     icon: 'star',
-    link: '/cases',
+    link: '',
     subtitle: '重大政策與事件時間軸'
   }
 ]
 
-const mackNewList = [
+const mockNewList = [
   {
     title: '進出口....',
     date: '111年12月15日',
@@ -85,7 +87,7 @@ const mackNewList = [
   }
 ]
 
-const mackLinkList = [
+const mockLinkList = [
   {
     title: '經濟部國際貿易署',
     link: 'https://www.trade.gov.tw/'
@@ -105,6 +107,13 @@ const mackLinkList = [
 ]
 
 const goTo = (link: string) => {
+  if (!link) {
+    ElMessage({
+      message: '尚未開放',
+      type: 'warning'
+    })
+    return
+  }
   if (link.startsWith('http')) {
     window.open(link, '_blank', 'noopener,noreferrer')
     return
@@ -121,7 +130,7 @@ const goTo = (link: string) => {
         <p class="home__main-title">貿易業務知識資料庫</p>
       </div>
       <div class="home__main-content">
-        <div v-for="item in mackData" :key="item.title" class="home__card" @click="goTo(item.link)">
+        <div v-for="item in mockData" :key="item.title" class="home__card" @click="goTo(item.link)">
           <div class="home__card-content">
             <span class="home__card-icon material-symbols-rounded">
               {{ item.icon }}
@@ -145,7 +154,7 @@ const goTo = (link: string) => {
       <div class="home__sidebar-section">
         <p class="home__sidebar-title">異動紀錄</p>
         <div
-          v-for="item in mackNewList"
+          v-for="item in mockNewList"
           :key="item.description"
           class="home__sidebar-item home__sidebar-item--news"
           @click="goTo(item.id)"
@@ -161,7 +170,7 @@ const goTo = (link: string) => {
       <div class="home__sidebar-section">
         <p class="home__sidebar-title">常用連結</p>
         <div
-          v-for="item in mackLinkList"
+          v-for="item in mockLinkList"
           :key="item.link"
           class="home__sidebar-item home__sidebar-item--link"
           @click="goTo(item.link)"
