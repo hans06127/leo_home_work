@@ -164,7 +164,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="system-page-slot" aria-label="頁面內容">
+  <section class="system-page-slot">
     <div class="cases">
       <div class="cases__header">
         <div class="cases__header-title">
