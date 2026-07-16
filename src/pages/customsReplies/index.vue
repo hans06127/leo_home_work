@@ -157,9 +157,9 @@ const handleCategoryClick = (categoryId: string) => {
 <style lang="scss" scoped>
 .customs-replies {
   display: flex;
+  flex: 1 1 0%;
   flex-direction: column;
   gap: 20px;
-  flex: 1 1 0%;
   padding: 0 20px 20px;
 
   &__content {
@@ -168,28 +168,27 @@ const handleCategoryClick = (categoryId: string) => {
   }
 
   &__sidebar {
-    width: 260px;
     display: flex;
     flex-direction: column;
-    background-color: #ebf1f7;
-
+    width: 260px;
     padding: 20px;
+    background-color: #ebf1f7;
     border-radius: 10px;
   }
 
   &__sidebar-header {
     display: flex;
-    text-align: center;
-    margin-bottom: 10px;
     justify-content: center;
+    margin-bottom: 10px;
     font-size: 18px;
     font-weight: 700;
+    text-align: center;
     color: #2f3d50;
   }
 
   &__sidebar-list {
-    padding: 0;
     margin: 0;
+    padding: 0;
     list-style: none;
   }
 
@@ -198,22 +197,22 @@ const handleCategoryClick = (categoryId: string) => {
     align-items: center;
     gap: 10px;
     width: 100%;
+    margin-bottom: 2px;
     padding: 14px 10px;
+    background: transparent;
     border: 0;
     border-radius: 5px;
-    margin-bottom: 2px;
-    background: transparent;
     font-family: inherit;
     font-size: 15px;
-    color: #2f3d50;
     text-align: left;
+    color: #2f3d50;
     cursor: pointer;
 
     &--active {
       background-color: #fff;
-      color: #0f3f85;
       border: 1px solid #0f3f85;
       font-weight: bold;
+      color: #0f3f85;
 
       .customs-replies__sidebar-item-count {
         background-color: #0f3f85;
@@ -239,27 +238,27 @@ const handleCategoryClick = (categoryId: string) => {
   }
 
   &__main {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
   }
 
   &__main-header {
     display: flex;
     align-items: center;
-    gap: 7px;
     flex: 1;
+    gap: 7px;
+    margin-bottom: 12px;
     font-size: 20px;
     font-weight: 700;
     color: #0f3f85;
-    margin-bottom: 12px;
   }
 
   &__results {
-    min-height: 400px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    min-height: 400px;
   }
 
   &__card {
@@ -279,9 +278,9 @@ const handleCategoryClick = (categoryId: string) => {
   }
 
   &__meta-label {
-    color: #566578;
     font-weight: 600;
     white-space: nowrap;
+    color: #566578;
   }
 
   &__meta-value {
@@ -292,53 +291,53 @@ const handleCategoryClick = (categoryId: string) => {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    font-size: 14px;
     margin-bottom: 12px;
+    font-size: 14px;
   }
 
   &__summary-title {
+    margin: 0 0 6px;
     font-size: 14px;
     font-weight: 700;
     color: #2f3d50;
-    margin: 0 0 6px;
   }
 
   &__summary-text {
     font-size: 14px;
-    color: #2f3d50;
     line-height: 1.72;
+    color: #2f3d50;
   }
 
   &__related-cases {
     display: flex;
     align-items: center;
-    font-size: 14px;
     gap: 6px;
+    font-size: 14px;
   }
 
   &__related-cases-label {
+    margin: 0 0 6px;
     font-weight: 700;
     color: #2f3d50;
-    margin: 0 0 6px;
   }
 
   &__related-cases-list {
     display: flex;
-    gap: 6px;
     flex-wrap: wrap;
     align-items: center;
+    gap: 6px;
   }
 
   &__related-case {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 12px;
-    color: #2457a7;
-    font-weight: 500;
     padding: 7px 16px;
-    border-radius: 4px;
     border: 1px solid #b9ccea;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #2457a7;
   }
 
   &__related-case-icon {
