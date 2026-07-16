@@ -21,7 +21,7 @@ const mockData = [
   {
     title: '海關答聯單',
     icon: 'anchor',
-    link: '',
+    link: '/customsReplies',
     subtitle: '通關疑義公文與白聯單查詢'
   },
   {
