@@ -166,19 +166,14 @@ onMounted(() => {
 <template>
   <section class="system-page-slot">
     <div class="cases">
-      <div class="cases__header">
-        <div class="cases__header-title">
-          <span class="material-symbols-rounded"> work_history </span>
-          <h1>處分案例</h1>
-        </div>
-        <div class="cases__header-search">
-          <span class="material-symbols-rounded cases__header-search-icon"> search </span>
-          <el-input placeholder="請輸入關鍵字" v-model="searchQuery" />
-          <el-button type="primary" @click="search" text size="small" color="#2f3d50">
-            <span class="material-symbols-rounded">tune </span>
-          </el-button>
-        </div>
-      </div>
+      <app-page-header-search
+        title="處分案例"
+        title-icon="work_history"
+        v-model:search-query="searchQuery"
+        search-placeholder="請輸入關鍵字"
+        action-icon="tune"
+        @search="search"
+      />
       <div class="cases__body">
         <div class="cases__sidebar">
           <!-- 左側處分樣態 -->
@@ -263,68 +258,6 @@ onMounted(() => {
     flex: 1;
     min-height: 0;
     padding: 10px;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 30px;
-
-    @media (max-width: 991px) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-  }
-
-  &__header-title {
-    display: flex;
-    align-items: center;
-    color: #2e6096;
-
-    h1 {
-      margin-left: 10px;
-      font-size: 24px;
-    }
-  }
-
-  &__header-search {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid #cbcbcb;
-    border-radius: 20px;
-    padding: 6px 10px;
-
-    &:hover {
-      border-color: #0f3f85;
-      box-shadow: #2c3f5a26 0px 4px 12px;
-    }
-
-    .el-input {
-      min-width: 200px;
-      :deep(.el-input__wrapper) {
-        box-shadow: none !important;
-
-        input:focus {
-          border: 3px solid #c8d5e9;
-          border-radius: 8px;
-        }
-      }
-    }
-
-    .el-button {
-      border-left: 2px solid #cbcbcb;
-      border-radius: initial;
-    }
-  }
-
-  &__header-search-icon {
-    color: #354356;
-    background-color: #e7ebff;
-    border-radius: 50%;
-    padding: 5px;
   }
 
   &__sidebar {
