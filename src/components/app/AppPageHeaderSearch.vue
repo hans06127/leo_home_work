@@ -3,7 +3,8 @@ const props = withDefaults(
   defineProps<{
     title: string
     titleIcon?: string
-    searchQuery: string
+    hasQuery?: boolean
+    searchQuery?: string
     searchPlaceholder?: string
     searchIcon?: string
     actionIcon?: string
@@ -11,6 +12,7 @@ const props = withDefaults(
   }>(),
   {
     titleIcon: 'work_history',
+    hasQuery: true,
     searchPlaceholder: '請輸入關鍵字',
     searchIcon: 'search',
     actionIcon: 'tune',
@@ -38,7 +40,7 @@ const handleSearch = () => {
       <span class="material-symbols-rounded"> {{ props.titleIcon }} </span>
       <h1>{{ props.title }}</h1>
     </div>
-    <div class="app-page-header-search__input-wrap">
+    <div v-if="props.hasQuery" class="app-page-header-search__input-wrap">
       <span class="material-symbols-rounded app-page-header-search__search-icon">
         {{ props.searchIcon }}
       </span>
