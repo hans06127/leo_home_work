@@ -283,33 +283,33 @@ const handleOpenDrawer = (id: string) => {
       :has-query="false"
       action-icon="tune"
     />
-    <div class="customs-replies-view__steps">
+    <div class="reply-steps">
       <template v-for="(step, index) in mockData.steps" :key="step.id">
-        <div class="customs-replies-view__step">
+        <div class="reply-step">
           <div
             :class="[
-              'customs-replies-view__step-content',
-              { 'customs-replies-view__step-content--active': currentStep === step.step }
+              'reply-step__content',
+              { 'reply-step__content--active': currentStep === step.step }
             ]"
             @click="handleStepClick(step.step)"
           >
-            <div class="customs-replies-view__step-label">Step{{ step.id }}.</div>
-            <div class="customs-replies-view__step-title">{{ step.title }}</div>
-            <div class="customs-replies-view__step-date">{{ step.date }}</div>
+            <div class="reply-step__label">Step{{ step.id }}.</div>
+            <div class="reply-step__title">{{ step.title }}</div>
+            <div class="reply-step__date">{{ step.date }}</div>
           </div>
         </div>
-        <div v-if="index < mockData.steps.length - 1" class="customs-replies-view__step-connector">
-          <span class="material-symbols-rounded customs-replies-view__step-arrow">east</span>
+        <div v-if="index < mockData.steps.length - 1" class="reply-step__connector">
+          <span class="material-symbols-rounded reply-step__arrow">east</span>
         </div>
       </template>
     </div>
     <el-divider />
-    <div class="customs-replies-view__attachments">
-      <span class="customs-replies-view__attachments-label">相關附件：</span>
-      <div class="customs-replies-view__attachments-list">
-        <div class="customs-replies-view__file" v-for="file in mockData.files" :key="file.name">
-          <span class="material-symbols-rounded customs-replies-view__file-icon">attach_file</span>
-          <div class="customs-replies-view__file-info">
+    <div class="reply-attachments">
+      <span class="reply-attachments__label">相關附件：</span>
+      <div class="reply-attachments__list">
+        <div class="reply-file" v-for="file in mockData.files" :key="file.name">
+          <span class="material-symbols-rounded reply-file__icon">attach_file</span>
+          <div class="reply-file__info">
             <span>{{ file.name }}</span>
             <span>{{ file.description }}</span>
           </div>
@@ -317,16 +317,16 @@ const handleOpenDrawer = (id: string) => {
       </div>
     </div>
     <el-divider />
-    <div class="customs-replies-view__related-cases">
-      <span class="customs-replies-view__related-cases-label">關聯案例：</span>
-      <div class="customs-replies-view__related-cases-list">
+    <div class="reply-related-cases">
+      <span class="reply-related-cases__label">關聯案例：</span>
+      <div class="reply-related-cases__list">
         <div
-          class="customs-replies-view__related-case"
+          class="reply-related-cases__item"
           v-for="caseItem in mockData.relatedCases"
           :key="caseItem.id"
           @click="handleOpenDrawer(caseItem.id)"
         >
-          <span class="material-symbols-rounded customs-replies-view__related-icon"> link </span>
+          <span class="material-symbols-rounded reply-related-cases__icon"> link </span>
           <span>
             {{ caseItem.title }}
           </span>
@@ -334,51 +334,45 @@ const handleOpenDrawer = (id: string) => {
       </div>
     </div>
     <div class="customs-replies-view__content">
-      <div class="customs-replies-view__content-header">
-        <div class="customs-replies-view__content-header-item">
-          <div class="customs-replies-view__content-header-label">發文文號：</div>
-          <div class="customs-replies-view__content-header-value">
+      <div class="reply-content-header">
+        <div class="reply-content-header__item">
+          <div class="reply-content-header__label">發文文號：</div>
+          <div class="reply-content-header__value">
             {{ currentStepData?.data?.documentNumber }}
           </div>
         </div>
-        <div
-          class="customs-replies-view__content-header-item customs-replies-view__content-header-item--separated"
-        >
-          <div class="customs-replies-view__content-header-label">發文日期：</div>
-          <div class="customs-replies-view__content-header-value">
+        <div class="reply-content-header__item reply-content-header__item--separated">
+          <div class="reply-content-header__label">發文日期：</div>
+          <div class="reply-content-header__value">
             {{ currentStepData?.data?.createDate }}
           </div>
         </div>
       </div>
 
-      <div class="customs-replies-view__letters">
-        <div
-          v-for="letter in currentLetters"
-          :key="letter.id"
-          class="customs-replies-view__letter-card"
-        >
-          <div class="customs-replies-view__letter-header">
-            <div class="customs-replies-view__sender-type">
+      <div class="reply-letters">
+        <div v-for="letter in currentLetters" :key="letter.id" class="reply-letter">
+          <div class="reply-letter__header">
+            <div class="reply-letter__sender-type">
               {{ letter.data.senderType }}
             </div>
-            <div class="customs-replies-view__sender-unit">
+            <div class="reply-letter__sender-unit">
               {{ letter.data.senderUnit }}
             </div>
           </div>
-          <div class="customs-replies-view__letter-meta">
+          <div class="reply-letter__meta">
             <template
               v-for="field in letterFields(letter.id, letter.data)"
               :key="field.label + field.value"
             >
-              <div class="customs-replies-view__letter-meta-label">{{ field.label }}</div>
-              <div class="customs-replies-view__letter-meta-value">
+              <div class="reply-letter__meta-label">{{ field.label }}</div>
+              <div class="reply-letter__meta-value">
                 {{ field.value }}
               </div>
             </template>
           </div>
           <el-divider />
-          <div class="customs-replies-view__summary-label">{{ letter.summaryLabel }}</div>
-          <div class="customs-replies-view__summary-text">
+          <div class="reply-letter__summary-label">{{ letter.summaryLabel }}</div>
+          <div class="reply-letter__summary-text">
             {{ letter.data.caseSummary }}
           </div>
         </div>
@@ -391,38 +385,32 @@ const handleOpenDrawer = (id: string) => {
 
 <style lang="scss" scoped>
 .customs-replies-view {
-  &__steps {
-    display: flex;
-    align-items: stretch;
-    padding: 0px 16px 12px;
-    gap: 5px;
+  &__content {
+    background-color: var(--bg-page);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 4px;
   }
 
-  &__step {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    min-width: 0;
+  :deep(.el-divider) {
+    margin: 18px 0 !important;
   }
+}
 
-  &__step-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: var(--tx-light);
-    font-variation-settings: 'wght' 100;
-  }
+.reply-steps {
+  display: flex;
+  align-items: stretch;
+  padding: 0px 16px 12px;
+  gap: 5px;
+}
 
-  &__step-connector {
-    width: 24px;
-    flex: 0 0 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
+.reply-step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
 
-  &__step-content {
+  &__content {
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -439,60 +427,99 @@ const handleOpenDrawer = (id: string) => {
     }
   }
 
-  &__step-label {
+  &__label {
     font-weight: 700;
     font-size: 16px;
     color: var(--tx-main);
     font-style: italic;
   }
 
-  &__step-title {
+  &__title {
     font-size: 16px;
     font-weight: 700;
     color: var(--tx-main);
   }
 
-  &__step-date {
+  &__date {
     font-size: 14px;
     color: var(--tx-main);
     margin-top: 3px;
   }
 
-  &__attachments-label,
-  &__related-cases-label {
+  &__connector {
+    width: 24px;
+    flex: 0 0 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--tx-light);
+    font-variation-settings: 'wght' 100;
+  }
+}
+
+.reply-attachments,
+.reply-related-cases {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0 20px;
+  font-size: 14px;
+
+  &__label {
     font-size: 12.5px;
     font-weight: 600;
     color: var(--tx-mid);
   }
 
-  &__attachments {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 4px;
-    padding: 0 20px;
-    font-size: 14px;
-  }
-
-  &__attachments-list {
+  &__list {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
   }
+}
 
-  &__file {
+.reply-related-cases {
+  margin-bottom: 14px;
+
+  &__item {
     display: inline-flex;
     align-items: center;
-    min-width: 0;
-    border: 1px solid #cbcbcb;
-    padding: 7px 14px;
-    border-radius: 4px;
+    justify-content: center;
     gap: 8px;
+    border: 1px solid #b9ccea;
+    padding: 7px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--blue);
     cursor: pointer;
-    text-align: left;
   }
 
-  &__file-info {
+  &__icon {
+    font-size: 14px;
+  }
+}
+
+.reply-file {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  border: 1px solid #cbcbcb;
+  padding: 7px 14px;
+  border-radius: 4px;
+  gap: 8px;
+  cursor: pointer;
+  text-align: left;
+
+  &__info {
     display: flex;
     min-width: 0;
     flex-direction: column;
@@ -509,60 +536,20 @@ const handleOpenDrawer = (id: string) => {
     }
   }
 
-  &__file-icon {
+  &__icon {
     font-variation-settings: 'wght' 300;
   }
+}
 
-  &__related-cases {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 4px;
-    padding: 0 20px;
-    margin-bottom: 14px;
-  }
+.reply-content-header {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 0px 16px;
+  margin-bottom: 16px;
 
-  &__related-cases-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  &__related-case {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border: 1px solid #b9ccea;
-    padding: 7px 16px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--blue);
-    cursor: pointer;
-  }
-
-  &__related-icon {
-    font-size: 14px;
-  }
-
-  &__content {
-    background-color: var(--bg-page);
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 4px;
-  }
-
-  &__content-header {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    border-radius: 4px;
-    padding: 0px 16px;
-    margin-bottom: 16px;
-  }
-
-  &__content-header-item {
+  &__item {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -574,44 +561,33 @@ const handleOpenDrawer = (id: string) => {
     }
   }
 
-  &__content-header-label,
-  &__letter-meta-label {
+  &__label {
     font-size: 14px;
     color: var(--tx-mid);
   }
 
-  &__letters {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-
-  &__letter-card {
-    min-width: 0;
-    background-color: var(--bg-white);
-    border: 1px solid var(--bdr);
-    border-radius: 10px;
-    padding: 20px 22px;
-  }
-
-  &__letter-meta {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 5px 14px;
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    font-size: 14px;
-  }
-
-  &__content-header-value,
-  &__letter-meta-value {
+  &__value {
     min-width: 0;
     color: var(--tx-main);
     font-weight: 500;
     overflow-wrap: anywhere;
   }
+}
 
-  &__letter-header {
+.reply-letters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.reply-letter {
+  min-width: 0;
+  background-color: var(--bg-white);
+  border: 1px solid var(--bdr);
+  border-radius: 10px;
+  padding: 20px 22px;
+
+  &__header {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -635,6 +611,27 @@ const handleOpenDrawer = (id: string) => {
     font-weight: 700;
   }
 
+  &__meta {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 5px 14px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    font-size: 14px;
+  }
+
+  &__meta-label {
+    font-size: 14px;
+    color: var(--tx-mid);
+  }
+
+  &__meta-value {
+    min-width: 0;
+    color: var(--tx-main);
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+
   &__summary-label {
     font-size: 14px;
     color: var(--teal);
@@ -648,10 +645,6 @@ const handleOpenDrawer = (id: string) => {
     margin-bottom: 10px;
     white-space: pre-line;
     overflow-wrap: anywhere;
-  }
-
-  :deep(.el-divider) {
-    margin: 18px 0 !important;
   }
 }
 </style>

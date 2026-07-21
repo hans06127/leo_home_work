@@ -98,49 +98,49 @@ const handleCategoryClick = (categoryId: string) => {
           <div
             v-for="item in currentCategory.list"
             :key="item.documentNumber"
-            class="customs-replies__card"
+            class="customs-reply-card"
           >
-            <div class="customs-replies__meta">
-              <span class="customs-replies__meta-label">發文文號：</span>
-              <span class="customs-replies__meta-value">
+            <div class="customs-reply-card__meta">
+              <span class="customs-reply-card__meta-label">發文文號：</span>
+              <span class="customs-reply-card__meta-value">
                 {{ item.documentNumber }}
               </span>
-              <span class="customs-replies__meta-label">發文日期：</span>
-              <span class="customs-replies__meta-value">
+              <span class="customs-reply-card__meta-label">發文日期：</span>
+              <span class="customs-reply-card__meta-value">
                 {{ item.documentDate }}
               </span>
-              <span class="customs-replies__meta-label">發文機關：</span>
-              <span class="customs-replies__meta-value">
+              <span class="customs-reply-card__meta-label">發文機關：</span>
+              <span class="customs-reply-card__meta-value">
                 {{ item.issuingAgency }}
               </span>
-              <span class="customs-replies__meta-label">關鍵貨品：</span>
-              <span class="customs-replies__meta-value">
+              <span class="customs-reply-card__meta-label">關鍵貨品：</span>
+              <span class="customs-reply-card__meta-value">
                 {{ item.relatedLaws }}
               </span>
-              <span class="customs-replies__meta-label">處分對象：</span>
-              <span class="customs-replies__meta-value">
+              <span class="customs-reply-card__meta-label">處分對象：</span>
+              <span class="customs-reply-card__meta-value">
                 {{ item.caseSummary }}
               </span>
-              <span class="customs-replies__meta-label">涉及法規：</span>
-              <span class="customs-replies__meta-value">
+              <span class="customs-reply-card__meta-label">涉及法規：</span>
+              <span class="customs-reply-card__meta-value">
                 {{ item.cases }}
               </span>
             </div>
-            <div class="customs-replies__summary">
-              <div class="customs-replies__summary-title">案情摘要</div>
-              <div class="customs-replies__summary-text">
+            <div class="customs-reply-card__summary">
+              <div class="customs-reply-card__summary-title">案情摘要</div>
+              <div class="customs-reply-card__summary-text">
                 {{ item.description }}
               </div>
             </div>
-            <div class="customs-replies__related-cases">
-              <div class="customs-replies__related-cases-label">關聯案例：</div>
-              <div class="customs-replies__related-cases-list">
+            <div class="customs-reply-card__related-cases">
+              <div class="customs-reply-card__related-label">關聯案例：</div>
+              <div class="customs-reply-card__related-list">
                 <div
                   v-for="caseItem in item.relatedCases"
                   :key="caseItem.id"
-                  class="customs-replies__related-case"
+                  class="customs-reply-card__related-item"
                 >
-                  <span class="material-symbols-rounded customs-replies__related-case-icon">
+                  <span class="material-symbols-rounded customs-reply-card__related-icon">
                     link
                   </span>
                   <span>{{ caseItem.title }}</span>
@@ -260,14 +260,14 @@ const handleCategoryClick = (categoryId: string) => {
     gap: 12px;
     min-height: 400px;
   }
+}
 
-  &__card {
-    padding: 18px 24px;
-    background-color: var(--bg-white);
-    border: 1px solid #cbcbcb;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.customs-reply-card {
+  padding: 18px 24px;
+  background-color: var(--bg-white);
+  border: 1px solid #cbcbcb;
+  border-radius: 5px;
+  cursor: pointer;
 
   &__meta {
     display: grid;
@@ -315,20 +315,20 @@ const handleCategoryClick = (categoryId: string) => {
     font-size: 14px;
   }
 
-  &__related-cases-label {
+  &__related-label {
     margin: 0 0 6px;
     font-weight: 700;
     color: var(--tx-main);
   }
 
-  &__related-cases-list {
+  &__related-list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 6px;
   }
 
-  &__related-case {
+  &__related-item {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -340,7 +340,7 @@ const handleCategoryClick = (categoryId: string) => {
     color: var(--blue);
   }
 
-  &__related-case-icon {
+  &__related-icon {
     font-size: 20px;
     font-variation-settings:
       'wght' 400,

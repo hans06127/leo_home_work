@@ -68,7 +68,15 @@ const handleSearch = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 30px;
+  padding: 5px 10px;
+  border-radius: 50px;
+  background-color: var(--bg-white);
+  border: 1px solid #cbcbcb;
+
+  &:hover {
+    border-color: var(--primary);
+    box-shadow: #2c3f5a26 0px 4px 12px;
+  }
 
   @media (max-width: 991px) {
     flex-direction: column;
@@ -88,17 +96,11 @@ const handleSearch = () => {
   }
 
   &__input-wrap {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 10px;
-    border: 1px solid #cbcbcb;
-    border-radius: 20px;
-    padding: 6px 10px;
-
-    &:hover {
-      border-color: var(--primary);
-      box-shadow: #2c3f5a26 0px 4px 12px;
-    }
+    padding: 2px 10px;
 
     .el-input {
       min-width: 200px;

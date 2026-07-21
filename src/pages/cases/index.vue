@@ -188,8 +188,8 @@ onMounted(() => {
             </el-radio-button>
           </el-radio-group>
 
-          <div class="cases__sidebar-menu">
-            <div class="cases__sidebar-menu-header">主要類別</div>
+          <div class="case-sidebar-nav">
+            <div class="case-sidebar-nav__header">主要類別</div>
             <el-menu
               :default-active="activeMenuItemIndex"
               :default-openeds="['1']"
@@ -202,22 +202,22 @@ onMounted(() => {
                 :index="String(index + 1)"
                 :key="menu.categoryId"
                 :class="[
-                  'cases__sidebar-menu-category',
-                  { 'cases__sidebar-menu-category--active': openCategory === menu.categoryId }
+                  'case-sidebar-nav__category',
+                  { 'case-sidebar-nav__category--active': openCategory === menu.categoryId }
                 ]"
               >
                 <template #title>
-                  <div class="cases__sidebar-menu-category-title">
+                  <div class="case-sidebar-nav__category-title">
                     <span class="material-symbols-rounded"> {{ menu.icon }} </span>
-                    <span class="cases__sidebar-menu-category-label">
+                    <span class="case-sidebar-nav__category-label">
                       {{ menu.categoryName }}
                     </span>
-                    <span class="cases__sidebar-menu-category-count">{{ menu.list.length }}</span>
+                    <span class="case-sidebar-nav__category-count">{{ menu.list.length }}</span>
                   </div>
                 </template>
 
                 <el-menu-item v-for="item in menu.list" :key="item.title" :index="item.index">
-                  <div class="cases__sidebar-menu-item">
+                  <div class="case-sidebar-nav__item">
                     <span>
                       {{ item.title }}
                     </span>
@@ -284,60 +284,62 @@ onMounted(() => {
       text-align: center;
     }
   }
+}
 
-  &__sidebar-menu {
-    padding: 10px 0;
+.case-sidebar-nav {
+  padding: 10px 0;
 
-    :deep(.el-menu) {
-      background-color: transparent !important;
-      border-right: 0;
+  :deep(.el-menu) {
+    background-color: transparent !important;
+    border-right: 0;
+  }
+
+  :deep(.el-menu--inline) {
+    padding-left: 10px !important;
+    margin-top: 5px;
+  }
+
+  :deep(.el-menu-item) {
+    padding-left: 8px !important;
+    padding-right: 0 !important;
+
+    border-left: 1px solid var(--bdr);
+    color: #647284;
+    height: 40px;
+    position: relative;
+  }
+
+  :deep(.el-menu-item.is-active) {
+    &::before {
+      content: '';
+      position: absolute;
+      left: -1.5px;
+      top: 4px;
+      bottom: 4px;
+      width: 2.5px;
+      background: var(--primary);
     }
 
-    :deep(.el-menu--inline) {
-      padding-left: 10px !important;
-      margin-top: 5px;
-    }
-
-    :deep(.el-menu-item) {
-      padding-left: 8px !important;
-      padding-right: 0 !important;
-
-      border-left: 1px solid var(--bdr);
-      color: #647284;
-      height: 40px;
-      position: relative;
-    }
-
-    :deep(.el-menu-item.is-active) {
-      &::before {
-        content: '';
-        position: absolute;
-        left: -1.5px;
-        top: 4px;
-        bottom: 4px;
-        width: 2.5px;
-        background: var(--primary);
-      }
-      .cases__sidebar-menu-item {
-        background-color: var(--bg-white) !important;
-        font-weight: 600;
-        :first-child {
-          color: #0f3f89 !important;
-        }
-      }
-    }
-
-    :deep(.el-sub-menu__title) {
-      color: #533d50;
-      height: 44px;
-      font-size: 15px;
+    .case-sidebar-nav__item {
+      background-color: var(--bg-white) !important;
       font-weight: 600;
-      padding: 0 35px 0 0 !important;
-      box-sizing: border-box;
+
+      :first-child {
+        color: #0f3f89 !important;
+      }
     }
   }
 
-  &__sidebar-menu-header {
+  :deep(.el-sub-menu__title) {
+    color: #533d50;
+    height: 44px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0 35px 0 0 !important;
+    box-sizing: border-box;
+  }
+
+  &__header {
     font-size: 12px;
     font-weight: 700;
     color: var(--tx-light);
@@ -345,7 +347,7 @@ onMounted(() => {
     padding-top: 10px;
   }
 
-  &__sidebar-menu-category {
+  &__category {
     &--active {
       :deep(.el-sub-menu__title) {
         color: #0f3f89;
@@ -357,7 +359,7 @@ onMounted(() => {
     }
   }
 
-  &__sidebar-menu-category-title {
+  &__category-title {
     display: flex;
     align-items: center;
     width: 100%;
@@ -370,19 +372,19 @@ onMounted(() => {
     }
   }
 
-  &__sidebar-menu-category-label {
+  &__category-label {
     flex: 1;
     min-width: 0;
   }
 
-  &__sidebar-menu-category-count {
+  &__category-count {
     font-size: 12px;
     color: var(--tx-light);
     margin-left: auto;
     flex-shrink: 0;
   }
 
-  &__sidebar-menu-item {
+  &__item {
     width: 100%;
     height: 20px;
     box-sizing: content-box;

@@ -85,47 +85,43 @@ const goTo = (link: string) => {
 
 <template>
   <section class="system-page-slot home" aria-label="首頁">
-    <div class="home__title">貿易業務知識資料庫</div>
+    <h1 class="home__title">貿易業務知識資料庫</h1>
     <app-page-header-search
       v-model:search-query="searchQuery"
+      class="home__search"
       search-placeholder="請輸入關鍵字"
       action-icon="tune"
       @search="search"
     />
     <div class="home__card-list">
-      <div
-        v-for="item in mockData"
-        :key="item.title"
-        class="home__card-item"
-        @click="goTo(item.link)"
-      >
-        <div class="home__card-item-title">{{ item.title }}</div>
-        <div class="home__card-item-subtitle">{{ item.subtitle }}</div>
-        <div class="home__card-item-footer">
-          <div class="home__card-item-footer-img">
+      <div v-for="item in mockData" :key="item.title" class="home-card" @click="goTo(item.link)">
+        <div class="home-card__title">{{ item.title }}</div>
+        <div class="home-card__subtitle">{{ item.subtitle }}</div>
+        <div class="home-card__footer">
+          <div class="home-card__image">
             <img :src="`/images/${item.img}`" :alt="item.title" />
           </div>
-          <div class="home__card-item-footer-icon">
+          <div class="home-card__icon">
             <span class="material-symbols-rounded">arrow_circle_right</span>
           </div>
         </div>
       </div>
     </div>
     <div class="home__news-header">
-      <div class="home__news-header-title">最新發布訊息</div>
-      <el-button class="home__news-header-more" text>
+      <div class="home__news-title">最新發布訊息</div>
+      <div class="home__news-more" text>
         <span>更多</span>
         <span class="material-symbols-rounded">chevron_right</span>
-      </el-button>
+      </div>
     </div>
     <div class="home__news-list">
-      <div v-for="item in mockNewList" :key="item.id" class="home__news-item">
-        <div class="home__news-item-header">
-          <span class="home__news-item-header-type">{{ item.type }}</span>
-          <span class="home__news-item-header-date">{{ item.date }}</span>
+      <div v-for="item in mockNewList" :key="item.id" class="home-news-card">
+        <div class="home-news-card__header">
+          <span class="home-news-card__type">{{ item.type }}</span>
+          <span class="home-news-card__date">{{ item.date }}</span>
         </div>
-        <div class="home__news-item-title">{{ item.title }}</div>
-        <div class="home__news-item-description">{{ item.description }}</div>
+        <div class="home-news-card__title">{{ item.title }}</div>
+        <div class="home-news-card__description">{{ item.description }}</div>
       </div>
     </div>
   </section>
@@ -144,7 +140,7 @@ const goTo = (link: string) => {
   margin: 0 auto;
   padding: 36px 80px;
   border-radius: 28px;
-  overflow-x: auto;
+  overflow-x: hidden;
   backdrop-filter: blur(36px) saturate(110%);
   -webkit-backdrop-filter: blur(36px) saturate(110%);
   border: 2px solid var(--bg-white);
@@ -154,10 +150,10 @@ const goTo = (link: string) => {
     linear-gradient(120deg, var(--grad-start), var(--grad-end)) border-box;
 
   &__title {
+    margin: 0 0 24px;
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 24px;
     background: var(--grad);
     -webkit-background-clip: text;
     background-clip: text;
@@ -165,44 +161,115 @@ const goTo = (link: string) => {
     -webkit-text-fill-color: transparent;
   }
 
-  &__card-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-content: space-between;
-    gap: 22px;
-    width: 100%;
+  &__search {
+    width: min(100%, 680px);
   }
 
-  &__card-item {
-    min-width: 0;
+  &__card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 22px;
+    width: 100%;
+    margin-top: 35px;
+  }
+
+  &__news-header {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    background: var(--bg-white);
-    border-radius: 18px;
-    padding: 22px 22px 20px;
-    min-height: 188px;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  &__news-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--tx-main);
+  }
+
+  &__news-more {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--tx-mid);
     cursor: pointer;
-    transition:
-      box-shadow 0.2s ease,
-      transform 0.17s ease,
-      background 0.6s ease;
-    position: relative;
-    box-shadow: 0 1px 4px rgba(44, 63, 90, 0.09);
-    border: 2px solid transparent;
 
     &:hover {
-      background:
-        linear-gradient(var(--bg-white), var(--bg-white)) padding-box,
-        linear-gradient(120deg, var(--grad-start), var(--grad-end), var(--grad-start)) border-box;
-      background-size:
-        100% 100%,
-        300% 300%;
-      animation: cardBorderFlow 3s ease infinite;
+      color: var(--primary);
     }
   }
 
-  &__card-item-title {
+  &__news-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 100%;
+  }
+
+  @media (max-width: 760px) {
+    justify-content: flex-start;
+    padding: 28px 20px;
+    border-radius: 20px;
+
+    &__title {
+      font-size: 26px;
+    }
+
+    &__card-list {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    &__news-list {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.home-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg-white);
+  border-radius: 18px;
+  padding: 22px 22px 20px;
+  min-height: 188px;
+  cursor: pointer;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.17s ease,
+    background 0.6s ease;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(44, 63, 90, 0.09);
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(44, 63, 90, 0.14);
+    background:
+      linear-gradient(var(--bg-white), var(--bg-white)) padding-box,
+      linear-gradient(120deg, var(--grad-start), var(--grad-end), var(--grad-start)) border-box;
+    background-size:
+      100% 100%,
+      300% 300%;
+    animation: homeCardBorderFlow 3s ease infinite;
+
+    img {
+      transform: scale(1.08) translateY(-2px);
+    }
+
+    .home-card__icon {
+      span {
+        color: var(--primary);
+        font-variation-settings: 'FILL' 1;
+      }
+    }
+  }
+
+  &__title {
     font-size: 18px;
     font-weight: 700;
     color: var(--tx-main);
@@ -210,20 +277,20 @@ const goTo = (link: string) => {
     line-height: 1.4;
   }
 
-  &__card-item-subtitle {
+  &__subtitle {
     font-size: 13.5px;
     color: var(--tx-mid);
     line-height: 1.5;
   }
 
-  &__card-item-footer {
+  &__footer {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     margin-top: 14px;
   }
 
-  &__card-item-footer-img {
+  &__image {
     width: 80px;
     height: 80px;
 
@@ -235,7 +302,7 @@ const goTo = (link: string) => {
     }
   }
 
-  &__card-item-footer-icon {
+  &__icon {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -250,58 +317,30 @@ const goTo = (link: string) => {
       transform: rotate(-45deg);
     }
   }
+}
 
-  &__news-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin: 10px 0;
+.home-news-card {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-white);
+  border-radius: 4px;
+  padding: 16px 16px;
+  box-shadow: 0 1px 4px rgba(44, 63, 90, 0.09);
+  cursor: pointer;
+  transition: box-shadow 0.12s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(44, 63, 90, 0.15);
   }
 
-  &__news-header-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--tx-main);
-  }
-
-  &__news-header-more {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 13px;
-    color: var(--tx-mid);
-    cursor: pointer;
-  }
-
-  &__news-list {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-  }
-
-  &__news-item {
-    flex: 1;
-    min-width: 0;
-    background: var(--bg-white);
-    border-radius: 4px;
-    padding: 16px 16px;
-    box-shadow: 0 1px 4px rgba(44, 63, 90, 0.09);
-    cursor: pointer;
-    transition: box-shadow 0.12s ease;
-
-    &:hover {
-      box-shadow: 0 4px 12px rgba(44, 63, 90, 0.15);
-    }
-  }
-  &__news-item-header {
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
   }
 
-  &__news-item-header-type {
+  &__type {
     display: inline-block;
     font-size: 11px;
     font-weight: 700;
@@ -312,12 +351,12 @@ const goTo = (link: string) => {
     background: none;
   }
 
-  &__news-item-header-date {
+  &__date {
     font-size: 11px;
     color: var(--tx-light);
   }
 
-  &__news-item-title {
+  &__title {
     font-size: 14px;
     font-weight: 600;
     color: var(--tx-main);
@@ -325,24 +364,30 @@ const goTo = (link: string) => {
     line-height: 1.4;
   }
 
-  &__news-item-description {
+  &__description {
     font-size: 12px;
     color: var(--tx-light);
     line-height: 1.5;
   }
 }
 
-@keyframes cardBorderFlow {
+@keyframes homeCardBorderFlow {
   0% {
-    background-position: 0 0, 0% 50%;
+    background-position:
+      0 0,
+      0% 50%;
   }
 
   50% {
-    background-position: 0 0, 100% 50%;
+    background-position:
+      0 0,
+      100% 50%;
   }
 
   100% {
-    background-position: 0 0, 0% 50%;
+    background-position:
+      0 0,
+      0% 50%;
   }
 }
 </style>
