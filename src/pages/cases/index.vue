@@ -181,7 +181,7 @@ onMounted(() => {
             v-model="activeName"
             size="large"
             class="cases__sidebar-radio-group"
-            fill="#0f3f85"
+            fill="var(--primary)"
           >
             <el-radio-button :value="tab.value" v-for="tab in tabs" :key="tab.value">
               {{ tab.label }}
@@ -261,7 +261,7 @@ onMounted(() => {
   }
 
   &__sidebar {
-    background-color: #ebf1f7;
+    background-color: var(--bg-tree);
     min-height: 0;
     padding: 20px;
     border-radius: 10px 0 0 10px;
@@ -302,7 +302,7 @@ onMounted(() => {
       padding-left: 8px !important;
       padding-right: 0 !important;
 
-      border-left: 1px solid #d8e2ee;
+      border-left: 1px solid var(--bdr);
       color: #647284;
       height: 40px;
       position: relative;
@@ -316,10 +316,10 @@ onMounted(() => {
         top: 4px;
         bottom: 4px;
         width: 2.5px;
-        background: #0f3f85;
+        background: var(--primary);
       }
       .cases__sidebar-menu-item {
-        background-color: #ffffff !important;
+        background-color: var(--bg-white) !important;
         font-weight: 600;
         :first-child {
           color: #0f3f89 !important;
@@ -340,7 +340,7 @@ onMounted(() => {
   &__sidebar-menu-header {
     font-size: 12px;
     font-weight: 700;
-    color: #8898aa;
+    color: var(--tx-light);
     letter-spacing: 0.3px;
     padding-top: 10px;
   }
@@ -350,7 +350,7 @@ onMounted(() => {
       :deep(.el-sub-menu__title) {
         color: #0f3f89;
         font-weight: 600;
-        background-color: #ffffff;
+        background-color: var(--bg-white);
         border: 1.5px solid #0f3f89;
         border-radius: 4px;
       }
@@ -377,7 +377,7 @@ onMounted(() => {
 
   &__sidebar-menu-category-count {
     font-size: 12px;
-    color: #8898aa;
+    color: var(--tx-light);
     margin-left: auto;
     flex-shrink: 0;
   }

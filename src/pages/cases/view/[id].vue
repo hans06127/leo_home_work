@@ -162,9 +162,9 @@ const mockData = {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #2c8086;
+    color: var(--teal);
     padding: 8px 30px;
-    background: linear-gradient(90deg, #2c8085 0%, #3145a5 100%);
+    background: linear-gradient(90deg, var(--grad-start) 0%, var(--grad-end) 100%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -191,12 +191,12 @@ const mockData = {
     &:not(:last-child)::after {
       content: '|';
       margin-left: 8px;
-      color: #566578;
+      color: var(--tx-mid);
     }
   }
 
   &__meta-value {
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: 600;
   }
 
@@ -204,7 +204,7 @@ const mockData = {
     grid-area: info;
     min-width: 0;
     padding: 14px 16px;
-    border: 1px solid #d8e2ee;
+    border: 1px solid var(--bdr);
     border-radius: 10px;
   }
 
@@ -213,7 +213,7 @@ const mockData = {
     margin: 0 0 14px;
     padding: 3px 12px;
     border-radius: 20px;
-    background-color: #2c8086;
+    background-color: var(--teal);
     color: white;
     font-size: 14px;
     line-height: 1.4;
@@ -223,7 +223,7 @@ const mockData = {
   &__related-case-label {
     font-size: 12.5px;
     font-weight: 600;
-    color: #566578;
+    color: var(--tx-mid);
   }
 
   &__file-list {
@@ -261,12 +261,12 @@ const mockData = {
     span:first-child {
       font-size: 12px;
       font-weight: 600;
-      color: #2f3d50;
+      color: var(--tx-main);
     }
 
     span:last-child {
       font-size: 10.5px;
-      color: #566578;
+      color: var(--tx-mid);
     }
   }
 
@@ -298,7 +298,7 @@ const mockData = {
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
-    color: #2457a7;
+    color: var(--blue);
     cursor: pointer;
   }
 
@@ -337,20 +337,20 @@ const mockData = {
     padding: 9px 12px;
     align-items: center;
     gap: 10px;
-    background-color: #f0f4f9;
+    background-color: var(--bg-page);
     font-size: 12.5px;
     cursor: pointer;
   }
 
   &__process-icon {
     font-size: 16px;
-    color: #0f3f85;
+    color: var(--primary);
     font-variation-settings: 'FILL' 1;
   }
 
   &__process-arrow {
     font-size: 20px;
-    color: #2c8086;
+    color: var(--teal);
   }
 
   :deep(.el-divider) {
@@ -363,7 +363,7 @@ const mockData = {
     flex-direction: column;
     gap: 10px;
     padding: 20px 22px;
-    border: 1px solid #d8e2ee;
+    border: 1px solid var(--bdr);
     border-radius: 10px;
   }
 
@@ -373,7 +373,7 @@ const mockData = {
 
   &__document-heading {
     margin-bottom: 10px;
-    color: #2c8086;
+    color: var(--teal);
     font-size: 14px;
     font-weight: 700;
   }
@@ -391,7 +391,7 @@ const mockData = {
   }
 
   &__info-label {
-    color: #8898aa;
+    color: var(--tx-light);
     font-size: 14px;
     font-weight: 600;
   }
@@ -410,8 +410,8 @@ const mockData = {
   }
 
   &__info-update-date {
-    background-color: #edf7f6;
-    color: #16806d;
+    background-color: var(--tag-new-bg);
+    color: var(--green);
     padding: 4px 8px;
     font-weight: 700;
   }
@@ -419,17 +419,17 @@ const mockData = {
   &__info-penalty-tag {
     display: inline-block;
     padding: 4px 10px;
-    background-color: #16806d;
+    background-color: var(--green);
     font-size: 12px;
     font-weight: 700;
-    color: #fff;
+    color: var(--bg-white);
     border-radius: 20px;
   }
 
   &__info-penalty {
     padding: 4px 10px;
     font-weight: 700;
-    color: #2c8086;
+    color: var(--teal);
   }
 }
 </style>

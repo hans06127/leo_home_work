@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    title: string
+    title?: string
     titleIcon?: string
     hasQuery?: boolean
     searchQuery?: string
@@ -11,7 +11,8 @@ const props = withDefaults(
     actionButtonColor?: string
   }>(),
   {
-    titleIcon: 'work_history',
+    title: '',
+    titleIcon: '',
     hasQuery: true,
     searchPlaceholder: '請輸入關鍵字',
     searchIcon: 'search',
@@ -36,9 +37,9 @@ const handleSearch = () => {
 
 <template>
   <div class="app-page-header-search">
-    <div class="app-page-header-search__title">
-      <span class="material-symbols-rounded"> {{ props.titleIcon }} </span>
-      <h1>{{ props.title }}</h1>
+    <div class="app-page-header-search__title" v-if="props.title || props.titleIcon">
+      <span class="material-symbols-rounded" v-if="props.titleIcon"> {{ props.titleIcon }} </span>
+      <h1 v-if="props.title">{{ props.title }}</h1>
     </div>
     <div v-if="props.hasQuery" class="app-page-header-search__input-wrap">
       <span class="material-symbols-rounded app-page-header-search__search-icon">
@@ -53,7 +54,7 @@ const handleSearch = () => {
         type="primary"
         text
         size="small"
-        :color="props.actionButtonColor"
+        :style="{ color: props.actionButtonColor }"
         @click="handleSearch"
       >
         <span class="material-symbols-rounded">{{ props.actionIcon }}</span>
@@ -95,7 +96,7 @@ const handleSearch = () => {
     padding: 6px 10px;
 
     &:hover {
-      border-color: #0f3f85;
+      border-color: var(--primary);
       box-shadow: #2c3f5a26 0px 4px 12px;
     }
 

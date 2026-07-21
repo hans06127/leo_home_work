@@ -172,7 +172,7 @@ const handleCategoryClick = (categoryId: string) => {
     flex-direction: column;
     width: 260px;
     padding: 20px;
-    background-color: #ebf1f7;
+    background-color: var(--bg-tree);
     border-radius: 10px;
   }
 
@@ -183,7 +183,7 @@ const handleCategoryClick = (categoryId: string) => {
     font-size: 18px;
     font-weight: 700;
     text-align: center;
-    color: #2f3d50;
+    color: var(--tx-main);
   }
 
   &__sidebar-list {
@@ -205,18 +205,18 @@ const handleCategoryClick = (categoryId: string) => {
     font-family: inherit;
     font-size: 15px;
     text-align: left;
-    color: #2f3d50;
+    color: var(--tx-main);
     cursor: pointer;
 
     &--active {
-      background-color: #fff;
-      border: 1px solid #0f3f85;
+      background-color: var(--bg-white);
+      border: 1px solid var(--primary);
       font-weight: bold;
-      color: #0f3f85;
+      color: var(--primary);
 
       .customs-replies__sidebar-item-count {
-        background-color: #0f3f85;
-        color: #fff;
+        background-color: var(--primary);
+        color: var(--bg-white);
       }
     }
   }
@@ -234,7 +234,7 @@ const handleCategoryClick = (categoryId: string) => {
     background-color: #e1e1e1;
     border-radius: 50%;
     font-weight: bold;
-    color: #2f3d50;
+    color: var(--tx-main);
   }
 
   &__main {
@@ -251,7 +251,7 @@ const handleCategoryClick = (categoryId: string) => {
     margin-bottom: 12px;
     font-size: 20px;
     font-weight: 700;
-    color: #0f3f85;
+    color: var(--primary);
   }
 
   &__results {
@@ -263,7 +263,7 @@ const handleCategoryClick = (categoryId: string) => {
 
   &__card {
     padding: 18px 24px;
-    background-color: #fff;
+    background-color: var(--bg-white);
     border: 1px solid #cbcbcb;
     border-radius: 5px;
     cursor: pointer;
@@ -280,11 +280,11 @@ const handleCategoryClick = (categoryId: string) => {
   &__meta-label {
     font-weight: 600;
     white-space: nowrap;
-    color: #566578;
+    color: var(--tx-mid);
   }
 
   &__meta-value {
-    color: #2f3d50;
+    color: var(--tx-main);
   }
 
   &__summary {
@@ -299,13 +299,13 @@ const handleCategoryClick = (categoryId: string) => {
     margin: 0 0 6px;
     font-size: 14px;
     font-weight: 700;
-    color: #2f3d50;
+    color: var(--tx-main);
   }
 
   &__summary-text {
     font-size: 14px;
     line-height: 1.72;
-    color: #2f3d50;
+    color: var(--tx-main);
   }
 
   &__related-cases {
@@ -318,7 +318,7 @@ const handleCategoryClick = (categoryId: string) => {
   &__related-cases-label {
     margin: 0 0 6px;
     font-weight: 700;
-    color: #2f3d50;
+    color: var(--tx-main);
   }
 
   &__related-cases-list {
@@ -337,7 +337,7 @@ const handleCategoryClick = (categoryId: string) => {
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
-    color: #2457a7;
+    color: var(--blue);
   }
 
   &__related-case-icon {

@@ -7,104 +7,64 @@ definePageMeta({
 
 const mockData = [
   {
-    title: '申請專案輸入',
-    icon: 'post_add',
-    link: '',
-    subtitle: '新增/查詢專案輸入申請案件'
-  },
-  {
     title: '處分案例',
-    icon: 'work_history',
+    img: 'icon-001.png',
     link: '/cases',
-    subtitle: '違規產地標示不明'
+    subtitle: '違規產地標示不明',
+    id: '000-001'
   },
   {
     title: '海關答聯單',
-    icon: 'anchor',
+    img: 'icon-002.png',
     link: '/customsReplies',
-    subtitle: '通關疑義公文與白聯單查詢'
-  },
-  {
-    title: '貿易法規重要函文/函釋',
-    icon: 'balance',
-    link: '',
-    subtitle: '重要法規函釋彙整查詢'
+    subtitle: '通關疑義公文與白聯單查詢',
+    id: '000-002'
   },
   {
     title: '聲明異議/訴願/行政訴訟',
-    icon: 'record_voice_over',
+    img: 'icon-003.png',
     link: '',
-    subtitle: ''
+    subtitle: '',
+    id: '000-003'
   },
   {
     title: '民眾意見信箱處理',
-    icon: 'mail',
+    img: 'icon-004.png',
     link: '',
-    subtitle: '民眾陳情及意見回覆紀錄'
-  },
-  {
-    title: '立法院質詢書面及回應',
-    icon: 'chat',
-    link: '',
-    subtitle: '書面質詢與回應彙整'
-  },
-  {
-    title: '重要大書記',
-    icon: 'star',
-    link: '',
-    subtitle: '重大政策與事件時間軸'
+    subtitle: '民眾陳情及意見回覆紀錄',
+    id: '000-004'
   }
 ]
 
 const mockNewList = [
   {
-    title: '進出口....',
-    date: '111年12月15日',
-    type: '文件異動',
-    id: '/cases',
-    description: '我是內文1'
+    title: '114年度貿易法規教育訓練開放報名',
+    date: '111/06/20',
+    type: '公告',
+    id: '000-001',
+    description: '請各單位業務同仁踴躍報名參加，報名截止日為7月10日。'
   },
   {
-    title: '修正.....',
-    date: '111年12月15日',
-    type: '系統通知',
-    id: '/cases',
-    description: '我是內文2'
+    title: '「原產地認定標準」修正草案預告',
+    date: '111/06/15',
+    type: '公告',
+    id: '000-002',
+    description: '修正重點為簡易加工之實質轉型認定基準，歡迎提供意見。'
   },
   {
-    title: '修正.....',
-    date: '111年12月15日',
-    type: '系統通知',
-    id: '/cases',
-    description: '我是內文3'
-  },
-  {
-    title: '修正.....',
-    date: '111年12月15日',
-    type: '系統通知',
-    id: '/cases',
-    description: '我是內文4'
+    title: '海關稅則查詢系統維護通知',
+    date: '111/04/02',
+    type: '宣導',
+    id: '000-003',
+    description: '系統將於本週六凌晨進行例行維護，屆時將暫停服務2小時。'
   }
 ]
 
-const mockLinkList = [
-  {
-    title: '經濟部國際貿易署',
-    link: 'https://www.trade.gov.tw/'
-  },
-  {
-    title: '經濟部智慧財產局',
-    link: 'https://www.tipo.gov.tw/'
-  },
-  {
-    title: '經濟部商業司',
-    link: 'https://www.moea.gov.tw/MNS/doit/home/Home.aspx'
-  },
-  {
-    title: '經濟部標準檢驗局',
-    link: 'https://www.bsmi.gov.tw/wSite/mp?mp=1'
-  }
-]
+const searchQuery = ref('')
+
+const search = () => {
+  console.log('search', searchQuery.value)
+}
 
 const goTo = (link: string) => {
   if (!link) {
@@ -125,59 +85,47 @@ const goTo = (link: string) => {
 
 <template>
   <section class="system-page-slot home" aria-label="首頁">
-    <div class="home__main">
-      <div class="home__main-header">
-        <p class="home__main-title">貿易業務知識資料庫</p>
-      </div>
-      <div class="home__main-content">
-        <div v-for="item in mockData" :key="item.title" class="home__card" @click="goTo(item.link)">
-          <div class="home__card-content">
-            <span class="home__card-icon material-symbols-rounded">
-              {{ item.icon }}
-            </span>
-            <span class="home__card-title">
-              {{ item.title }}
-            </span>
-            <span class="home__card-subtitle">
-              {{ item.subtitle }}
-            </span>
+    <div class="home__title">貿易業務知識資料庫</div>
+    <app-page-header-search
+      v-model:search-query="searchQuery"
+      search-placeholder="請輸入關鍵字"
+      action-icon="tune"
+      @search="search"
+    />
+    <div class="home__card-list">
+      <div
+        v-for="item in mockData"
+        :key="item.title"
+        class="home__card-item"
+        @click="goTo(item.link)"
+      >
+        <div class="home__card-item-title">{{ item.title }}</div>
+        <div class="home__card-item-subtitle">{{ item.subtitle }}</div>
+        <div class="home__card-item-footer">
+          <div class="home__card-item-footer-img">
+            <img :src="`/images/${item.img}`" :alt="item.title" />
           </div>
-          <div class="home__card-link">
-            <el-button class="home__card-action" circle color="#f0f5fc">
-              <span class="material-symbols-rounded"> arrow_right_alt </span>
-            </el-button>
+          <div class="home__card-item-footer-icon">
+            <span class="material-symbols-rounded">arrow_circle_right</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="home__sidebar">
-      <div class="home__sidebar-section">
-        <p class="home__sidebar-title">異動紀錄</p>
-        <div
-          v-for="item in mockNewList"
-          :key="item.description"
-          class="home__sidebar-item home__sidebar-item--news"
-          @click="goTo(item.id)"
-        >
-          <div class="home__new-item-header">
-            <span class="home__new-item-type">{{ item.type }}</span>
-            <span class="home__new-item-date">{{ item.date }}</span>
-          </div>
-          <span class="home__new-item-title">{{ item.title }}</span
-          ><span class="home__new-item-description">{{ item.description }}</span>
+    <div class="home__news-header">
+      <div class="home__news-header-title">最新發布訊息</div>
+      <el-button class="home__news-header-more" text>
+        <span>更多</span>
+        <span class="material-symbols-rounded">chevron_right</span>
+      </el-button>
+    </div>
+    <div class="home__news-list">
+      <div v-for="item in mockNewList" :key="item.id" class="home__news-item">
+        <div class="home__news-item-header">
+          <span class="home__news-item-header-type">{{ item.type }}</span>
+          <span class="home__news-item-header-date">{{ item.date }}</span>
         </div>
-      </div>
-      <div class="home__sidebar-section">
-        <p class="home__sidebar-title">常用連結</p>
-        <div
-          v-for="item in mockLinkList"
-          :key="item.link"
-          class="home__sidebar-item home__sidebar-item--link"
-          @click="goTo(item.link)"
-        >
-          <span class="home__link-item-icon material-symbols-rounded"> link </span>
-          <p class="home__link-item-title">{{ item.title }}</p>
-        </div>
+        <div class="home__news-item-title">{{ item.title }}</div>
+        <div class="home__news-item-description">{{ item.description }}</div>
       </div>
     </div>
   </section>
@@ -185,221 +133,216 @@ const goTo = (link: string) => {
 
 <style lang="scss" scoped>
 .home {
-  display: grid;
-  gap: 20px;
-  margin-bottom: 30px;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
-  padding: 0 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 36px 80px;
+  border-radius: 28px;
+  overflow-x: auto;
+  backdrop-filter: blur(36px) saturate(110%);
+  -webkit-backdrop-filter: blur(36px) saturate(110%);
+  border: 2px solid var(--bg-white);
+  box-shadow: 0 20px 60px rgba(30, 60, 100, 0.1);
+  background:
+    rgba(255, 255, 255, 0.62) padding-box,
+    linear-gradient(120deg, var(--grad-start), var(--grad-end)) border-box;
 
-  @media (max-width: 1365px) {
-    padding: 0;
-  }
-
-  @media (max-width: 991px) {
-    grid-template-columns: 1fr;
-  }
-
-  &__main {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__sidebar {
-    display: flex;
-    flex-direction: column;
-    padding: 0px 20px;
-  }
-
-  &__main-header {
-    margin-bottom: 16px;
-  }
-
-  &__main-title {
+  &__title {
     font-size: 32px;
     font-weight: 700;
-    color: #2457a7;
-    padding-left: 10px;
-    margin: 5px 0px;
+    text-align: center;
+    margin-bottom: 24px;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
 
-  &__main-content {
+  &__card-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-
-    @media (max-width: 991px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__card {
-    display: flex;
-    position: relative;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+    gap: 22px;
     width: 100%;
-    border-radius: 16px;
-    padding: 20px 20px 20px;
-    margin-bottom: 16px;
-    background-color: #ffffff;
-    border: 2px solid transparent;
-    box-shadow: rgba(44, 63, 90, 0.09) 0px 1px 4px;
-
-    &:hover {
-      box-shadow: #2c3f5a26 0px 4px 12px;
-      border: 2px solid #2f5d98;
-      cursor: pointer;
-
-      .home__card-action {
-        background-color: #2f579a;
-
-        span {
-          color: #fff;
-        }
-      }
-    }
   }
 
-  &__card-action {
-    .material-symbols-rounded {
-      color: #657285;
-      font-variation-settings:
-        'wght' 200,
-        'opsz' 20;
-    }
-  }
-
-  &__card-content {
+  &__card-item {
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: space-between;
+    background: var(--bg-white);
+    border-radius: 18px;
+    padding: 22px 22px 20px;
+    min-height: 188px;
+    cursor: pointer;
+    transition:
+      box-shadow 0.2s ease,
+      transform 0.17s ease,
+      background 0.6s ease;
+    position: relative;
+    box-shadow: 0 1px 4px rgba(44, 63, 90, 0.09);
+    border: 2px solid transparent;
+
+    &:hover {
+      background:
+        linear-gradient(var(--bg-white), var(--bg-white)) padding-box,
+        linear-gradient(120deg, var(--grad-start), var(--grad-end), var(--grad-start)) border-box;
+      background-size:
+        100% 100%,
+        300% 300%;
+      animation: cardBorderFlow 3s ease infinite;
+    }
   }
 
-  &__card-icon {
-    height: 52px;
-    width: 52px;
-    font-size: 24px;
-    color: #fff;
+  &__card-item-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--tx-main);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  &__card-item-subtitle {
+    font-size: 13.5px;
+    color: var(--tx-mid);
+    line-height: 1.5;
+  }
+
+  &__card-item-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 14px;
+  }
+
+  &__card-item-footer-img {
+    width: 80px;
+    height: 80px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.25s ease;
+    }
+  }
+
+  &__card-item-footer-icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    span {
+      position: relative;
+      flex-shrink: 0;
+      color: #cdcdcd;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__news-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: #2f579a;
-    border-radius: 12px;
-    margin-bottom: 14px;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
   }
 
-  &__card-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #2f3d50;
-    margin-bottom: 4px;
-  }
-
-  &__card-subtitle {
-    display: block;
-    min-height: 20px;
-    font-size: 16px;
-    line-height: 20px;
-    color: #666;
-  }
-
-  &__card-link {
-    position: absolute;
-    right: 16px;
-    top: 20px;
-  }
-
-  &__sidebar-title {
-    font-size: 16px;
+  &__news-header-title {
+    font-size: 14px;
     font-weight: 700;
-    color: #2c8086;
-    margin-bottom: 11px;
+    color: var(--tx-main);
   }
 
-  &__sidebar-item {
-    background-color: #ffffff;
+  &__news-header-more {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--tx-mid);
     cursor: pointer;
   }
 
-  &__sidebar-item--news {
+  &__news-list {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 10px 16px;
-    margin-bottom: 16px;
-    border-left: 5px solid #0f3f85;
-    border-radius: 3px;
+    gap: 20px;
+    width: 100%;
+  }
+
+  &__news-item {
+    flex: 1;
+    min-width: 0;
+    background: var(--bg-white);
+    border-radius: 4px;
+    padding: 16px 16px;
+    box-shadow: 0 1px 4px rgba(44, 63, 90, 0.09);
+    cursor: pointer;
+    transition: box-shadow 0.12s ease;
 
     &:hover {
-      box-shadow: rgba(44, 63, 90, 0.15) 0px 4px 12px;
-      border-style: solid;
-      border-color: #0f3f85;
-      border-width: 2px 2px 2px 5px;
-
-      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(44, 63, 90, 0.15);
     }
   }
-
-  &__new-item-header {
+  &__news-item-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
-    margin-bottom: 4px;
+    justify-content: space-between;
+    margin-bottom: 10px;
   }
 
-  &__new-item-type {
-    font-size: 10px;
-    color: #566578;
-    background-color: #eef2fa;
-    padding: 2px 7px;
+  &__news-item-header-type {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
     border-radius: 20px;
+    border: 1px solid var(--teal);
+    color: var(--teal);
+    background: none;
   }
 
-  &__new-item-date {
-    font-size: 12px;
-    color: #88a5cb;
+  &__news-item-header-date {
+    font-size: 11px;
+    color: var(--tx-light);
   }
 
-  &__new-item-title {
+  &__news-item-title {
     font-size: 14px;
     font-weight: 600;
-    color: #2f3d50;
-    margin-bottom: 3px;
+    color: var(--tx-main);
+    margin-bottom: 4px;
     line-height: 1.4;
   }
 
-  &__new-item-description {
-    display: block;
+  &__news-item-description {
     font-size: 12px;
-    color: #8898aa;
-    line-height: 1.4;
-    min-height: 20px;
+    color: var(--tx-light);
+    line-height: 1.5;
+  }
+}
+
+@keyframes cardBorderFlow {
+  0% {
+    background-position: 0 0, 0% 50%;
   }
 
-  &__sidebar-item--link {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    padding: 8px 12px;
-    border: 2px solid transparent;
-    border-radius: 10px;
-
-    &:hover {
-      background-color: #e6f0fa;
-      border: 2px solid #2f579a;
-    }
+  50% {
+    background-position: 0 0, 100% 50%;
   }
 
-  &__link-item-icon {
-    color: #2c8086;
-    padding: 10px;
-  }
-
-  &__link-item-title {
-    font-size: 16px;
-    font-weight: 500;
-    color: #2f3d50;
+  100% {
+    background-position: 0 0, 0% 50%;
   }
 }
 </style>

@@ -1,5 +1,8 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  margin: 0;
 }
 
 html,
@@ -10,8 +13,11 @@ body,
 }
 
 body {
+  font-family: 'Noto Sans TC', -apple-system, sans-serif;
   background: var(--color-bg);
   color: var(--color-text);
+  font-size: 13px;
+  line-height: 1.55;
 }
 
 button,

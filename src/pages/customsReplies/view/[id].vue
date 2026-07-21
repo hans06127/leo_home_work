@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import CustomsRepliesDrawer from '../components/customsRepliesDrawer.vue'
+
 const mockData = {
   steps: [
     {
@@ -198,20 +200,22 @@ const mockData = {
   ],
   relatedCases: [
     {
-      id: 1,
+      id: '1',
       title: '海關答聯單處理案例1'
     },
     {
-      id: 2,
+      id: '2',
       title: '海關答聯單處理案例2'
     },
     {
-      id: 3,
+      id: '3',
       title: '海關答聯單處理案例3'
     }
   ]
 }
-
+// TODO: TEMP
+const table = ref(false)
+const customsRepliesDrawerRef = ref<ICustomsRepliesDrawer>()
 const currentStep = ref(1)
 const currentStepData = computed(() => _.find(mockData.steps, { step: currentStep.value }))
 type Letter = NonNullable<typeof currentStepData.value>['data']['incomingLetter']
@@ -265,6 +269,10 @@ const letterFields = (letterId: string, letter: Letter) =>
 const handleStepClick = (step: number) => {
   currentStep.value = step
 }
+
+const handleOpenDrawer = (id: string) => {
+  customsRepliesDrawerRef.value?.openDrawer({ data: { id } })
+}
 </script>
 
 <template>
@@ -316,6 +324,7 @@ const handleStepClick = (step: number) => {
           class="customs-replies-view__related-case"
           v-for="caseItem in mockData.relatedCases"
           :key="caseItem.id"
+          @click="handleOpenDrawer(caseItem.id)"
         >
           <span class="material-symbols-rounded customs-replies-view__related-icon"> link </span>
           <span>
@@ -376,6 +385,8 @@ const handleStepClick = (step: number) => {
       </div>
     </div>
   </section>
+
+  <customs-replies-drawer ref="customsRepliesDrawerRef" />
 </template>
 
 <style lang="scss" scoped>
@@ -399,7 +410,7 @@ const handleStepClick = (step: number) => {
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: #8898aa;
+    color: var(--tx-light);
     font-variation-settings: 'wght' 100;
   }
 
@@ -423,27 +434,27 @@ const handleStepClick = (step: number) => {
     cursor: pointer;
 
     &--active {
-      background-color: #eef0fa;
-      border-color: #0f3f85;
+      background-color: var(--raw-eef0fa);
+      border-color: var(--primary);
     }
   }
 
   &__step-label {
     font-weight: 700;
     font-size: 16px;
-    color: #2f3d50;
+    color: var(--tx-main);
     font-style: italic;
   }
 
   &__step-title {
     font-size: 16px;
     font-weight: 700;
-    color: #2f3d50;
+    color: var(--tx-main);
   }
 
   &__step-date {
     font-size: 14px;
-    color: #2f3d50;
+    color: var(--tx-main);
     margin-top: 3px;
   }
 
@@ -451,7 +462,7 @@ const handleStepClick = (step: number) => {
   &__related-cases-label {
     font-size: 12.5px;
     font-weight: 600;
-    color: #566578;
+    color: var(--tx-mid);
   }
 
   &__attachments {
@@ -489,12 +500,12 @@ const handleStepClick = (step: number) => {
     span:first-child {
       font-size: 12px;
       font-weight: 600;
-      color: #2f3d50;
+      color: var(--tx-main);
     }
 
     span:last-child {
       font-size: 10.5px;
-      color: #566578;
+      color: var(--tx-mid);
     }
   }
 
@@ -527,7 +538,7 @@ const handleStepClick = (step: number) => {
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
-    color: #2457a7;
+    color: var(--blue);
     cursor: pointer;
   }
 
@@ -536,7 +547,7 @@ const handleStepClick = (step: number) => {
   }
 
   &__content {
-    background-color: #f0f4f9;
+    background-color: var(--bg-page);
     border-radius: 10px;
     padding: 20px;
     margin-top: 4px;
@@ -557,7 +568,7 @@ const handleStepClick = (step: number) => {
     gap: 6px;
 
     &--separated {
-      border-left: 1px solid #d8e2ee;
+      border-left: 1px solid var(--bdr);
       margin-left: 16px;
       padding-left: 16px;
     }
@@ -566,7 +577,7 @@ const handleStepClick = (step: number) => {
   &__content-header-label,
   &__letter-meta-label {
     font-size: 14px;
-    color: #566578;
+    color: var(--tx-mid);
   }
 
   &__letters {
@@ -577,8 +588,8 @@ const handleStepClick = (step: number) => {
 
   &__letter-card {
     min-width: 0;
-    background-color: #fff;
-    border: 1px solid #d8e2ee;
+    background-color: var(--bg-white);
+    border: 1px solid var(--bdr);
     border-radius: 10px;
     padding: 20px 22px;
   }
@@ -595,7 +606,7 @@ const handleStepClick = (step: number) => {
   &__content-header-value,
   &__letter-meta-value {
     min-width: 0;
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: 500;
     overflow-wrap: anywhere;
   }
@@ -610,8 +621,8 @@ const handleStepClick = (step: number) => {
   &__sender-type {
     display: inline-flex;
     align-items: center;
-    background-color: #0f3f85;
-    color: #fff;
+    background-color: var(--primary);
+    color: var(--bg-white);
     padding: 3px 12px;
     border-radius: 20px;
     font-size: 12px;
@@ -620,13 +631,13 @@ const handleStepClick = (step: number) => {
 
   &__sender-unit {
     font-size: 20px;
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: 700;
   }
 
   &__summary-label {
     font-size: 14px;
-    color: #2c8086;
+    color: var(--teal);
     font-weight: 700;
     margin-bottom: 10px;
   }
