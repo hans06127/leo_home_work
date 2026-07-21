@@ -278,6 +278,7 @@ const handleOpenDrawer = (id: string) => {
 <template>
   <section class="system-page-slot customs-replies-view">
     <app-page-header-search
+      layout-variant="withTitle"
       title="海關答聯單處理"
       title-icon="anchor"
       :has-query="false"

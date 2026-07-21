@@ -87,6 +87,7 @@ const goTo = (link: string) => {
   <section class="system-page-slot home" aria-label="首頁">
     <h1 class="home__title">貿易業務知識資料庫</h1>
     <app-page-header-search
+      layout-variant="compact"
       v-model:search-query="searchQuery"
       class="home__search"
       search-placeholder="請輸入關鍵字"

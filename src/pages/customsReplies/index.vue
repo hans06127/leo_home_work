@@ -55,6 +55,7 @@ const handleCategoryClick = (categoryId: string) => {
 <template>
   <section class="system-page-slot customs-replies">
     <app-page-header-search
+      layout-variant="withTitle"
       title="海關答聯單處理"
       title-icon="anchor"
       v-model:search-query="searchQuery"
@@ -160,7 +161,6 @@ const handleCategoryClick = (categoryId: string) => {
   flex: 1 1 0%;
   flex-direction: column;
   gap: 20px;
-  padding: 0 20px 20px;
 
   &__content {
     display: flex;

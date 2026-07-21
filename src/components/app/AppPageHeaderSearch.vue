@@ -1,6 +1,10 @@
 <script setup lang="ts">
+type LayoutVariant = 'compact' | 'withTitle'
+type ActionTone = 'main' | 'primary' | 'subtle'
+
 const props = withDefaults(
   defineProps<{
+    layoutVariant?: LayoutVariant
     title?: string
     titleIcon?: string
     hasQuery?: boolean
@@ -8,18 +12,32 @@ const props = withDefaults(
     searchPlaceholder?: string
     searchIcon?: string
     actionIcon?: string
-    actionButtonColor?: string
+    showAction?: boolean
+    actionTone?: ActionTone
   }>(),
   {
+    layoutVariant: 'withTitle',
     title: '',
     titleIcon: '',
     hasQuery: true,
+    searchQuery: '',
     searchPlaceholder: '請輸入關鍵字',
     searchIcon: 'search',
     actionIcon: 'tune',
-    actionButtonColor: '#2f3d50'
+    showAction: true,
+    actionTone: 'main'
   }
 )
+
+const containerClass = computed(() => [
+  'app-page-header-search',
+  `app-page-header-search--${props.layoutVariant}`
+])
+
+const actionClass = computed(() => [
+  'app-page-header-search__action-button',
+  `app-page-header-search__action-button--${props.actionTone}`
+])
 
 const emit = defineEmits<{
   (e: 'update:searchQuery', value: string): void
@@ -36,7 +54,7 @@ const handleSearch = () => {
 </script>
 
 <template>
-  <div class="app-page-header-search">
+  <div :class="containerClass">
     <div class="app-page-header-search__title" v-if="props.title || props.titleIcon">
       <span class="material-symbols-rounded" v-if="props.titleIcon"> {{ props.titleIcon }} </span>
       <h1 v-if="props.title">{{ props.title }}</h1>
@@ -49,12 +67,14 @@ const handleSearch = () => {
         :model-value="props.searchQuery"
         :placeholder="props.searchPlaceholder"
         @update:model-value="handleSearchQueryUpdate"
+        @keyup.enter="handleSearch"
       />
       <el-button
+        v-if="props.showAction"
         type="primary"
         text
         size="small"
-        :style="{ color: props.actionButtonColor }"
+        :class="actionClass"
         @click="handleSearch"
       >
         <span class="material-symbols-rounded">{{ props.actionIcon }}</span>
@@ -68,15 +88,7 @@ const handleSearch = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
-  border-radius: 50px;
-  background-color: var(--bg-white);
-  border: 1px solid #cbcbcb;
-
-  &:hover {
-    border-color: var(--primary);
-    box-shadow: #2c3f5a26 0px 4px 12px;
-  }
+  width: 100%;
 
   @media (max-width: 991px) {
     flex-direction: column;
@@ -96,14 +108,24 @@ const handleSearch = () => {
   }
 
   &__input-wrap {
-    width: 100%;
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 2px 10px;
+    width: 100%;
+    max-width: 420px;
+    padding: 6px 10px;
+    border: 1px solid #cbcbcb;
+    border-radius: 50px;
+    background-color: var(--bg-white);
+
+    &:hover {
+      border-color: var(--primary);
+      box-shadow: #2c3f5a26 0px 4px 12px;
+    }
 
     .el-input {
-      min-width: 200px;
+      flex: 1;
+      min-width: 140px;
 
       :deep(.el-input__wrapper) {
         box-shadow: none !important;
@@ -115,9 +137,21 @@ const handleSearch = () => {
       }
     }
 
-    .el-button {
+    .app-page-header-search__action-button {
       border-left: 2px solid #cbcbcb;
       border-radius: initial;
+
+      &--main {
+        color: var(--tx-main);
+      }
+
+      &--primary {
+        color: var(--primary);
+      }
+
+      &--subtle {
+        color: var(--tx-mid);
+      }
     }
   }
 
@@ -126,6 +160,18 @@ const handleSearch = () => {
     background-color: #e7ebff;
     border-radius: 50%;
     padding: 5px;
+  }
+
+  &--compact {
+    .app-page-header-search__input-wrap {
+      max-width: 100%;
+    }
+  }
+
+  &--withTitle {
+    .app-page-header-search__input-wrap {
+      max-width: 520px;
+    }
   }
 }
 </style>

@@ -167,6 +167,7 @@ onMounted(() => {
   <section class="system-page-slot">
     <div class="cases">
       <app-page-header-search
+        layout-variant="withTitle"
         title="處分案例"
         title-icon="work_history"
         v-model:search-query="searchQuery"
