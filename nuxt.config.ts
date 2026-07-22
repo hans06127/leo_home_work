@@ -17,6 +17,10 @@ export default defineNuxtConfig({
     dirs: ['composables', 'composables/**', 'constants', 'constants/**'],
     presets: [
       {
+        from: 'dayjs',
+        imports: [{ name: 'default', as: 'dayjs' }]
+      },
+      {
         from: 'lodash-es',
         imports: [{ name: 'default', as: '_' }]
       }
