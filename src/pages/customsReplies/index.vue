@@ -42,10 +42,6 @@ const mockData = [
 const searchQuery = ref('')
 const currentCategory = ref<any>(mockData[0])
 
-const search = () => {
-  console.log('search', searchQuery.value)
-}
-
 const handleCategoryClick = (categoryId: string) => {
   const selectedCategory = _.find(mockData, (category: any) => category.categoryId === categoryId)
   currentCategory.value = selectedCategory
@@ -61,7 +57,6 @@ const handleCategoryClick = (categoryId: string) => {
       v-model:search-query="searchQuery"
       search-placeholder="請輸入關鍵字"
       action-icon="tune"
-      @search="search"
     />
     <div class="customs-replies__content">
       <div class="customs-replies__sidebar">

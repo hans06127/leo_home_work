@@ -35,11 +35,11 @@ const emit = defineEmits<{
     :before-close="beforeClose"
     :show-close="false"
   >
-    <template #title>
+    <template #header="{ titleId, titleClass }">
       <el-button class="system-drawer-back" text :aria-label="closeLabel" @click="emit('back')">
         <span class="material-symbols-rounded">arrow_left_alt</span>
       </el-button>
-      <span class="system-drawer-title">{{ title }}</span>
+      <span :id="titleId" :class="['system-drawer-title', titleClass]">{{ title }}</span>
       <el-button class="system-drawer-expand" color="#ffffff2e" @click="emit('expand')">
         <span class="material-symbols-rounded system-drawer-expand__icon">open_in_new</span>
         <span>展開</span>

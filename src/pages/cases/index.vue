@@ -103,7 +103,6 @@ const currentMenus = computed(() =>
 
 const selectMenuItem = (itemIndex: string) => {
   activeMenuItemIndex.value = itemIndex
-  handleSearcher(itemIndex)
 }
 
 const triggerFirstItem = (category: MenuCategory) => {
@@ -146,14 +145,6 @@ const handleMenuSelect = (itemIndex: string) => {
   if (category) openCategory.value = category.categoryId
 }
 
-const handleSearcher = (item: string) => {
-  console.log('item', item)
-}
-
-const search = () => {
-  console.log('search', searchQuery.value)
-}
-
 watch(activeName, () => {
   initFirstCategory()
 })
@@ -173,7 +164,6 @@ onMounted(() => {
         v-model:search-query="searchQuery"
         search-placeholder="請輸入關鍵字"
         action-icon="tune"
-        @search="search"
       />
       <div class="cases__body">
         <div class="cases__sidebar">

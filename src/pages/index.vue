@@ -62,10 +62,6 @@ const mockNewList = [
 
 const searchQuery = ref('')
 
-const search = () => {
-  console.log('search', searchQuery.value)
-}
-
 const goTo = (link: string) => {
   if (!link) {
     ElMessage({
@@ -92,7 +88,6 @@ const goTo = (link: string) => {
       class="home__search"
       search-placeholder="請輸入關鍵字"
       action-icon="tune"
-      @search="search"
     />
     <div class="home__card-list">
       <div v-for="item in mockData" :key="item.title" class="home-card" @click="goTo(item.link)">
