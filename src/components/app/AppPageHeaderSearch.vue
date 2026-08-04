@@ -2,6 +2,11 @@
 type LayoutVariant = 'compact' | 'withTitle'
 type ActionTone = 'main' | 'primary' | 'subtle'
 
+const layoutVariantClassMap: Record<LayoutVariant, string> = {
+  compact: 'compact',
+  withTitle: 'with-title'
+}
+
 const props = withDefaults(
   defineProps<{
     layoutVariant?: LayoutVariant
@@ -31,7 +36,7 @@ const props = withDefaults(
 
 const containerClass = computed(() => [
   'app-page-header-search',
-  `app-page-header-search--${props.layoutVariant}`
+  `app-page-header-search--${layoutVariantClassMap[props.layoutVariant]}`
 ])
 
 const actionClass = computed(() => [
@@ -168,7 +173,7 @@ const handleSearch = () => {
     }
   }
 
-  &--withTitle {
+  &--with-title {
     .app-page-header-search__input-wrap {
       max-width: 520px;
     }

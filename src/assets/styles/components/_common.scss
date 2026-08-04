@@ -119,6 +119,42 @@
   flex: 0 0 calc((100% - (var(--system-row-gap) * 2)) / 3);
 }
 
+.system-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.system-form__title {
+  display: flex;
+  align-items: center;
+  color: var(--tx-main);
+  font-size: 12px;
+  font-weight: 600;
+
+  p {
+    margin: 0;
+  }
+}
+
+.system-form__title--required {
+  p::before {
+    content: '*';
+    margin-right: 4px;
+    color: var(--el-color-danger);
+  }
+}
+
+.system-form__field,
+.system-form__item {
+  min-width: 0;
+}
+
+.system-form__date-picker {
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .system-row--half,
   .system-row--third {
