@@ -41,16 +41,16 @@ defineExpose({
   <section ref="boxRef" class="system-main__box" :class="{ 'system-main__box--inner': inner }">
     <header
       v-if="title"
-      class="system-main__boxTitle"
-      :class="{ 'system-main__boxTitle--close': !isOpened }"
+      class="system-main__box-title"
+      :class="{ 'system-main__box-title--close': !isOpened }"
     >
-      <div class="system-main__boxText">
+      <div class="system-main__box-text">
         <p>
           <span v-if="icon" class="material-symbols-rounded" translate="no">{{ icon }}</span>
           <span>{{ title }}</span>
         </p>
 
-        <div v-if="notice" class="system-main__boxNotice">
+        <div v-if="notice" class="system-main__box-notice">
           <p>
             <span class="material-symbols-rounded" translate="no">info</span>
             <span>{{ notice }}</span>
@@ -58,13 +58,13 @@ defineExpose({
         </div>
       </div>
 
-      <div v-if="slots['title-extra']" class="system-main__boxExtra">
+      <div v-if="slots['title-extra']" class="system-main__box-extra">
         <slot name="title-extra" />
       </div>
 
       <button
         v-if="collapse"
-        class="system-main__boxToggle"
+        class="system-main__box-toggle"
         type="button"
         :aria-expanded="isOpened"
         @click="toggleBox"
@@ -74,7 +74,7 @@ defineExpose({
         </span>
       </button>
 
-      <div v-if="slots['header-extra']" class="system-main__headerExtra">
+      <div v-if="slots['header-extra']" class="system-main__header-extra">
         <slot name="header-extra" />
       </div>
     </header>
