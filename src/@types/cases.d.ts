@@ -30,6 +30,8 @@ interface ICasesSaveForm {
   caseName: string
   // 商品
   productName?: string
+  // 處分對象
+  dispositionTarget?: string
   // 裁罰金額(元)
   penaltyAmount?: string
   // 涉及法規 (複選，儲存選中的法規 ID 或名稱)

@@ -22,19 +22,19 @@ interface IMajorEventSaveForm {
   id: string
   no: string
   title: string
-  status: string
+  statusCode: string
   content: string
   tags: string[]
   createdDate: string
   updatedDate: string
   dept: string
   files: File[]
-  Timeline: IMajorEventTimeline[]
+  timeline: IMajorEventTimeline[]
 }
 
 interface IMajorEventTimeline {
   id: string
-  timeRange: [string, string]
+  timestamp: [string, string] | string
   files: File[]
   content: string
 }

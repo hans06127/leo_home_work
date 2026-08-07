@@ -1,0 +1,3 @@
+interface ISystemMainBox {
+  checkIsErrorAndExpand: () => void
+}
