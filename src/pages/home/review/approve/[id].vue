@@ -125,10 +125,37 @@ const collapseState = reactive({
 <template>
   <section class="system-page-slot review-approve" aria-label="審核">
     <div>
-      <p>{{ formData.form.caseName }}</p>
+      <div class="review-approve__header">
+        <div class="review-approve__title">{{ formData.form.caseName }}</div>
+        <div class="review-approve__history">
+          <div
+            v-for="(item, index) in formData.form.caseHistory"
+            :key="item.id"
+            :class="[
+              'review-approve__history-item',
+              {
+                'review-approve__history-item--new': index === formData.form.caseHistory.length - 1
+              }
+            ]"
+          >
+            <span
+              class="review-approve__history-status"
+              :class="{
+                'review-approve__history-status--new':
+                  index === formData.form.caseHistory.length - 1
+              }"
+            >
+              {{ index === formData.form.caseHistory.length - 1 ? 'NEW' : 'initial' }}
+            </span>
+            <span>{{ item.casesName }}</span>
+            <span>{{ item.version }}</span>
+            <span class="material-symbols-rounded">search</span>
+          </div>
+        </div>
+      </div>
       <div class="review-approve__info">
         <el-collapse v-model="collapseState.caseInfo">
-          <el-collapse-item title="關聯案例" name="1">
+          <el-collapse-item title="案件資訊" name="1">
             <template #title>
               <div class="review-approve__info-header">
                 <div class="review-approve__info-title">案件資訊</div>
@@ -209,44 +236,45 @@ const collapseState = reactive({
     </div>
     <div class="review-approve__body">
       <div class="review-approve__sidebar">
-        <div class="review-approve__sidebar-item">
+        <div class="review-approve__sidebar-panel">
           <el-collapse v-model="collapseState.relatedCases">
             <el-collapse-item title="關聯案例" name="1">
-              <template v-for="relatedCase in formData.form.relatedCase" :key="relatedCase?.id">
-                <div class="review-approve__related-case-item">
-                  <span class="material-symbols-rounded">link</span>
-                  <span>{{ relatedCase?.title }} </span>
-                </div>
-              </template>
+              <div
+                v-for="relatedCase in formData.form.relatedCase"
+                :key="relatedCase?.id"
+                class="review-approve__related-case-item"
+              >
+                <span class="material-symbols-rounded">link</span>
+                <span>{{ relatedCase?.title }} </span>
+              </div>
             </el-collapse-item>
           </el-collapse>
         </div>
 
-        <div class="review-approve__sidebar-item">
+        <div class="review-approve__sidebar-panel">
           <el-collapse v-model="collapseState.attachments">
             <el-collapse-item title="相關附件" name="1">
-              <template
+              <div
                 v-for="attachment in formData.form.attachmentCount"
                 :key="attachment?.url || attachment?.name"
+                class="review-approve__attachment"
               >
-                <div class="review-approve__attachment">
-                  <span>{{ attachment?.name }}</span>
-                  <span class="material-symbols-rounded">download</span>
-                </div>
-              </template>
+                <span>{{ attachment?.name }}</span>
+                <span class="material-symbols-rounded">download</span>
+              </div>
             </el-collapse-item>
           </el-collapse>
         </div>
       </div>
       <div class="review-approve__main">
-        <div class="review-approve__subject">
-          <span>主旨:</span>
-          <div>{{ formData.form.subject }}</div>
-        </div>
-        <div class="review-approve__case-description">
-          <span>案例說明:</span>
-          <div>{{ formData.form.caseDescription }}</div>
-        </div>
+        <section class="review-approve__document-section">
+          <h2 class="review-approve__document-heading">主旨:</h2>
+          <div class="review-approve__document-body">{{ formData.form.subject }}</div>
+        </section>
+        <section class="review-approve__document-section">
+          <h2 class="review-approve__document-heading">案例說明:</h2>
+          <div class="review-approve__document-body">{{ formData.form.caseDescription }}</div>
+        </section>
       </div>
     </div>
   </section>
@@ -254,6 +282,57 @@ const collapseState = reactive({
 
 <style lang="scss" scoped>
 .review-approve {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    min-width: 0;
+    font-size: 20px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+  }
+
+  &__history {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__history-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    gap: 8px;
+    background-color: #f5fbf9;
+    border: 2px solid #e1e1e1;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &--new {
+      background-color: #fff8de;
+      border-color: #ffdf7c;
+    }
+  }
+
+  &__history-status {
+    color: #6b7783;
+
+    &--new {
+      font-weight: bold;
+      color: #b45309;
+      font-style: italic;
+    }
+  }
+
   &__info {
     :deep(.el-collapse) {
       padding: 4px 14px;
@@ -331,22 +410,8 @@ const collapseState = reactive({
     font-size: 12px;
     font-weight: 600;
     line-height: 1.2;
-
-    // TODO:需確認標籤最多幾個，顏色要怎麼顯示，這邊先用三個顏色做示範
-    &:nth-child(1) {
-      background-color: #f6e2e0;
-      color: #ff4d4d;
-    }
-
-    &:nth-child(2) {
-      background-color: #dde3e1;
-      color: #555555;
-    }
-
-    &:nth-child(3) {
-      background-color: #d3e9e4;
-      color: #16806d;
-    }
+    background-color: var(--tag-new-bg);
+    color: var(--green);
   }
 
   &__detail-list {
@@ -378,7 +443,7 @@ const collapseState = reactive({
     gap: 20px;
   }
 
-  &__sidebar-item {
+  &__sidebar-panel {
     background-color: #ebf1f7;
     padding: 0 12px;
     border-radius: 6px;
@@ -400,7 +465,8 @@ const collapseState = reactive({
     }
   }
 
-  &__related-case-item {
+  &__related-case-item,
+  &__attachment {
     width: 100%;
     display: flex;
     align-items: center;
@@ -413,6 +479,11 @@ const collapseState = reactive({
     cursor: pointer;
   }
 
+  &__attachment {
+    justify-content: space-between;
+    cursor: default;
+  }
+
   &__main {
     min-width: 0;
     display: flex;
@@ -420,18 +491,24 @@ const collapseState = reactive({
     gap: 10px;
   }
 
-  &__subject,
-  &__case-description {
+  &__document-section {
     padding: 20px;
     border: 1px solid #e1e1e1;
     border-radius: 6px;
+    line-height: 2;
+    font-size: 14px;
+  }
 
-    span {
-      font-size: 14px;
-      font-weight: bold;
-      color: #0f3f85;
-      margin-bottom: 10px;
-    }
+  &__document-heading {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #0f3f85;
+  }
+
+  &__document-body {
+    overflow-wrap: anywhere;
+    white-space: pre-line;
   }
 
   @media (max-width: 768px) {
