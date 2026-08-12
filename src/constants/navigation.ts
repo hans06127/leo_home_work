@@ -15,7 +15,7 @@ export const featureCards: NavigationItem[] = [
     id: 'apply',
     title: '輸出入申辦',
     description: '申請、審核與案件進度管理',
-    to: '/',
+    to: '/home',
     icon: ClipboardList
   },
   {
@@ -29,42 +29,42 @@ export const featureCards: NavigationItem[] = [
     id: 'contact',
     title: '聯絡窗口',
     description: '整理常用承辦窗口與支援資訊',
-    to: '/',
+    to: '/customsReplies',
     icon: Anchor
   },
   {
     id: 'laws',
     title: '貿易法規',
     description: '彙整公告、命令與相關規範',
-    to: '/',
+    to: '/home',
     icon: Scale
   },
   {
     id: 'appeals',
     title: '陳情與申訴',
     description: '追蹤陳情、回覆與辦理紀錄',
-    to: '/',
+    to: '/home',
     icon: MessageSquareText
   },
   {
     id: 'mailbox',
     title: '機關信箱',
     description: '集中管理外部來信與回覆狀態',
-    to: '/',
+    to: '/home',
     icon: Mail
   },
   {
     id: 'parliament',
     title: '立院資料',
     description: '整理質詢、提案與回覆素材',
-    to: '/',
+    to: '/home',
     icon: FileText
   },
   {
     id: 'events',
     title: '活動與公告',
     description: '維護近期活動、跑馬燈與公告內容',
-    to: '/',
+    to: '/majorEvents',
     icon: Star
   }
 ]

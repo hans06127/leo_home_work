@@ -78,187 +78,189 @@ const formData = reactive({
       </div>
       <div class="cases-add__body">
         <div class="cases-add__sidebar">
-          <div class="system-form__row">
-            <div class="system-form__title system-form__title--required">
-              <p>進出口</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="tradeType" required>
-                  <el-radio-group
-                    size="large"
-                    fill="var(--primary)"
-                    aria-label="進出口"
-                    v-model="formData.form.tradeType"
-                  >
-                    <el-radio-button value="進口">進口</el-radio-button>
-                    <el-radio-button value="出口">出口</el-radio-button>
-                  </el-radio-group>
-                </el-form-item>
+          <system-form-list>
+            <div class="system-form__row">
+              <div class="system-form__title system-form__title--required">
+                <p>進出口</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="tradeType" required>
+                    <el-radio-group
+                      size="large"
+                      fill="var(--primary)"
+                      aria-label="進出口"
+                      v-model="formData.form.tradeType"
+                    >
+                      <el-radio-button value="進口">進口</el-radio-button>
+                      <el-radio-button value="出口">出口</el-radio-button>
+                    </el-radio-group>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title system-form__title--required">
-              <p>第二層樣態</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="secondLevelCategory" required>
-                  <el-select
-                    aria-label="第二層樣態"
-                    v-model="formData.form.secondLevelCategory"
-                  ></el-select>
-                </el-form-item>
+            <div class="system-form__row">
+              <div class="system-form__title system-form__title--required">
+                <p>第二層樣態</p>
               </div>
-            </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title system-form__title--required">
-              <p>第三層樣態</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="thirdLevelCategory" required>
-                  <el-select
-                    aria-label="第三層樣態"
-                    v-model="formData.form.thirdLevelCategory"
-                  ></el-select>
-                </el-form-item>
-              </div>
-            </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title system-form__title--required">
-              <p>處理流程</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="processingFlow" required>
-                  <div class="cases-add__process">
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="secondLevelCategory" required>
                     <el-select
-                      class="cases-add__process-select"
-                      aria-label="處理流程"
-                      v-model="formData.form.processingFlow"
+                      aria-label="第二層樣態"
+                      v-model="formData.form.secondLevelCategory"
                     ></el-select>
-                    <el-button aria-label="開啟處理流程">
-                      <span class="material-symbols-rounded">open_in_new</span>
-                    </el-button>
-                  </div>
-                </el-form-item>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title">
-              <p>發文字號</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item>
-                  <div class="system-row-group">
+            <div class="system-form__row">
+              <div class="system-form__title system-form__title--required">
+                <p>第三層樣態</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="thirdLevelCategory" required>
                     <el-select
-                      class="system-row--half"
-                      aria-label="發文字號字首"
-                      v-model="formData.form.dispatchPrefix"
+                      aria-label="第三層樣態"
+                      v-model="formData.form.thirdLevelCategory"
                     ></el-select>
-                    <el-input
-                      class="system-row--half"
-                      aria-label="發文字號號碼"
-                      v-model="formData.form.dispatchNumber"
-                    ></el-input>
-                  </div>
-                </el-form-item>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title">
-              <p>回文字號</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item>
-                  <div class="system-row-group">
-                    <el-select
-                      class="system-row--half"
-                      aria-label="回文字號字首"
-                      v-model="formData.form.replyPrefix"
-                    ></el-select>
-                    <el-input
-                      class="system-row--half"
-                      aria-label="回文字號號碼"
-                      v-model="formData.form.replyNumber"
-                    ></el-input>
-                  </div>
-                </el-form-item>
+            <div class="system-form__row">
+              <div class="system-form__title system-form__title--required">
+                <p>處理流程</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="processingFlow" required>
+                    <div class="cases-add__process">
+                      <el-select
+                        class="cases-add__process-select"
+                        aria-label="處理流程"
+                        v-model="formData.form.processingFlow"
+                      ></el-select>
+                      <el-button aria-label="開啟處理流程">
+                        <span class="material-symbols-rounded">open_in_new</span>
+                      </el-button>
+                    </div>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title">
-              <p>處分日期</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="penaltyDate">
-                  <el-date-picker
-                    class="system-form__date-picker"
-                    aria-label="處分日期"
-                    v-model="formData.form.penaltyDate"
-                  ></el-date-picker>
-                </el-form-item>
+            <div class="system-form__row">
+              <div class="system-form__title">
+                <p>發文字號</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item>
+                    <div class="system-row-group">
+                      <el-select
+                        class="system-row--half"
+                        aria-label="發文字號字首"
+                        v-model="formData.form.dispatchPrefix"
+                      ></el-select>
+                      <el-input
+                        class="system-row--half"
+                        aria-label="發文字號號碼"
+                        v-model="formData.form.dispatchNumber"
+                      ></el-input>
+                    </div>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title">
-              <p>發生日期</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="occurrenceDate">
-                  <el-date-picker
-                    class="system-form__date-picker"
-                    aria-label="發生日期"
-                    v-model="formData.form.occurrenceDate"
-                  ></el-date-picker>
-                </el-form-item>
+            <div class="system-form__row">
+              <div class="system-form__title">
+                <p>回文字號</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item>
+                    <div class="system-row-group">
+                      <el-select
+                        class="system-row--half"
+                        aria-label="回文字號字首"
+                        v-model="formData.form.replyPrefix"
+                      ></el-select>
+                      <el-input
+                        class="system-row--half"
+                        aria-label="回文字號號碼"
+                        v-model="formData.form.replyNumber"
+                      ></el-input>
+                    </div>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title">
-              <p>註銷/銷毀</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="caseStatus">
-                  <el-radio-group aria-label="註銷或銷毀" v-model="formData.form.caseStatus">
-                    <el-radio label="無">無</el-radio>
-                    <el-radio label="註銷">註銷</el-radio>
-                    <el-radio label="撤銷">撤銷</el-radio>
-                  </el-radio-group>
-                </el-form-item>
+            <div class="system-form__row">
+              <div class="system-form__title">
+                <p>處分日期</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="penaltyDate">
+                    <el-date-picker
+                      class="system-form__date-picker"
+                      aria-label="處分日期"
+                      v-model="formData.form.penaltyDate"
+                    ></el-date-picker>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
+            <div class="system-form__row">
+              <div class="system-form__title">
+                <p>發生日期</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="occurrenceDate">
+                    <el-date-picker
+                      class="system-form__date-picker"
+                      aria-label="發生日期"
+                      v-model="formData.form.occurrenceDate"
+                    ></el-date-picker>
+                  </el-form-item>
+                </div>
+              </div>
+            </div>
+            <div class="system-form__row">
+              <div class="system-form__title">
+                <p>註銷/銷毀</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="caseStatus">
+                    <el-radio-group aria-label="註銷或銷毀" v-model="formData.form.caseStatus">
+                      <el-radio label="無">無</el-radio>
+                      <el-radio label="註銷">註銷</el-radio>
+                      <el-radio label="撤銷">撤銷</el-radio>
+                    </el-radio-group>
+                  </el-form-item>
+                </div>
+              </div>
+            </div>
+          </system-form-list>
         </div>
         <div class="cases-add__main">
-          <div class="system-form__row">
-            <div class="system-form__title system-form__title--required">
-              <p>案例名稱</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="caseName" required>
-                  <el-input aria-label="案例名稱" v-model="formData.form.caseName"></el-input>
-                </el-form-item>
+          <system-form-list>
+            <div class="system-form__row">
+              <div class="system-form__title system-form__title--required">
+                <p>案例名稱</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="caseName" required>
+                    <el-input aria-label="案例名稱" v-model="formData.form.caseName"></el-input>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="system-row-group">
-            <div class="system-form__row system-row--half">
+            <div class="system-form__row system-form__row--half">
               <div class="system-form__title">
                 <p>商品</p>
               </div>
@@ -270,7 +272,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row system-row--half">
+            <div class="system-form__row system-form__row--half">
               <div class="system-form__title">
                 <p>裁罰金額(元)</p>
               </div>
@@ -285,109 +287,109 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title system-form__title--required">
-              <p>涉及法規</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="relatedRegulations" required>
-                  <el-checkbox-group
-                    aria-label="涉及法規"
-                    v-model="formData.form.relatedRegulations"
-                  >
-                    <el-checkbox value="法規1">法規1</el-checkbox>
-                    <el-checkbox value="法規2">法規2</el-checkbox>
-                    <el-checkbox value="法規3">法規3</el-checkbox>
-                  </el-checkbox-group>
-                </el-form-item>
+            <div class="system-form__row">
+              <div class="system-form__title system-form__title--required">
+                <p>涉及法規</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="relatedRegulations" required>
+                    <el-checkbox-group
+                      aria-label="涉及法規"
+                      v-model="formData.form.relatedRegulations"
+                    >
+                      <el-checkbox value="法規1">法規1</el-checkbox>
+                      <el-checkbox value="法規2">法規2</el-checkbox>
+                      <el-checkbox value="法規3">法規3</el-checkbox>
+                    </el-checkbox-group>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="system-form__row">
-            <div class="system-form__title">
-              <p>案例標籤</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item>
-                  <div class="cases-add__case-tags">
-                    <div class="cases-add__case-tags-list">
-                      <div class="cases-add__case-tags-row">
-                        <span class="cases-add__case-tags-name">標籤分類1</span>
-                        <el-checkbox-group
-                          class="cases-add__case-tags-options"
-                          aria-label="標籤分類1"
-                          v-model="formData.form.tags.category1"
-                        >
-                          <el-checkbox value="標籤1">標籤1</el-checkbox>
-                          <el-checkbox value="標籤2">標籤2</el-checkbox>
-                          <el-checkbox value="標籤3">標籤3</el-checkbox>
-                        </el-checkbox-group>
-                      </div>
-                      <el-divider class="cases-add__case-tags-divider"></el-divider>
-                      <div class="cases-add__case-tags-row">
-                        <span class="cases-add__case-tags-name">標籤分類2</span>
-                        <el-checkbox-group
-                          class="cases-add__case-tags-options"
-                          aria-label="標籤分類2"
-                          v-model="formData.form.tags.category2"
-                        >
-                          <el-checkbox value="標籤1">標籤1</el-checkbox>
-                          <el-checkbox value="標籤2">標籤2</el-checkbox>
-                          <el-checkbox value="標籤3">標籤3</el-checkbox>
-                        </el-checkbox-group>
-                      </div>
-                      <el-divider class="cases-add__case-tags-divider"></el-divider>
-                      <div class="cases-add__case-tags-row">
-                        <span class="cases-add__case-tags-name">標籤分類3</span>
-                        <el-checkbox-group
-                          class="cases-add__case-tags-options"
-                          aria-label="標籤分類3"
-                          v-model="formData.form.tags.category3"
-                        >
-                          <el-checkbox value="標籤1">標籤1</el-checkbox>
-                          <el-checkbox value="標籤2">標籤2</el-checkbox>
-                          <el-checkbox value="標籤3">標籤3</el-checkbox>
-                        </el-checkbox-group>
+            <div class="system-form__row">
+              <div class="system-form__title">
+                <p>案例標籤</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item>
+                    <div class="cases-add__case-tags">
+                      <div class="cases-add__case-tags-list">
+                        <div class="cases-add__case-tags-row">
+                          <span class="cases-add__case-tags-name">標籤分類1</span>
+                          <el-checkbox-group
+                            class="cases-add__case-tags-options"
+                            aria-label="標籤分類1"
+                            v-model="formData.form.tags.category1"
+                          >
+                            <el-checkbox value="標籤1">標籤1</el-checkbox>
+                            <el-checkbox value="標籤2">標籤2</el-checkbox>
+                            <el-checkbox value="標籤3">標籤3</el-checkbox>
+                          </el-checkbox-group>
+                        </div>
+                        <el-divider class="cases-add__case-tags-divider"></el-divider>
+                        <div class="cases-add__case-tags-row">
+                          <span class="cases-add__case-tags-name">標籤分類2</span>
+                          <el-checkbox-group
+                            class="cases-add__case-tags-options"
+                            aria-label="標籤分類2"
+                            v-model="formData.form.tags.category2"
+                          >
+                            <el-checkbox value="標籤1">標籤1</el-checkbox>
+                            <el-checkbox value="標籤2">標籤2</el-checkbox>
+                            <el-checkbox value="標籤3">標籤3</el-checkbox>
+                          </el-checkbox-group>
+                        </div>
+                        <el-divider class="cases-add__case-tags-divider"></el-divider>
+                        <div class="cases-add__case-tags-row">
+                          <span class="cases-add__case-tags-name">標籤分類3</span>
+                          <el-checkbox-group
+                            class="cases-add__case-tags-options"
+                            aria-label="標籤分類3"
+                            v-model="formData.form.tags.category3"
+                          >
+                            <el-checkbox value="標籤1">標籤1</el-checkbox>
+                            <el-checkbox value="標籤2">標籤2</el-checkbox>
+                            <el-checkbox value="標籤3">標籤3</el-checkbox>
+                          </el-checkbox-group>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </el-form-item>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title system-form__title--required">
-              <p>主旨</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="subject" required>
-                  <el-input aria-label="主旨" v-model="formData.form.subject"></el-input>
-                </el-form-item>
+            <div class="system-form__row">
+              <div class="system-form__title system-form__title--required">
+                <p>主旨</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="subject" required>
+                    <el-input aria-label="主旨" v-model="formData.form.subject"></el-input>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="system-form__row">
-            <div class="system-form__title system-form__title--required">
-              <p>案例說明</p>
-            </div>
-            <div class="system-form__field">
-              <div class="system-form__item">
-                <el-form-item prop="caseDescription" required>
-                  <el-input
-                    aria-label="案例說明"
-                    v-model="formData.form.caseDescription"
-                    type="textarea"
-                    :rows="4"
-                  ></el-input>
-                </el-form-item>
+            <div class="system-form__row">
+              <div class="system-form__title system-form__title--required">
+                <p>案例說明</p>
+              </div>
+              <div class="system-form__field">
+                <div class="system-form__item">
+                  <el-form-item prop="caseDescription" required>
+                    <el-input
+                      aria-label="案例說明"
+                      v-model="formData.form.caseDescription"
+                      type="textarea"
+                      :rows="4"
+                    ></el-input>
+                  </el-form-item>
+                </div>
               </div>
             </div>
-          </div>
+          </system-form-list>
         </div>
       </div>
     </el-form>
