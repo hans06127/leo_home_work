@@ -1,6 +1,6 @@
 ﻿<script lang="ts" setup>
 const formData = reactive({
-  form: <ICasesSaveForm>{
+  form: <IDispositionSaveForm>{
     id: '',
     // 進出口
     tradeType: '',
@@ -47,7 +47,7 @@ const formData = reactive({
     caseDescription: '',
 
     // 關聯案例
-    relatedCase: [],
+    relatedCases: [],
     //   上傳附件
     attachmentCount: []
   }

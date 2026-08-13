@@ -9,7 +9,7 @@ const mockData = [
   {
     title: '處分案例',
     img: 'icon-001.png',
-    link: '/cases',
+    link: '/disposition/casesManager',
     subtitle: '違規產地標示不明',
     id: '000-001'
   },

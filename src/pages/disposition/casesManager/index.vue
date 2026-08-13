@@ -145,6 +145,14 @@ const handleMenuSelect = (itemIndex: string) => {
   if (category) openCategory.value = category.categoryId
 }
 
+const activeCategory = computed(() =>
+  currentMenus.value.find((menu) => menu.categoryId === openCategory.value)
+)
+
+const activeMenuItem = computed(() =>
+  activeCategory.value?.list.find((item) => item.index === activeMenuItemIndex.value)
+)
+
 watch(activeName, () => {
   initFirstCategory()
 })
@@ -221,9 +229,23 @@ onMounted(() => {
             </el-menu>
           </div>
         </div>
-        <div class="cases__content">
-          <!-- 右側內文 -->
-          <div>套用組件</div>
+        <div class="cases__main">
+          <div class="cases__main-header">
+            <span class="material-symbols-rounded"> folder </span>
+            <span>{{ activeMenuItem?.title || activeCategory?.categoryName }}</span>
+          </div>
+          <div class="cases__results">
+            <div class="case-manager-card">
+              <div class="case-manager-card__meta">
+                <div class="case-manager-card__field"></div>
+                <div class="case-manager-card__field"></div>
+                <div class="case-manager-card__field"></div>
+                <div class="case-manager-card__field"></div>
+              </div>
+              <div class="case-manager-card__summary"></div>
+              <div class="case-manager-card__related"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -274,6 +296,56 @@ onMounted(() => {
       border-radius: 20px !important;
       text-align: center;
     }
+  }
+
+  &__main {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+  }
+
+  &__main-header {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 7px;
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  &__results {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 400px;
+  }
+}
+
+.case-manager-card {
+  padding: 18px 24px;
+  background-color: var(--bg-white);
+  border: 1px solid #cbcbcb;
+  border-radius: 5px;
+
+  &__meta {
+    display: grid;
+    grid-template-columns: 72px 1fr 72px 1fr;
+    gap: 5px 10px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  &__field,
+  &__summary,
+  &__related {
+    min-height: 20px;
+  }
+
+  &__summary {
+    margin-bottom: 12px;
   }
 }
 

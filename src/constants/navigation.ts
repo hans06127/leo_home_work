@@ -8,7 +8,7 @@ import {
   Star
 } from 'lucide-vue-next'
 
-import type { NavigationItem } from '~/types/knowledge'
+import type { NavigationItem } from '@/@types/knowledge'
 
 export const featureCards: NavigationItem[] = [
   {
@@ -22,7 +22,7 @@ export const featureCards: NavigationItem[] = [
     id: 'cases',
     title: '裁罰案例',
     description: '查詢違規樣態、法規依據與裁罰摘要',
-    to: '/cases',
+    to: '/disposition',
     icon: ClipboardList
   },
   {
