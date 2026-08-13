@@ -62,14 +62,14 @@ const formData = reactive({
         <div class="cases-add__actions">
           <el-button size="large">
             <span class="cases-add__action-content">
-              <span class="material-symbols-rounded"> Link</span>
+              <span class="material-symbols-rounded" aria-hidden="true"> Link</span>
               <span> 關聯案例 </span>
               <span> 0 </span>
             </span>
           </el-button>
           <el-button size="large">
             <span class="cases-add__action-content">
-              <span class="material-symbols-rounded"> Link</span>
+              <span class="material-symbols-rounded" aria-hidden="true"> Link</span>
               <span> 上傳附件 </span>
               <span>0</span>
             </span>
@@ -143,7 +143,9 @@ const formData = reactive({
                         v-model="formData.form.processingFlow"
                       ></el-select>
                       <el-button aria-label="開啟處理流程">
-                        <span class="material-symbols-rounded">open_in_new</span>
+                        <span class="material-symbols-rounded" aria-hidden="true">
+                          open_in_new
+                        </span>
                       </el-button>
                     </div>
                   </el-form-item>

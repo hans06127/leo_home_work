@@ -98,7 +98,7 @@ const goTo = (link: string) => {
             <img :src="`/images/${item.img}`" :alt="item.title" />
           </div>
           <div class="home-card__icon">
-            <span class="material-symbols-rounded">arrow_circle_right</span>
+            <span class="material-symbols-rounded" aria-hidden="true">arrow_circle_right</span>
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@ const goTo = (link: string) => {
       <div class="home__news-title">最新發布訊息</div>
       <div class="home__news-more" text>
         <span>更多</span>
-        <span class="material-symbols-rounded">chevron_right</span>
+        <span class="material-symbols-rounded" aria-hidden="true">chevron_right</span>
       </div>
     </div>
     <div class="home__news-list">

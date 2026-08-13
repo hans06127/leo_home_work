@@ -143,13 +143,13 @@ const mockData = <IMajorEventSaveForm>{
               <div class="major-events-main-form__timeline-header-extra">
                 <el-button size="small">
                   <div>
-                    <span class="material-symbols-rounded">file_export</span>
+                    <span class="material-symbols-rounded" aria-hidden="true">file_export</span>
                     <span>匯入時間軸節點</span>
                   </div>
                 </el-button>
                 <el-button size="small">
                   <div>
-                    <span class="material-symbols-rounded">add</span>
+                    <span class="material-symbols-rounded" aria-hidden="true">add</span>
                     <span>新增節點</span>
                   </div>
                 </el-button>
@@ -175,7 +175,7 @@ const mockData = <IMajorEventSaveForm>{
                           時間軸節點 #{{ index + 1 }}
                         </span>
                         <el-button>
-                          <span class="material-symbols-rounded">delete</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">delete</span>
                           <span>刪除此節點</span>
                         </el-button>
                       </div>

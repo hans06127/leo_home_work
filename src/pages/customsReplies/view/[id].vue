@@ -300,7 +300,7 @@ const handleOpenDrawer = (id: string) => {
           </div>
         </div>
         <div v-if="index < mockData.steps.length - 1" class="reply-step__connector">
-          <span class="material-symbols-rounded reply-step__arrow">east</span>
+          <span class="material-symbols-rounded reply-step__arrow" aria-hidden="true">east</span>
         </div>
       </template>
     </div>
@@ -309,7 +309,9 @@ const handleOpenDrawer = (id: string) => {
       <span class="reply-attachments__label">相關附件：</span>
       <div class="reply-attachments__list">
         <div class="reply-file" v-for="file in mockData.files" :key="file.name">
-          <span class="material-symbols-rounded reply-file__icon">attach_file</span>
+          <span class="material-symbols-rounded reply-file__icon" aria-hidden="true">
+            attach_file
+          </span>
           <div class="reply-file__info">
             <span>{{ file.name }}</span>
             <span>{{ file.description }}</span>
@@ -327,7 +329,9 @@ const handleOpenDrawer = (id: string) => {
           :key="caseItem.id"
           @click="handleOpenDrawer(caseItem.id)"
         >
-          <span class="material-symbols-rounded reply-related-cases__icon"> link </span>
+          <span class="material-symbols-rounded reply-related-cases__icon" aria-hidden="true">
+            link
+          </span>
           <span>
             {{ caseItem.title }}
           </span>

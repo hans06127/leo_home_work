@@ -61,11 +61,13 @@ const handleSearch = () => {
 <template>
   <div :class="containerClass">
     <div class="app-page-header-search__title" v-if="props.title || props.titleIcon">
-      <span class="material-symbols-rounded" v-if="props.titleIcon"> {{ props.titleIcon }} </span>
+      <span class="material-symbols-rounded" aria-hidden="true" v-if="props.titleIcon">
+        {{ props.titleIcon }}
+      </span>
       <h1 v-if="props.title">{{ props.title }}</h1>
     </div>
     <div v-if="props.hasQuery" class="app-page-header-search__input-wrap">
-      <span class="material-symbols-rounded app-page-header-search__search-icon">
+      <span class="material-symbols-rounded app-page-header-search__search-icon" aria-hidden="true">
         {{ props.searchIcon }}
       </span>
       <el-input
@@ -82,7 +84,7 @@ const handleSearch = () => {
         :class="actionClass"
         @click="handleSearch"
       >
-        <span class="material-symbols-rounded">{{ props.actionIcon }}</span>
+        <span class="material-symbols-rounded" aria-hidden="true">{{ props.actionIcon }}</span>
       </el-button>
     </div>
   </div>

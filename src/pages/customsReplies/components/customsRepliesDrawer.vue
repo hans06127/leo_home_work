@@ -197,7 +197,10 @@ defineExpose({
           <div class="customs-replies-drawer__info-label">相關附件:</div>
           <div class="customs-replies-drawer__attachments-list">
             <el-button v-for="file in drawerData.data.files" :key="file?.name">
-              <span class="material-symbols-rounded customs-replies-drawer__file-icon">
+              <span
+                class="material-symbols-rounded customs-replies-drawer__file-icon"
+                aria-hidden="true"
+              >
                 attach_file
               </span>
               <span>{{ file?.name }}</span>
@@ -208,7 +211,10 @@ defineExpose({
           <div class="customs-replies-drawer__info-label">關聯案例:</div>
           <div class="customs-replies-drawer__related-list">
             <el-button v-for="caseItem in drawerData.data.relatedCases" :key="caseItem.id">
-              <span class="material-symbols-rounded customs-replies-drawer__related-icon">
+              <span
+                class="material-symbols-rounded customs-replies-drawer__related-icon"
+                aria-hidden="true"
+              >
                 link
               </span>
               <span>{{ caseItem?.title }}</span>

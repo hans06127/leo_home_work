@@ -46,13 +46,15 @@ defineExpose({
     >
       <div class="system-main__box-text">
         <p>
-          <span v-if="icon" class="material-symbols-rounded" translate="no">{{ icon }}</span>
+          <span v-if="icon" class="material-symbols-rounded" translate="no" aria-hidden="true">
+            {{ icon }}
+          </span>
           <span>{{ title }}</span>
         </p>
 
         <div v-if="notice" class="system-main__box-notice">
           <p>
-            <span class="material-symbols-rounded" translate="no">info</span>
+            <span class="material-symbols-rounded" translate="no" aria-hidden="true">info</span>
             <span>{{ notice }}</span>
           </p>
         </div>
@@ -69,7 +71,7 @@ defineExpose({
         :aria-expanded="isOpened"
         @click="toggleBox"
       >
-        <span class="material-symbols-rounded" translate="no">
+        <span class="material-symbols-rounded" translate="no" aria-hidden="true">
           {{ isOpened ? 'remove' : 'add' }}
         </span>
       </button>

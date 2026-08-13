@@ -39,7 +39,7 @@ const mockData = {
 <template>
   <section class="system-page-slot case-view">
     <div class="case-view__title">
-      <span class="material-symbols-rounded">work_history</span>
+      <span class="material-symbols-rounded" aria-hidden="true">work_history</span>
       <h1>{{ mockData.title }}</h1>
     </div>
     <div class="case-view__meta">
@@ -71,7 +71,9 @@ const mockData = {
       <span class="case-view__file-label">相關附件：</span>
       <div class="case-view__file-items">
         <div class="case-view__file" v-for="file in mockData.files" :key="file.name">
-          <span class="material-symbols-rounded case-view__file-icon">attach_file</span>
+          <span class="material-symbols-rounded case-view__file-icon" aria-hidden="true">
+            attach_file
+          </span>
           <div class="case-view__file-info">
             <span>{{ file.name }}</span>
             <span>{{ file.description }}</span>
@@ -90,7 +92,9 @@ const mockData = {
           v-for="caseItem in mockData.relatedCases"
           :key="caseItem.id"
         >
-          <span class="material-symbols-rounded case-view__related-icon"> link </span>
+          <span class="material-symbols-rounded case-view__related-icon" aria-hidden="true">
+            link
+          </span>
           <span>
             {{ caseItem.title }}
           </span>
@@ -100,10 +104,14 @@ const mockData = {
     <div class="case-view__detail">
       <div class="case-view__content">
         <div class="case-view__process">
-          <span class="material-symbols-rounded case-view__process-icon"> account_tree </span>
+          <span class="material-symbols-rounded case-view__process-icon" aria-hidden="true">
+            account_tree
+          </span>
           <span>處理流程：</span>
           <span>一般處理流程v2.0</span>
-          <span class="material-symbols-rounded case-view__process-arrow"> chevron_right </span>
+          <span class="material-symbols-rounded case-view__process-arrow" aria-hidden="true">
+            chevron_right
+          </span>
         </div>
         <div class="case-view__document">
           <div class="case-view__document-section">

@@ -154,7 +154,7 @@ const collapseState = reactive({
             </span>
             <span>{{ item.casesName }}</span>
             <span>{{ item.version }}</span>
-            <span class="material-symbols-rounded">search</span>
+            <span class="material-symbols-rounded" aria-hidden="true">search</span>
           </div>
         </div>
       </div>
@@ -249,7 +249,7 @@ const collapseState = reactive({
                 :key="relatedCase?.id"
                 class="review-approve__related-case-item"
               >
-                <span class="material-symbols-rounded">link</span>
+                <span class="material-symbols-rounded" aria-hidden="true">link</span>
                 <span>{{ relatedCase?.title }} </span>
               </div>
             </el-collapse-item>
@@ -265,7 +265,7 @@ const collapseState = reactive({
                 class="review-approve__attachment"
               >
                 <span>{{ attachment?.name }}</span>
-                <span class="material-symbols-rounded">download</span>
+                <span class="material-symbols-rounded" aria-hidden="true">download</span>
               </div>
             </el-collapse-item>
           </el-collapse>

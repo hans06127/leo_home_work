@@ -74,7 +74,7 @@ const handleCategoryClick = (categoryId: string) => {
               ]"
               @click="handleCategoryClick(category.categoryId)"
             >
-              <span class="material-symbols-rounded"> folder </span>
+              <span class="material-symbols-rounded" aria-hidden="true"> folder </span>
               <span class="customs-replies__sidebar-item-name">
                 {{ category.category }}
               </span>
@@ -87,7 +87,7 @@ const handleCategoryClick = (categoryId: string) => {
       </div>
       <div class="customs-replies__main">
         <div class="customs-replies__main-header">
-          <span class="material-symbols-rounded"> folder </span>
+          <span class="material-symbols-rounded" aria-hidden="true"> folder </span>
           {{ currentCategory.category }}
         </div>
         <div class="customs-replies__results">
@@ -136,7 +136,10 @@ const handleCategoryClick = (categoryId: string) => {
                   :key="caseItem.id"
                   class="customs-reply-card__related-item"
                 >
-                  <span class="material-symbols-rounded customs-reply-card__related-icon">
+                  <span
+                    class="material-symbols-rounded customs-reply-card__related-icon"
+                    aria-hidden="true"
+                  >
                     link
                   </span>
                   <span>{{ caseItem.title }}</span>

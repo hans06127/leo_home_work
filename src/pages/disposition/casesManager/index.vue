@@ -207,7 +207,9 @@ onMounted(() => {
               >
                 <template #title>
                   <div class="case-sidebar-nav__category-title">
-                    <span class="material-symbols-rounded"> {{ menu.icon }} </span>
+                    <span class="material-symbols-rounded" aria-hidden="true">
+                      {{ menu.icon }}
+                    </span>
                     <span class="case-sidebar-nav__category-label">
                       {{ menu.categoryName }}
                     </span>
@@ -231,7 +233,7 @@ onMounted(() => {
         </div>
         <div class="cases__main">
           <div class="cases__main-header">
-            <span class="material-symbols-rounded"> folder </span>
+            <span class="material-symbols-rounded" aria-hidden="true"> folder </span>
             <span>{{ activeMenuItem?.title || activeCategory?.categoryName }}</span>
           </div>
           <div class="cases__results">
