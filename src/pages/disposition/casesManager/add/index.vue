@@ -79,7 +79,7 @@ const formData = reactive({
       <div class="cases-add__body">
         <div class="cases-add__sidebar">
           <system-form-list>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title system-form__title--required">
                 <p>進出口</p>
               </div>
@@ -99,7 +99,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title system-form__title--required">
                 <p>第二層樣態</p>
               </div>
@@ -114,7 +114,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title system-form__title--required">
                 <p>第三層樣態</p>
               </div>
@@ -129,7 +129,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title system-form__title--required">
                 <p>處理流程</p>
               </div>
@@ -152,7 +152,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title">
                 <p>發文字號</p>
               </div>
@@ -175,7 +175,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title">
                 <p>回文字號</p>
               </div>
@@ -198,7 +198,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title">
                 <p>處分日期</p>
               </div>
@@ -214,7 +214,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title">
                 <p>發生日期</p>
               </div>
@@ -230,7 +230,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title">
                 <p>註銷/銷毀</p>
               </div>
@@ -250,7 +250,7 @@ const formData = reactive({
         </div>
         <div class="cases-add__main">
           <system-form-list>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title system-form__title--required">
                 <p>案例名稱</p>
               </div>
@@ -289,7 +289,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title system-form__title--required">
                 <p>涉及法規</p>
               </div>
@@ -309,7 +309,7 @@ const formData = reactive({
               </div>
             </div>
 
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title">
                 <p>案例標籤</p>
               </div>
@@ -362,7 +362,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title system-form__title--required">
                 <p>主旨</p>
               </div>
@@ -374,7 +374,7 @@ const formData = reactive({
                 </div>
               </div>
             </div>
-            <div class="system-form__row">
+            <div class="system-form__row system-form__row--full">
               <div class="system-form__title system-form__title--required">
                 <p>案例說明</p>
               </div>
