@@ -112,3 +112,38 @@ interface IDispositionSaveForm {
   // 創建人員
   creator?: string
 }
+
+// 程序處理
+interface IDispositionWorkflowSaveForm {
+  // 程序標題
+  title: string
+  // 進出口
+  tradeType: string
+  // 第二層樣態
+  secondLevelCategory: string
+  // 第三層樣態
+  thirdLevelCategory: string
+  // 重點說明
+  keyPoints: string
+  // 注意事項
+  notes: string
+  // 處理流程
+  processingFlow: IDispositionWorkflowItem[]
+  // 啟用狀態
+  isActive: boolean
+}
+
+// 程序步驟
+interface IDispositionWorkflowItem {
+  id?: string
+  // 順序
+  seq: number
+  // 步驟名稱
+  title: string
+  // 說明
+  description: string
+  // 確認項目
+  confirmation: string
+
+  // TODO: 可能會有saveType
+}
