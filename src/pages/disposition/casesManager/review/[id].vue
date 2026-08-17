@@ -125,6 +125,72 @@ const collapseState = reactive({
   attachments: '1',
   caseInfo: '1'
 })
+
+const caseInfoSummaryList = computed(() => [
+  {
+    key: 'tags',
+    title: '標籤',
+    tags: formData.form.tags.category1
+  },
+  {
+    key: 'penaltyAmount',
+    title: '裁罰金額(元)',
+    value: `罰鍰$${formData.form.penaltyAmount}`
+  },
+  {
+    key: 'productName',
+    title: '商品',
+    value: formData.form.productName
+  },
+  {
+    key: 'secondLevelCategory',
+    title: '對應樣態',
+    value: formData.form.secondLevelCategory
+  }
+])
+
+const caseInfoDetailList = computed(() => [
+  {
+    key: 'dispatchNumber',
+    title: '發文字號',
+    value: `${formData.form.dispatchPrefix}${formData.form.dispatchNumber}`
+  },
+  {
+    key: 'penaltyDate',
+    title: '處分日期',
+    value: formData.form.penaltyDate
+  },
+  {
+    key: 'occurrenceDate',
+    title: '發生日期',
+    value: formData.form.occurrenceDate
+  },
+  {
+    key: 'dispositionTarget',
+    title: '處分對象',
+    value: formData.form.dispositionTarget
+  },
+  {
+    key: 'productName',
+    title: '關鍵貨品',
+    value: formData.form.productName
+  },
+  {
+    key: 'penaltyAmount',
+    title: '裁罰金額(元)',
+    value: formData.form.penaltyAmount
+  },
+  {
+    key: 'relatedRegulations',
+    title: '涉及法規',
+    value: formData.form.relatedRegulations.join('、')
+  },
+  {
+    key: 'secondLevelCategory',
+    title: '對應樣態',
+    value: formData.form.secondLevelCategory
+  }
+])
 </script>
 
 <template>
@@ -158,7 +224,11 @@ const collapseState = reactive({
           </div>
         </div>
       </div>
-      <app-case-info-panel v-model="collapseState.caseInfo" :case-info="formData.form" />
+      <app-case-info-panel
+        v-model="collapseState.caseInfo"
+        :summary-list="caseInfoSummaryList"
+        :detail-list="caseInfoDetailList"
+      />
     </div>
     <div class="review-approve__body">
       <div class="review-approve__sidebar">

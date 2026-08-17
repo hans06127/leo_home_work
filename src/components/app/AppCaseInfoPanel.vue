@@ -1,11 +1,14 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    caseInfo: IAppCaseInfoPanelData
+    summaryList?: IAppCaseInfoPanelField[]
+    detailList?: IAppCaseInfoPanelField[]
     modelValue?: string
     title?: string
   }>(),
   {
+    summaryList: () => [],
+    detailList: () => [],
     modelValue: '1',
     title: '案件資訊'
   }
@@ -20,13 +23,7 @@ const activeName = computed({
   set: (value: string) => emit('update:modelValue', value)
 })
 
-const tags = computed(() => props.caseInfo.tags?.category1 ?? [])
-
-const documentNumber = computed(
-  () => `${props.caseInfo.dispatchPrefix ?? ''}${props.caseInfo.dispatchNumber ?? ''}`
-)
-
-const relatedRegulations = computed(() => props.caseInfo.relatedRegulations?.join('、') ?? '')
+const displayValue = (field: IAppCaseInfoPanelField) => field.value ?? ''
 </script>
 
 <template>
@@ -37,25 +34,18 @@ const relatedRegulations = computed(() => props.caseInfo.relatedRegulations?.joi
           <div class="app-case-info-panel__header">
             <div class="app-case-info-panel__title">{{ title }}</div>
             <div class="app-case-info-panel__summary">
-              <div class="app-case-info-panel__summary-item">
-                <span>標籤</span>
-                <div class="app-case-info-panel__tags">
-                  <span v-for="tag in tags" :key="tag" class="app-case-info-panel__tag">
+              <div
+                v-for="field in summaryList"
+                :key="field.key"
+                class="app-case-info-panel__summary-item"
+              >
+                <span>{{ field.title }}</span>
+                <div v-if="field.tags?.length" class="app-case-info-panel__tags">
+                  <span v-for="tag in field.tags" :key="tag" class="app-case-info-panel__tag">
                     {{ tag }}
                   </span>
                 </div>
-              </div>
-              <div class="app-case-info-panel__summary-item">
-                <span>裁罰金額</span>
-                <div>新臺幣{{ caseInfo.penaltyAmount }}</div>
-              </div>
-              <div class="app-case-info-panel__summary-item">
-                <span>商品</span>
-                <div>{{ caseInfo.productName }}</div>
-              </div>
-              <div class="app-case-info-panel__summary-item">
-                <span>案件類別</span>
-                <div>{{ caseInfo.secondLevelCategory }}</div>
+                <div v-else>{{ displayValue(field) }}</div>
               </div>
             </div>
           </div>
@@ -64,37 +54,14 @@ const relatedRegulations = computed(() => props.caseInfo.relatedRegulations?.joi
         <el-divider></el-divider>
 
         <div class="app-case-info-panel__details">
-          <div class="app-case-info-panel__field">
-            <span>發文字號</span>
-            <div>{{ documentNumber }}</div>
-          </div>
-          <div class="app-case-info-panel__field">
-            <span>處分日期</span>
-            <div>{{ caseInfo.penaltyDate }}</div>
-          </div>
-          <div class="app-case-info-panel__field">
-            <span>發生日期</span>
-            <div>{{ caseInfo.occurrenceDate }}</div>
-          </div>
-          <div class="app-case-info-panel__field">
-            <span>處分對象</span>
-            <div>{{ caseInfo.dispositionTarget }}</div>
-          </div>
-          <div class="app-case-info-panel__field">
-            <span>關鍵貨品</span>
-            <div>{{ caseInfo.productName }}</div>
-          </div>
-          <div class="app-case-info-panel__field">
-            <span>裁罰金額</span>
-            <div>{{ caseInfo.penaltyAmount }}</div>
-          </div>
-          <div class="app-case-info-panel__field">
-            <span>涉及法規</span>
-            <div>{{ relatedRegulations }}</div>
-          </div>
-          <div class="app-case-info-panel__field">
-            <span>案件類別</span>
-            <div>{{ caseInfo.secondLevelCategory }}</div>
+          <div v-for="field in detailList" :key="field.key" class="app-case-info-panel__field">
+            <span>{{ field.title }}</span>
+            <div v-if="field.tags?.length" class="app-case-info-panel__tags">
+              <span v-for="tag in field.tags" :key="tag" class="app-case-info-panel__tag">
+                {{ tag }}
+              </span>
+            </div>
+            <div v-else>{{ displayValue(field) }}</div>
           </div>
         </div>
       </el-collapse-item>
