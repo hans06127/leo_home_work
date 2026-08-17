@@ -19,3 +19,18 @@ interface IAppPageSidebarMenu {
   icon?: string
   list: IAppPageSidebarItem[]
 }
+
+interface IAppCaseInfoPanelData {
+  tags?: {
+    category1?: string[]
+  }
+  penaltyAmount?: string
+  productName?: string
+  secondLevelCategory?: string
+  dispatchPrefix?: string
+  dispatchNumber?: string
+  penaltyDate?: string
+  occurrenceDate?: string
+  dispositionTarget?: string
+  relatedRegulations?: string[]
+}

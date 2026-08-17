@@ -158,86 +158,7 @@ const collapseState = reactive({
           </div>
         </div>
       </div>
-      <div class="review-approve__info">
-        <el-collapse v-model="collapseState.caseInfo">
-          <el-collapse-item title="案件資訊" name="1">
-            <template #title>
-              <div class="review-approve__info-header">
-                <div class="review-approve__info-title">案件資訊</div>
-                <div class="review-approve__info-content">
-                  <div class="review-approve__info-item">
-                    <span>標籤</span>
-                    <div class="review-approve__info-tags">
-                      <span
-                        class="review-approve__info-tag"
-                        v-for="tag in formData.form.tags.category1"
-                        :key="tag"
-                      >
-                        {{ tag }}
-                      </span>
-                    </div>
-                  </div>
-                  <div class="review-approve__info-item">
-                    <span>裁罰金額(元 )</span>
-                    <div>罰緩${{ formData.form.penaltyAmount }}</div>
-                  </div>
-                  <div class="review-approve__info-item">
-                    <span>商品</span>
-                    <div>{{ formData.form.productName }}</div>
-                  </div>
-                  <div class="review-approve__info-item">
-                    <span>對應樣態</span>
-                    <div>{{ formData.form.secondLevelCategory }}</div>
-                  </div>
-                </div>
-              </div>
-            </template>
-
-            <el-divider></el-divider>
-
-            <div class="review-approve__detail-list">
-              <div class="review-approve__detail-field">
-                <span>發文字號</span>
-                <div>{{ formData.form.dispatchPrefix }}{{ formData.form.dispatchNumber }}</div>
-              </div>
-              <div class="review-approve__detail-field">
-                <span>處分日期</span>
-                <div>{{ formData.form.penaltyDate }}</div>
-              </div>
-              <div class="review-approve__detail-field">
-                <span>發生日期</span>
-                <div>{{ formData.form.occurrenceDate }}</div>
-              </div>
-              <div class="review-approve__detail-field">
-                <span>處分對象</span>
-                <div>{{ formData.form.dispositionTarget }}</div>
-              </div>
-              <div class="review-approve__detail-field">
-                <span>關鍵貨品</span>
-                <div>
-                  <!-- {{ formData.form. }} -->
-                </div>
-              </div>
-              <div class="review-approve__detail-field">
-                <span>裁罰金額(元)</span>
-                <div>{{ formData.form.penaltyAmount }}</div>
-              </div>
-              <div class="review-approve__detail-field">
-                <span>涉及法規</span>
-                <div>
-                  <!-- {{ formData.form. }} -->
-                </div>
-              </div>
-              <div class="review-approve__detail-field">
-                <span>對應樣態</span>
-                <div>
-                  <!-- {{ formData.form. }} -->
-                </div>
-              </div>
-            </div>
-          </el-collapse-item>
-        </el-collapse>
-      </div>
+      <app-case-info-panel v-model="collapseState.caseInfo" :case-info="formData.form" />
     </div>
     <div class="review-approve__body">
       <div class="review-approve__sidebar">
@@ -338,101 +259,6 @@ const collapseState = reactive({
     }
   }
 
-  &__info {
-    :deep(.el-collapse) {
-      padding: 4px 14px;
-      border: solid 1px #e1e1e1;
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
-    :deep(.el-collapse-item__header) {
-      display: flex;
-      gap: 20px;
-      width: 100%;
-      height: auto;
-      line-height: normal;
-      border-radius: 6px;
-      border-bottom: none;
-    }
-
-    :deep(.el-collapse-item__wrap) {
-      border: none;
-    }
-  }
-
-  &__info-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  &__info-title {
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  &__info-content {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    padding: 8px 12px;
-    border-left: 5px solid #919ba4;
-    border-radius: 10px;
-    background-color: #f5fbf9;
-  }
-
-  &__info-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-weight: 600;
-
-    &:not(:last-child)::after {
-      content: '|';
-      color: #919ba4;
-      margin-left: 8px;
-    }
-
-    span {
-      color: #919ba4;
-    }
-  }
-
-  &__info-tags {
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-
-  &__info-tag {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    padding: 4px 8px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.2;
-    background-color: var(--tag-new-bg);
-    color: var(--green);
-  }
-
-  &__detail-list {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
-    width: 100%;
-    margin-top: 20px;
-    font-size: 12px;
-    font-weight: 600;
-
-    span {
-      color: #919ba4;
-    }
-  }
-
   &__body {
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(0, 8fr);
@@ -517,12 +343,6 @@ const collapseState = reactive({
   }
 
   @media (max-width: 768px) {
-    &__info-header,
-    &__info-content {
-      flex-wrap: wrap;
-    }
-
-    &__detail-list,
     &__body {
       grid-template-columns: 1fr;
     }
