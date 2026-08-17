@@ -3,14 +3,12 @@ defineOptions({
   inheritAttrs: false
 })
 
-type BeforeClose = (done: () => void) => void
-
 withDefaults(
   defineProps<{
     title: string
     closeLabel?: string
     size?: string | number
-    beforeClose?: BeforeClose
+    beforeClose?: SystemDrawerBeforeClose
   }>(),
   {
     closeLabel: '關閉',

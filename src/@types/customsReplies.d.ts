@@ -27,3 +27,23 @@ interface ICustomsRepliesDrawerData {
 interface ICustomsRepliesId {
   id: string
 }
+
+interface ICustomsRepliesLetter {
+  senderSubUnit: string
+  contact: string
+  contactTel?: string
+  contactExt?: string
+  contactFax?: string
+  handler?: string
+  handlerTel?: string
+  handlerExt?: string
+  handlerFax?: string
+  documentNumber: string
+  documentDate: string
+  issuingAgency: string
+  recipient: string
+  relatedLaws: string
+  caseSummary: string
+  cases: string
+  description: string
+}

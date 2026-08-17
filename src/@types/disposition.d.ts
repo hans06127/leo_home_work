@@ -15,6 +15,18 @@ interface IDispositionMenuItem {
 
 type DispositionTabKey = 'export' | 'import'
 
+type DispositionCasesManagerTabKey = 'export' | 'import'
+
+interface IDispositionCasesManagerMenuItem {
+  index: string
+  title: string
+}
+
+interface IDispositionCasesManagerMenuCategory {
+  categoryId: string
+  list: IDispositionCasesManagerMenuItem[]
+}
+
 interface IDispositionMenuSourceItem {
   id?: string
   title: string

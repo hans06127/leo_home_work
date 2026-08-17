@@ -1,15 +1,12 @@
 <script setup lang="ts">
-type LayoutVariant = 'compact' | 'withTitle'
-type ActionTone = 'main' | 'primary' | 'subtle'
-
-const layoutVariantClassMap: Record<LayoutVariant, string> = {
+const layoutVariantClassMap: Record<AppPageHeaderLayoutVariant, string> = {
   compact: 'compact',
   withTitle: 'with-title'
 }
 
 const props = withDefaults(
   defineProps<{
-    layoutVariant?: LayoutVariant
+    layoutVariant?: AppPageHeaderLayoutVariant
     title?: string
     titleIcon?: string
     hasQuery?: boolean
@@ -18,7 +15,7 @@ const props = withDefaults(
     searchIcon?: string
     actionIcon?: string
     showAction?: boolean
-    actionTone?: ActionTone
+    actionTone?: AppPageHeaderActionTone
   }>(),
   {
     layoutVariant: 'withTitle',

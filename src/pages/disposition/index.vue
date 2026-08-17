@@ -115,10 +115,6 @@ const currentMenus = computed(() =>
   }))
 )
 
-const selectMenuItem = (itemIndex: string) => {
-  activeMenuItemIndex.value = itemIndex
-}
-
 const triggerFirstItem = (category: IDispositionMenuCategory) => {
   const firstItem = category.list[0]
   if (!firstItem) {
@@ -126,7 +122,7 @@ const triggerFirstItem = (category: IDispositionMenuCategory) => {
     return
   }
 
-  selectMenuItem(firstItem.index)
+  activeMenuItemIndex.value = firstItem.index
 }
 
 const initFirstCategory = () => {
@@ -141,22 +137,6 @@ const initFirstCategory = () => {
 
   openCategory.value = firstCategory.categoryId
   triggerFirstItem(firstCategory)
-}
-
-const handleCategoryOpen = (menuIndex: string) => {
-  const category = currentMenus.value[Number(menuIndex) - 1]
-  if (!category) return
-
-  openCategory.value = category.categoryId
-  triggerFirstItem(category)
-}
-
-const handleMenuSelect = (itemIndex: string) => {
-  selectMenuItem(itemIndex)
-  const category = currentMenus.value.find((menu) =>
-    menu.list.some((item) => item.index === itemIndex)
-  )
-  if (category) openCategory.value = category.categoryId
 }
 
 const activeCategory = computed(() =>
@@ -194,7 +174,7 @@ onMounted(() => {
 
 <template>
   <section class="system-page-slot">
-    <div class="cases">
+    <div class="cases app-page">
       <app-page-header-search
         layout-variant="withTitle"
         title="處分案例"
@@ -203,68 +183,16 @@ onMounted(() => {
         search-placeholder="請輸入關鍵字"
         action-icon="tune"
       />
-      <div class="cases__body">
-        <div class="cases__sidebar">
-          <!-- 左側處分樣態 -->
-          <el-radio-group
-            v-model="activeName"
-            size="large"
-            class="cases__sidebar-radio-group"
-            fill="var(--primary)"
-          >
-            <el-radio-button :value="tab.value" v-for="tab in tabs" :key="tab.value">
-              {{ tab.label }}
-            </el-radio-button>
-          </el-radio-group>
-
-          <div class="case-sidebar-nav">
-            <div class="case-sidebar-nav__header">主要類別</div>
-            <el-menu
-              :default-active="activeMenuItemIndex"
-              :default-openeds="['1']"
-              :key="activeName"
-              @open="handleCategoryOpen"
-              @select="handleMenuSelect"
-            >
-              <el-sub-menu
-                v-for="(menu, index) in currentMenus"
-                :index="String(index + 1)"
-                :key="menu.categoryId"
-                :class="[
-                  'case-sidebar-nav__category',
-                  { 'case-sidebar-nav__category--active': openCategory === menu.categoryId }
-                ]"
-              >
-                <template #title>
-                  <div class="case-sidebar-nav__category-title">
-                    <span
-                      class="material-symbols-rounded case-sidebar-nav__category-icon"
-                      aria-hidden="true"
-                    >
-                      {{ menu.icon }}
-                    </span>
-                    <span class="case-sidebar-nav__category-label">
-                      {{ menu.categoryName }}
-                    </span>
-                    <span class="case-sidebar-nav__category-count">{{ menu.list.length }}</span>
-                  </div>
-                </template>
-
-                <el-menu-item v-for="item in menu.list" :key="item.title" :index="item.index">
-                  <div class="case-sidebar-nav__item">
-                    <span class="case-sidebar-nav__item-label">
-                      {{ item.title }}
-                    </span>
-                    <span class="case-sidebar-nav__item-count">
-                      {{ item.count }}
-                    </span>
-                  </div>
-                </el-menu-item>
-              </el-sub-menu>
-            </el-menu>
-          </div>
-        </div>
-        <div class="cases__main">
+      <div class="cases__body app-page__body app-page__body--has-sidebar">
+        <app-page-sidebar
+          v-model:active-tab="activeName"
+          v-model:active-item="activeMenuItemIndex"
+          v-model:open-category="openCategory"
+          header="主要類別"
+          :tabs="tabs"
+          :menus="currentMenus"
+        />
+        <div class="cases__main app-page__main">
           <div class="cases__main-header">
             <span class="material-symbols-rounded" aria-hidden="true"> folder </span>
             <!-- TODO:待確認 -->
@@ -395,55 +323,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.system-page-slot {
-  display: flex;
-}
-
 .cases {
-  --cases-sidebar-width: 260px;
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-
-  &__body {
-    display: grid;
-    grid-template-columns: var(--cases-sidebar-width) minmax(0, 1fr);
-    gap: 15px;
-    flex: 1;
-    min-height: 0;
-    padding: 10px;
-  }
-
-  &__sidebar {
-    background-color: var(--bg-tree);
-    min-height: 0;
-    padding: 20px;
-    border-radius: 10px 0 0 10px;
-  }
-
-  &__sidebar-radio-group {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-
-    :deep(.el-radio-button) {
-      flex: 1;
-      min-width: 0;
-    }
-
-    :deep(.el-radio-button__inner) {
-      width: 100%;
-    }
-  }
-
-  &__main {
-    display: flex;
-    flex: 1;
-    min-width: 0;
-    flex-direction: column;
-  }
-
   &__main-header {
     display: flex;
     align-items: center;
@@ -460,18 +340,6 @@ onMounted(() => {
     flex-direction: column;
     gap: 12px;
     min-height: 400px;
-  }
-
-  @media (max-width: 760px) {
-    --cases-sidebar-width: 100%;
-
-    &__body {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    &__sidebar {
-      border-radius: 10px;
-    }
   }
 }
 
@@ -639,122 +507,4 @@ onMounted(() => {
   }
 }
 
-.case-sidebar-nav {
-  padding: 10px 0;
-
-  :deep(.el-menu) {
-    background-color: transparent !important;
-    border-right: 0;
-  }
-
-  :deep(.el-menu--inline) {
-    padding-left: 10px !important;
-    margin-top: 5px;
-  }
-
-  :deep(.el-menu-item) {
-    padding-left: 8px !important;
-    padding-right: 0 !important;
-
-    border-left: 1px solid var(--bdr);
-    color: #647284;
-    height: 40px;
-    position: relative;
-  }
-
-  :deep(.el-menu-item.is-active) {
-    &::before {
-      content: '';
-      position: absolute;
-      left: -1.5px;
-      top: 4px;
-      bottom: 4px;
-      width: 2.5px;
-      background: var(--primary);
-    }
-
-    .case-sidebar-nav__item {
-      background-color: var(--bg-white) !important;
-      font-weight: 600;
-
-      .case-sidebar-nav__item-label {
-        color: #0f3f89 !important;
-      }
-    }
-  }
-
-  :deep(.el-sub-menu__title) {
-    color: #533d50;
-    height: 44px;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 0 35px 0 0 !important;
-    box-sizing: border-box;
-  }
-
-  &__header {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--tx-light);
-    letter-spacing: 0.3px;
-    padding-top: 10px;
-  }
-
-  &__category {
-    &--active {
-      :deep(.el-sub-menu__title) {
-        color: #0f3f89;
-        font-weight: 600;
-        background-color: var(--bg-white);
-        border: 1.5px solid #0f3f89;
-        border-radius: 4px;
-      }
-    }
-  }
-
-  &__category-title {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    min-width: 0;
-    gap: 8px;
-    padding-left: 5px;
-  }
-
-  &__category-icon {
-    font-variation-settings: 'FILL' 1;
-  }
-
-  &__category-label {
-    flex: 1;
-    min-width: 0;
-  }
-
-  &__category-count {
-    font-size: 12px;
-    color: var(--tx-light);
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-
-  &__item {
-    width: 100%;
-    height: 20px;
-    box-sizing: content-box;
-    padding: 8px 10px !important;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 5px;
-  }
-
-  &__item-label {
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-
-  &__item-count {
-    flex-shrink: 0;
-  }
-}
 </style>

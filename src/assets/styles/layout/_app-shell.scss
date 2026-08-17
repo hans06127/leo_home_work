@@ -49,6 +49,34 @@
   min-height: calc(100dvh - 170px);
 }
 
+.app-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.app-page__body {
+  flex: 1;
+  min-height: 0;
+  padding: 10px;
+}
+
+.app-page__body--has-sidebar {
+  --app-page-sidebar-width: 260px;
+
+  display: grid;
+  grid-template-columns: var(--app-page-sidebar-width) minmax(0, 1fr);
+  gap: 15px;
+}
+
+.app-page__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
 @media (max-width: 760px) {
   .system-layout {
     padding: 24px 18px 0;
@@ -61,5 +89,11 @@
   .system-page-slot {
     min-height: calc(100vh - 140px);
     min-height: calc(100dvh - 140px);
+  }
+
+  .app-page__body--has-sidebar {
+    --app-page-sidebar-width: 100%;
+
+    grid-template-columns: minmax(0, 1fr);
   }
 }

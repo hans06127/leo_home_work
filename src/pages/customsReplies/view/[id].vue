@@ -218,8 +218,6 @@ const table = ref(false)
 const customsRepliesDrawerRef = ref<ICustomsRepliesDrawer>()
 const currentStep = ref(1)
 const currentStepData = computed(() => _.find(mockData.steps, { step: currentStep.value }))
-type Letter = NonNullable<typeof currentStepData.value>['data']['incomingLetter']
-
 const currentLetters = computed(() => {
   const data = currentStepData.value?.data
   if (!data) return []
@@ -242,7 +240,7 @@ const currentLetters = computed(() => {
   ]
 })
 
-const letterFields = (letterId: string, letter: Letter) =>
+const letterFields = (letterId: string, letter: ICustomsRepliesLetter) =>
   [
     {
       label: letterId === 'incoming' ? '發文單位：' : '回文單位：',

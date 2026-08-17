@@ -42,14 +42,25 @@ const mockData = [
 const searchQuery = ref('')
 const currentCategory = ref<any>(mockData[0])
 
-const handleCategoryClick = (categoryId: string) => {
-  const selectedCategory = _.find(mockData, (category: any) => category.categoryId === categoryId)
-  currentCategory.value = selectedCategory
-}
+const sidebarItems = computed(() =>
+  mockData.map((category) => ({
+    index: category.categoryId,
+    title: category.category,
+    count: category.list.length
+  }))
+)
+
+const activeCategoryId = computed({
+  get: () => currentCategory.value.categoryId,
+  set: (categoryId: string) => {
+    currentCategory.value =
+      mockData.find((category) => category.categoryId === categoryId) || mockData[0]
+  }
+})
 </script>
 
 <template>
-  <section class="system-page-slot customs-replies">
+  <section class="system-page-slot customs-replies app-page">
     <app-page-header-search
       layout-variant="withTitle"
       title="海關答聯單處理"
@@ -58,34 +69,14 @@ const handleCategoryClick = (categoryId: string) => {
       search-placeholder="請輸入關鍵字"
       action-icon="tune"
     />
-    <div class="customs-replies__content">
-      <div class="customs-replies__sidebar">
-        <div class="customs-replies__sidebar-header">答聯單態樣</div>
-        <ul class="customs-replies__sidebar-list">
-          <li v-for="category in mockData" :key="category.categoryId">
-            <button
-              type="button"
-              :class="[
-                'customs-replies__sidebar-item',
-                {
-                  'customs-replies__sidebar-item--active':
-                    category.categoryId === currentCategory.categoryId
-                }
-              ]"
-              @click="handleCategoryClick(category.categoryId)"
-            >
-              <span class="material-symbols-rounded" aria-hidden="true"> folder </span>
-              <span class="customs-replies__sidebar-item-name">
-                {{ category.category }}
-              </span>
-              <span class="customs-replies__sidebar-item-count">
-                {{ category.list.length }}
-              </span>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="customs-replies__main">
+    <div class="customs-replies__content app-page__body app-page__body--has-sidebar">
+      <app-page-sidebar
+        v-model:active-item="activeCategoryId"
+        mode="list"
+        header="答聯單態樣"
+        :items="sidebarItems"
+      />
+      <div class="customs-replies__main app-page__main">
         <div class="customs-replies__main-header">
           <span class="material-symbols-rounded" aria-hidden="true"> folder </span>
           {{ currentCategory.category }}
@@ -161,84 +152,7 @@ const handleCategoryClick = (categoryId: string) => {
   gap: 20px;
 
   &__content {
-    display: flex;
     gap: 20px;
-  }
-
-  &__sidebar {
-    display: flex;
-    flex-direction: column;
-    width: 260px;
-    padding: 20px;
-    background-color: var(--bg-tree);
-    border-radius: 10px;
-  }
-
-  &__sidebar-header {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-    font-size: 18px;
-    font-weight: 700;
-    text-align: center;
-    color: var(--tx-main);
-  }
-
-  &__sidebar-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  &__sidebar-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 2px;
-    padding: 14px 10px;
-    background: transparent;
-    border: 0;
-    border-radius: 5px;
-    font-family: inherit;
-    font-size: 15px;
-    text-align: left;
-    color: var(--tx-main);
-    cursor: pointer;
-
-    &--active {
-      background-color: var(--bg-white);
-      border: 1px solid var(--primary);
-      font-weight: bold;
-      color: var(--primary);
-
-      .customs-replies__sidebar-item-count {
-        background-color: var(--primary);
-        color: var(--bg-white);
-      }
-    }
-  }
-
-  &__sidebar-item-name {
-    flex: 1;
-  }
-
-  &__sidebar-item-count {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    background-color: #e1e1e1;
-    border-radius: 50%;
-    font-weight: bold;
-    color: var(--tx-main);
-  }
-
-  &__main {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
   }
 
   &__main-header {
