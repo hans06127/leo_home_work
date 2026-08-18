@@ -45,7 +45,16 @@ const displayValue = (field: IAppCaseInfoPanelField) => field.value ?? ''
                     {{ tag }}
                   </span>
                 </div>
-                <div v-else>{{ displayValue(field) }}</div>
+                <div v-else class="app-case-info-panel__value">
+                  <span
+                    v-if="field.icon"
+                    class="material-symbols-rounded app-case-info-panel__value-icon"
+                    aria-hidden="true"
+                  >
+                    {{ field.icon }}
+                  </span>
+                  <span>{{ displayValue(field) }}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -61,7 +70,16 @@ const displayValue = (field: IAppCaseInfoPanelField) => field.value ?? ''
                 {{ tag }}
               </span>
             </div>
-            <div v-else>{{ displayValue(field) }}</div>
+            <div v-else class="app-case-info-panel__value">
+              <span
+                v-if="field.icon"
+                class="material-symbols-rounded app-case-info-panel__value-icon"
+                aria-hidden="true"
+              >
+                {{ field.icon }}
+              </span>
+              <span>{{ displayValue(field) }}</span>
+            </div>
           </div>
         </div>
       </el-collapse-item>
@@ -149,6 +167,20 @@ const displayValue = (field: IAppCaseInfoPanelField) => field.value ?? ''
     font-weight: 600;
     line-height: 1.2;
     color: var(--green);
+  }
+
+  &__value {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__value-icon {
+    flex-shrink: 0;
+    font-size: 16px;
+    color: var(--primary);
+    font-variation-settings: 'FILL' 1;
   }
 
   &__details {

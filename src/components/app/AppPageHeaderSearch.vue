@@ -69,6 +69,7 @@ const handleSearch = () => {
       </span>
       <el-input
         :model-value="props.searchQuery"
+        aria-label="搜尋關鍵字"
         :placeholder="props.searchPlaceholder"
         @update:model-value="handleSearchQueryUpdate"
         @keyup.enter="handleSearch"
@@ -78,6 +79,7 @@ const handleSearch = () => {
         type="primary"
         text
         size="small"
+        aria-label="搜尋"
         :class="actionClass"
         @click="handleSearch"
       >

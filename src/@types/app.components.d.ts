@@ -25,4 +25,5 @@ interface IAppCaseInfoPanelField {
   title: string
   value?: string | number | null
   tags?: string[]
+  icon?: string
 }

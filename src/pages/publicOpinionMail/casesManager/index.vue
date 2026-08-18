@@ -1,24 +1,9 @@
-﻿<script lang="ts" setup>
-// on mounted
-onMounted(() => {
-  pageInit()
+<script setup lang="ts">
+definePageMeta({
+  title: '民眾意見信箱案件管理'
 })
-
-// page refs
-const pageData = reactive({
-  isLoading: true
-})
-
-// page methods
-const pageInit = (): void => {
-  pageData.isLoading = false
-}
 </script>
 
 <template>
-  <div class=""></div>
+  <div></div>
 </template>
-
-<style lang="scss" scoped>
-// none style
-</style>
