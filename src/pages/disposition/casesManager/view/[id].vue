@@ -129,7 +129,7 @@ const mockData = {
           </div>
         </div>
       </div>
-      <aside class="case-view__info">
+      <div class="case-view__info">
         <h2 class="case-view__info-title">案件資訊</h2>
         <div class="case-view__info-item">
           <div class="case-view__info-label">處分對象</div>
@@ -157,7 +157,7 @@ const mockData = {
           </span>
           <span class="case-view__info-penalty">{{ mockData.penalty }}</span>
         </div>
-      </aside>
+      </div>
     </div>
   </section>
 </template>

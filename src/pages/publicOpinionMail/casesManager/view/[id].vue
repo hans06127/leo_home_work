@@ -83,7 +83,7 @@ const caseInfoDetailList = computed(() => [
     />
 
     <div class="public-opinion-view__body app-page__body app-page__body--has-sidebar">
-      <aside class="public-opinion-view__sidebar">
+      <div class="public-opinion-view__sidebar">
         <el-collapse v-model="activeSidebarCollapse">
           <el-collapse-item title="案件資料" name="basic">
             <div class="public-opinion-view__sidebar-field">
@@ -106,7 +106,7 @@ const caseInfoDetailList = computed(() => [
             </div>
           </el-collapse-item>
         </el-collapse>
-      </aside>
+      </div>
 
       <div class="public-opinion-view__main app-page__main">
         <div class="public-opinion-view__process">

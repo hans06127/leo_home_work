@@ -55,7 +55,7 @@ const handleMenuSelect = (itemIndex: string) => {
 </script>
 
 <template>
-  <aside class="app-page-sidebar">
+  <div class="app-page-sidebar">
     <el-radio-group
       v-if="tabs.length"
       :model-value="activeTab"
@@ -124,7 +124,7 @@ const handleMenuSelect = (itemIndex: string) => {
         </button>
       </li>
     </ul>
-  </aside>
+  </div>
 </template>
 
 <style lang="scss" scoped>
