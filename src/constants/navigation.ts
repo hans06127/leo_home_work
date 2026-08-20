@@ -14,7 +14,7 @@ export const featureCards: NavigationItem[] = [
   {
     id: 'apply',
     title: '輸出入申辦',
-    description: '申請、審核與案件進度管理',
+    description: '申請與案件進度管理',
     to: '/home',
     icon: ClipboardList
   },
