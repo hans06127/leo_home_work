@@ -2,7 +2,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-06-30',
   devtools: { enabled: true },
   srcDir: 'src/',
-  css: ['element-plus/dist/index.css', '~/assets/styles/main.scss'],
+  routeRules: {
+    '/': { redirect: '/home' }
+  },
+  build: {
+    transpile: ['element-plus']
+  },
+  css: ['~/assets/styles/main.scss'],
   components: [
     {
       path: '~/components',
@@ -28,7 +34,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      mockApi: true,
+      mockApi: false,
       apiBase: '/api'
     }
   },
