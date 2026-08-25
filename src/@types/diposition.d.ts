@@ -1,0 +1,161 @@
+interface IDipositionId {
+  id: string
+}
+
+// TODO: 到時候應該會是統一key value的形式，先這樣寫
+interface IDipositionMenuCategory {
+  // categoryId: string
+  list: IDipositionMenuItem[]
+}
+
+interface IDipositionMenuItem {
+  index: string
+  title: string
+}
+
+type DipositionTabKey = 'export' | 'import'
+
+type DipositionCasesManagerTabKey = 'export' | 'import'
+
+interface IDipositionCasesManagerMenuItem {
+  index: string
+  title: string
+}
+
+interface IDipositionCasesManagerMenuCategory {
+  categoryId: string
+  list: IDipositionCasesManagerMenuItem[]
+}
+
+interface IDipositionMenuSourceItem {
+  id?: string
+  title: string
+  items: IDipositionListItem[]
+}
+
+interface IDipositionMenuSourceCategory {
+  categoryId: string
+  categoryName: string
+  icon?: string
+  list: IDipositionMenuSourceItem[]
+}
+
+interface IDipositionListItem {
+  id?: string
+  secondLevelCategory?: string
+  thirdLevelCategory?: string
+  caseName?: string
+  replyNumber?: string
+  penaltyDate?: string
+  dispositionTarget?: string
+  productName?: string
+  penaltyAmount?: string
+  subject?: string
+  modifierDate?: string
+  modifier?: string
+  isFavorite?: boolean
+  tags: {
+    category1: string[]
+    category2: string[]
+    category3: string[]
+  }
+  relatedCases?: any[]
+}
+
+interface IDipositionSaveForm {
+  id?: string
+  // 進出口
+  tradeType: string
+  // 第二層樣態
+  secondLevelCategory: string
+  // 第三層樣態
+  thirdLevelCategory: string
+  // 處理流程
+  processingFlow: string
+  // 發文字號-字首
+  dispatchPrefix?: string
+  // 發文字號-號碼
+  dispatchNumber?: string
+  // 回文字號-字首
+  replyPrefix?: string
+  // 回文字號-號碼
+  replyNumber?: string
+  // 處分日期
+  penaltyDate?: string
+  // 發生日期
+  occurrenceDate?: string
+  // 註銷/銷毀
+  caseStatus?: string
+  // 案例名稱
+  caseName: string
+  // 商品
+  productName?: string
+  // 處分對象
+  dispositionTarget?: string
+  // 裁罰金額(元)
+  penaltyAmount?: string
+  // 涉及法規 (複選，儲存選中的法規 ID 或名稱)
+  relatedRegulations: string[]
+  //案例標籤
+  tags: {
+    // 標籤分類1
+    category1?: string[]
+    // 標籤分類2
+    category2?: string[]
+    // 標籤分類3
+    category3?: string[]
+  }
+  // 主旨
+  subject: string
+  // 案例說明
+  caseDescription: string
+
+  // 關聯案例
+  relatedCases?: any[]
+  //   上傳附件
+  attachmentCount: any[]
+  // TODO: 可能會是統一固定欄位?
+  // 更新日期
+  modifierDate?: string
+  // 異動人員
+  modifier?: string
+  // 創建日期
+  createdDate?: string
+  // 創建人員
+  creator?: string
+}
+
+// 程序處理
+interface IDipositionProcessSaveForm {
+  // 程序標題
+  title: string
+  // 進出口
+  tradeType: string
+  // 第二層樣態
+  secondLevelCategory: string
+  // 第三層樣態
+  thirdLevelCategory: string
+  // 重點說明
+  keyPoints: string
+  // 注意事項
+  notes: string
+  // 處理流程
+  processingFlow: IDipositionProcessItem[]
+  // 啟用狀態
+  isActive: boolean
+}
+
+// 程序步驟
+interface IDipositionProcessItem {
+  id?: string
+  // 順序
+  seq: number
+  // 步驟名稱
+  title: string
+  // 說明
+  description: string
+  // 確認項目
+  confirmation: string
+
+  // TODO: 可能會有saveType
+}

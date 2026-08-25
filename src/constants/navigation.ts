@@ -22,14 +22,14 @@ export const featureCards: NavigationItem[] = [
     id: 'cases',
     title: '裁罰案例',
     description: '查詢違規樣態、法規依據與裁罰摘要',
-    to: '/disposition',
+    to: '/diposition',
     icon: ClipboardList
   },
   {
     id: 'contact',
     title: '聯絡窗口',
     description: '整理常用承辦窗口與支援資訊',
-    to: '/customsReplies',
+    to: '/customReplyForm',
     icon: Anchor
   },
   {

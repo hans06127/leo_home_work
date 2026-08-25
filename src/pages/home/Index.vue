@@ -9,14 +9,14 @@ const mockData = [
   {
     title: '處分案例',
     img: 'icon-001.png',
-    link: '/disposition/casesManager',
+    link: '/diposition/casesManager',
     subtitle: '違規產地標示不明',
     id: '000-001'
   },
   {
     title: '海關答聯單',
     img: 'icon-002.png',
-    link: '/customsReplies',
+    link: '/customReplyForm',
     subtitle: '通關疑義公文與白聯單查詢',
     id: '000-002'
   },

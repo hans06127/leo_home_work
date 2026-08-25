@@ -14,10 +14,10 @@ const tabs = [
 
 const mockFilter_module = [
   { code: 'all', name: '全部' },
-  { code: 'disposition', name: '處分案例' },
-  { code: 'customsReplies', name: '海關達聯單' },
+  { code: 'diposition', name: '處分案例' },
+  { code: 'customReplyForm', name: '海關達聯單' },
   { code: 'majorEvents', name: '聲明異議、訴願與行政訴訟' },
-  { code: 'publicOpinionMail', name: '民眾意見信箱處理' }
+  { code: 'publicMailbox', name: '民眾意見信箱處理' }
 ]
 
 const mockFilter_tags = {
