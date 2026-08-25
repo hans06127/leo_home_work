@@ -8,6 +8,33 @@ export default defineNuxtConfig({
   build: {
     transpile: ['element-plus']
   },
+  vite: {
+    optimizeDeps: {
+      include: [
+        'dayjs',
+        'dayjs/plugin/customParseFormat.js',
+        'dayjs/plugin/localeData.js',
+        'dayjs/plugin/advancedFormat.js',
+        'dayjs/plugin/weekOfYear.js',
+        'dayjs/plugin/weekYear.js',
+        'dayjs/plugin/dayOfYear.js',
+        'dayjs/plugin/isSameOrAfter.js',
+        'dayjs/plugin/isSameOrBefore.js'
+      ]
+    },
+    resolve: {
+      alias: {
+        'dayjs/plugin/customParseFormat.js': 'dayjs/esm/plugin/customParseFormat/index.js',
+        'dayjs/plugin/localeData.js': 'dayjs/esm/plugin/localeData/index.js',
+        'dayjs/plugin/advancedFormat.js': 'dayjs/esm/plugin/advancedFormat/index.js',
+        'dayjs/plugin/weekOfYear.js': 'dayjs/esm/plugin/weekOfYear/index.js',
+        'dayjs/plugin/weekYear.js': 'dayjs/esm/plugin/weekYear/index.js',
+        'dayjs/plugin/dayOfYear.js': 'dayjs/esm/plugin/dayOfYear/index.js',
+        'dayjs/plugin/isSameOrAfter.js': 'dayjs/esm/plugin/isSameOrAfter/index.js',
+        'dayjs/plugin/isSameOrBefore.js': 'dayjs/esm/plugin/isSameOrBefore/index.js'
+      }
+    }
+  },
   css: ['~/assets/styles/main.scss'],
   components: [
     {
