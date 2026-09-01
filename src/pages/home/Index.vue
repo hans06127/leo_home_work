@@ -87,7 +87,6 @@ const goTo = (link: string) => {
       v-model:search-query="searchQuery"
       class="home__search"
       search-placeholder="請輸入關鍵字"
-      action-icon="tune"
     />
     <div class="home__card-list">
       <div v-for="item in mockData" :key="item.title" class="home-card" @click="goTo(item.link)">

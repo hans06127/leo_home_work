@@ -120,8 +120,6 @@ const handleFavoriteClick = (item: IPublicMailboxCase) => {
       title="民眾意見信箱處理查詢"
       title-icon="mark_email_unread"
       search-placeholder="請輸入案號、主旨或關鍵字"
-      action-icon="search"
-      action-tone="primary"
     />
 
     <div class="public-opinion-mail__body app-page__body app-page__body--has-sidebar">

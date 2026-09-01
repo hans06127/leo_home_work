@@ -1,5 +1,4 @@
 type AppPageHeaderLayoutVariant = 'compact' | 'withTitle'
-type AppPageHeaderActionTone = 'main' | 'primary' | 'subtle'
 
 interface IAppPageSidebarTab {
   label: string

@@ -280,7 +280,6 @@ const handleOpenDrawer = (id: string) => {
       title="海關答聯單處理"
       title-icon="anchor"
       :has-query="false"
-      action-icon="tune"
     />
     <div class="reply-steps">
       <template v-for="(step, index) in mockData.steps" :key="step.id">

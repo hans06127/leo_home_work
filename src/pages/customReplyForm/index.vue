@@ -67,7 +67,6 @@ const activeCategoryId = computed({
       title-icon="anchor"
       v-model:search-query="searchQuery"
       search-placeholder="請輸入關鍵字"
-      action-icon="tune"
     />
     <div class="custom-reply-form__content app-page__body app-page__body--has-sidebar">
       <app-page-sidebar

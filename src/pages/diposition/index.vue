@@ -181,7 +181,6 @@ onMounted(() => {
         title-icon="work_history"
         v-model:search-query="searchQuery"
         search-placeholder="請輸入關鍵字"
-        action-icon="tune"
       />
       <div class="cases__body app-page__body app-page__body--has-sidebar">
         <app-page-sidebar

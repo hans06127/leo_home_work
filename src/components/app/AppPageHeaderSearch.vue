@@ -13,9 +13,6 @@ const props = withDefaults(
     searchQuery?: string
     searchPlaceholder?: string
     searchIcon?: string
-    actionIcon?: string
-    showAction?: boolean
-    actionTone?: AppPageHeaderActionTone
   }>(),
   {
     layoutVariant: 'withTitle',
@@ -24,10 +21,7 @@ const props = withDefaults(
     hasQuery: true,
     searchQuery: '',
     searchPlaceholder: '請輸入關鍵字',
-    searchIcon: 'search',
-    actionIcon: 'tune',
-    showAction: true,
-    actionTone: 'main'
+    searchIcon: 'search'
   }
 )
 
@@ -36,21 +30,20 @@ const containerClass = computed(() => [
   `app-page-header-search--${layoutVariantClassMap[props.layoutVariant]}`
 ])
 
-const actionClass = computed(() => [
-  'app-page-header-search__action-button',
-  `app-page-header-search__action-button--${props.actionTone}`
-])
-
 const emit = defineEmits<{
   (e: 'update:searchQuery', value: string): void
   (e: 'search'): void
 }>()
 
-const handleSearchQueryUpdate = (value: string) => {
+const handleSearchQueryUpdate = (value: string): void => {
   emit('update:searchQuery', value)
 }
 
-const handleSearch = () => {
+const handleClearSearchQuery = (): void => {
+  emit('update:searchQuery', '')
+}
+
+const handleSearch = (): void => {
   emit('search')
 }
 </script>
@@ -61,9 +54,9 @@ const handleSearch = () => {
       <span class="material-symbols-rounded" aria-hidden="true" v-if="props.titleIcon">
         {{ props.titleIcon }}
       </span>
-      <h1 v-if="props.title">{{ props.title }}</h1>
+      <h1 v-if="props.title" class="app-page-header-search__heading">{{ props.title }}</h1>
     </div>
-    <div v-if="props.hasQuery" class="app-page-header-search__input-wrap">
+    <div v-if="props.hasQuery" class="app-page-header-search__search-field">
       <span class="material-symbols-rounded app-page-header-search__search-icon" aria-hidden="true">
         {{ props.searchIcon }}
       </span>
@@ -74,16 +67,29 @@ const handleSearch = () => {
         @update:model-value="handleSearchQueryUpdate"
         @keyup.enter="handleSearch"
       />
+
+      <!-- 垂直分隔線 -->
+      <span class="app-page-header-search__divider"></span>
       <el-button
-        v-if="props.showAction"
-        type="primary"
-        text
-        size="small"
+        v-if="props.searchQuery"
+        circle
+        color="#e7ebff"
+        aria-label="清除搜尋關鍵字"
+        class="app-page-header-search__action-button app-page-header-search__action-button--clear"
+        @click="handleClearSearchQuery"
+      >
+        <span class="material-symbols-rounded" aria-hidden="true">close</span>
+      </el-button>
+
+      <!--TODO: 應該是主題的漸層 -->
+      <el-button
+        color="#304ca0"
+        circle
         aria-label="搜尋"
-        :class="actionClass"
+        class="app-page-header-search__action-button"
         @click="handleSearch"
       >
-        <span class="material-symbols-rounded" aria-hidden="true">{{ props.actionIcon }}</span>
+        <span class="material-symbols-rounded"> tune </span>
       </el-button>
     </div>
   </div>
@@ -106,17 +112,16 @@ const handleSearch = () => {
     display: flex;
     align-items: center;
     color: #2e6096;
-
-    h1 {
-      margin-left: 10px;
-      font-size: 24px;
-    }
   }
 
-  &__input-wrap {
+  &__heading {
+    margin-left: 10px;
+    font-size: 24px;
+  }
+
+  &__search-field {
     display: flex;
     align-items: center;
-    gap: 10px;
     width: 100%;
     max-width: 420px;
     padding: 6px 10px;
@@ -142,23 +147,19 @@ const handleSearch = () => {
         }
       }
     }
+  }
 
-    .app-page-header-search__action-button {
-      border-left: 2px solid #cbcbcb;
-      border-radius: initial;
-
-      &--main {
-        color: var(--tx-main);
-      }
-
-      &--primary {
-        color: var(--primary);
-      }
-
-      &--subtle {
-        color: var(--tx-mid);
-      }
+  &__action-button {
+    &--clear {
+      color: #2f3d50;
     }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 20px;
+    background-color: #cbcbcb;
+    margin-right: 8px;
   }
 
   &__search-icon {
@@ -169,13 +170,13 @@ const handleSearch = () => {
   }
 
   &--compact {
-    .app-page-header-search__input-wrap {
+    .app-page-header-search__search-field {
       max-width: 100%;
     }
   }
 
   &--with-title {
-    .app-page-header-search__input-wrap {
+    .app-page-header-search__search-field {
       max-width: 520px;
     }
   }
