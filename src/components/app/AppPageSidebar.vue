@@ -28,16 +28,19 @@ const emit = defineEmits<{
   (e: 'update:openCategory', value: string): void
 }>()
 
+// 將目前分類轉成 Element Plus 選單索引
 const openMenuIndex = computed(() => {
   const index = props.menus.findIndex((menu) => menu.categoryId === props.openCategory)
   return index >= 0 ? String(index + 1) : '1'
 })
 
+// 選取分類中的第一個項目
 const selectFirstItem = (menu: IAppPageSidebarMenu) => {
   const firstItem = menu.list[0]
   emit('update:activeItem', firstItem?.index || '')
 }
 
+// 展開分類時，同步分類與第一個項目
 const handleCategoryOpen = (menuIndex: string) => {
   const menu = props.menus[Number(menuIndex) - 1]
   if (!menu) return
@@ -46,6 +49,7 @@ const handleCategoryOpen = (menuIndex: string) => {
   selectFirstItem(menu)
 }
 
+// 選取項目時，同步其所屬分類
 const handleMenuSelect = (itemIndex: string) => {
   emit('update:activeItem', itemIndex)
 

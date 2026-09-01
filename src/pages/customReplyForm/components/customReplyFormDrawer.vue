@@ -37,6 +37,7 @@ const drawerData = reactive({
   }
 })
 
+// 開啟抽屜，並載入指定案例的回覆單資料
 const openDrawer = (settings: ICustomReplyFormDrawerSettings) => {
   drawerData.isShowed = true
 
@@ -104,6 +105,7 @@ const openDrawer = (settings: ICustomReplyFormDrawerSettings) => {
   }
 }
 
+// 清空抽屜資料，並在需要時執行關閉回呼
 const closeDrawer = (done?: unknown) => {
   drawerData.data = {
     id: '',
@@ -127,6 +129,7 @@ const closeDrawer = (done?: unknown) => {
   if (typeof done === 'function') done()
 }
 
+// 將西元或民國日期格式化為指定的民國日期格式
 const convertRocDate = (date: string, format: 'zh' | 'dot' = 'zh') => {
   if (!date) return ''
 

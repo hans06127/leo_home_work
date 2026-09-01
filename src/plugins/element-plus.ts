@@ -82,6 +82,7 @@ const components = [
   ElTimelineItem
 ]
 
+// 註冊 Element Plus 元件，並設定全域語系與識別碼
 export default defineNuxtPlugin((nuxtApp) => {
   components.forEach((component) => nuxtApp.vueApp.use(component))
   provideGlobalConfig({ locale: zhTw }, nuxtApp.vueApp, true)

@@ -40,6 +40,7 @@ const searchQuery = ref('')
 const activeInfoCollapse = ref('case')
 const activeSidebarCollapse = ref(['basic', 'contact'])
 
+// 組合案件資訊面板的摘要欄位
 const caseInfoSummaryList = computed(() => [
   {
     key: 'tags',
@@ -54,6 +55,7 @@ const caseInfoSummaryList = computed(() => [
   }
 ])
 
+// 組合案件資訊面板的詳細欄位
 const caseInfoDetailList = computed(() => [
   {
     key: 'sourceUnit',

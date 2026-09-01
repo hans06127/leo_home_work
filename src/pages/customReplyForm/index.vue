@@ -42,6 +42,7 @@ const mockData = [
 const searchQuery = ref('')
 const currentCategory = ref<any>(mockData[0])
 
+// 將分類資料轉成側邊欄項目
 const sidebarItems = computed(() =>
   mockData.map((category) => ({
     index: category.categoryId,
@@ -50,6 +51,7 @@ const sidebarItems = computed(() =>
   }))
 )
 
+// 讓側邊欄選項與目前分類雙向同步
 const activeCategoryId = computed({
   get: () => currentCategory.value.categoryId,
   set: (categoryId: string) => {

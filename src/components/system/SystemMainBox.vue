@@ -22,10 +22,12 @@ const slots = useSlots()
 const boxRef = ref<HTMLElement>()
 const isOpened = ref(!(props.title && props.collapse && props.closed))
 
+// 切換內容區塊的展開狀態
 const toggleBox = () => {
   isOpened.value = !isOpened.value
 }
 
+// 表單驗證失敗時，自動展開包含錯誤欄位的區塊
 const checkIsErrorAndExpand = () => {
   if (boxRef.value?.querySelector('.is-error')) {
     isOpened.value = true

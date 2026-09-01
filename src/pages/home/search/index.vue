@@ -78,12 +78,14 @@ const fromData = reactive({
   list: []
 })
 
+// 切換進階搜尋條件的展開狀態
 const handleFilterToggle = () => {
   toggleCount.value += 1
   console.log('handleFilterToggle')
   isFilterOpen.value = !isFilterOpen.value
 }
 
+// 記錄頁面捕獲階段的點擊次數
 const handlePageCaptureClick = () => {
   pageClickCount.value += 1
 }

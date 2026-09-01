@@ -95,6 +95,7 @@ const openCategory = ref('')
 const activeMenuItemIndex = ref('')
 const searchQuery = ref('')
 
+// 取得選單項目的穩定索引
 const getMenuItemIndex = (
   menu: IDipositionMenuSourceCategory,
   menuIndex: number,
@@ -102,6 +103,7 @@ const getMenuItemIndex = (
   itemIndex: number
 ) => item.id || `${menu.categoryId || menuIndex + 1}-${itemIndex + 1}`
 
+// 將目前頁籤資料轉成側邊欄選單
 const currentMenus = computed(() =>
   mockTabData[activeName.value].map((menu, menuIndex) => ({
     categoryId: menu.categoryId,
@@ -115,6 +117,7 @@ const currentMenus = computed(() =>
   }))
 )
 
+// 選取分類中的第一個項目
 const triggerFirstItem = (category: IDipositionMenuCategory) => {
   const firstItem = category.list[0]
   if (!firstItem) {
@@ -125,6 +128,7 @@ const triggerFirstItem = (category: IDipositionMenuCategory) => {
   activeMenuItemIndex.value = firstItem.index
 }
 
+// 初始化第一個分類與選單項目
 const initFirstCategory = () => {
   const menus = currentMenus.value
   const firstCategory = menus[0]
@@ -139,14 +143,17 @@ const initFirstCategory = () => {
   triggerFirstItem(firstCategory)
 }
 
+// 取得目前展開的分類
 const activeCategory = computed(() =>
   currentMenus.value.find((menu) => menu.categoryId === openCategory.value)
 )
 
+// 取得目前選取的選單項目
 const activeMenuItem = computed(() =>
   activeCategory.value?.list.find((item) => item.index === activeMenuItemIndex.value)
 )
 
+// 取得目前選單項目對應的案例列表
 const currentCategoryList = computed<IDipositionListItem[]>(() => {
   for (const [menuIndex, menu] of mockTabData[activeName.value].entries()) {
     const selectedItem = menu.list.find(
@@ -159,6 +166,7 @@ const currentCategoryList = computed<IDipositionListItem[]>(() => {
   return []
 })
 
+// 切換案例的收藏狀態
 const handleFavoriteClick = (item: IDipositionListItem) => {
   item.isFavorite = !item.isFavorite
 }

@@ -25,6 +25,7 @@ const props = withDefaults(
   }
 )
 
+// 依版型產生容器的 BEM modifier class
 const containerClass = computed(() => [
   'app-page-header-search',
   `app-page-header-search--${layoutVariantClassMap[props.layoutVariant]}`
@@ -35,14 +36,17 @@ const emit = defineEmits<{
   (e: 'search'): void
 }>()
 
+// 將搜尋文字同步回父層
 const handleSearchQueryUpdate = (value: string): void => {
   emit('update:searchQuery', value)
 }
 
+// 清空父層的搜尋文字
 const handleClearSearchQuery = (): void => {
   emit('update:searchQuery', '')
 }
 
+// 通知父層執行搜尋
 const handleSearch = (): void => {
   emit('search')
 }

@@ -62,6 +62,7 @@ const mockNewList = [
 
 const searchQuery = ref('')
 
+// 開啟外部連結或導向站內頁面，未開放時顯示提示
 const goTo = (link: string) => {
   if (!link) {
     ElMessage({

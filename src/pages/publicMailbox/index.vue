@@ -78,6 +78,7 @@ const mockData = reactive<IPublicMailboxCategory[]>([
 const searchQuery = ref('')
 const activeCategoryId = ref(mockData[0]?.id ?? '')
 
+// 將信件分類轉成側邊欄項目
 const sidebarItems = computed(() =>
   mockData.map((category) => ({
     index: category.id,
@@ -86,6 +87,7 @@ const sidebarItems = computed(() =>
   }))
 )
 
+// 取得目前選取的信件分類
 const currentCategory = computed<IPublicMailboxCategory>(
   () =>
     mockData.find((category) => category.id === activeCategoryId.value) ??
@@ -96,6 +98,7 @@ const currentCategory = computed<IPublicMailboxCategory>(
     }
 )
 
+// 依搜尋文字篩選目前分類的案件
 const filteredCases = computed(() => {
   const query = searchQuery.value.trim()
   if (!query) return currentCategory.value.list
@@ -107,6 +110,7 @@ const filteredCases = computed(() => {
   )
 })
 
+// 切換案件的收藏狀態
 const handleFavoriteClick = (item: IPublicMailboxCase) => {
   item.isFavorite = !item.isFavorite
 }

@@ -18,11 +18,13 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>()
 
+// 讓收合狀態與父層的 v-model 雙向同步
 const activeName = computed({
   get: () => props.modelValue,
   set: (value: string) => emit('update:modelValue', value)
 })
 
+// 將空值轉為可直接顯示的字串
 const displayValue = (field: IAppCaseInfoPanelField) => field.value ?? ''
 </script>
 

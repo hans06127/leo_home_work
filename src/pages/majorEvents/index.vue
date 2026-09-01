@@ -29,12 +29,14 @@ const mockData = <IMajorEventCategory[]>[
 const currentCategoryId = ref('')
 const currentEvents = ref<IMajorEventItemForm[]>([])
 
+// 切換分類，並載入該分類的大事記
 const handleCategoryClick = (categoryId: string) => {
   currentCategoryId.value = categoryId
   currentEvents.value =
     _.find(mockData, (item: IMajorEventCategory) => item.id === categoryId)?.list || []
 }
 
+// 切換大事記的收藏狀態
 const handleFavoriteClick = (item: IMajorEventItemForm) => {
   item.isFavorite = !item.isFavorite
 }

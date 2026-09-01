@@ -217,7 +217,9 @@ const mockData = {
 const table = ref(false)
 const customReplyFormDrawerRef = ref<ICustomReplyFormDrawer>()
 const currentStep = ref(1)
+// 取得目前處理步驟的資料
 const currentStepData = computed(() => _.find(mockData.steps, { step: currentStep.value }))
+// 組合目前步驟需要顯示的收發文資料
 const currentLetters = computed(() => {
   const data = currentStepData.value?.data
   if (!data) return []
@@ -240,6 +242,7 @@ const currentLetters = computed(() => {
   ]
 })
 
+// 組合信件聯絡資訊，並排除沒有內容的欄位
 const letterFields = (letterId: string, letter: ICustomReplyFormLetter) =>
   [
     {
@@ -264,10 +267,12 @@ const letterFields = (letterId: string, letter: ICustomReplyFormLetter) =>
     { label: '電傳號碼：', value: letter.handlerFax }
   ].filter((field) => field.always || field.value)
 
+// 切換目前檢視的處理步驟
 const handleStepClick = (step: number) => {
   currentStep.value = step
 }
 
+// 開啟指定案例的回覆單抽屜
 const handleOpenDrawer = (id: string) => {
   customReplyFormDrawerRef.value?.openDrawer({ data: { id } })
 }

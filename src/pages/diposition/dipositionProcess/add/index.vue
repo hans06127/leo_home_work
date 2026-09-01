@@ -12,6 +12,7 @@ const pageData = reactive({
 })
 
 // page methods
+// 初始化頁面資料
 const pageInit = (): void => {
   pageData.isLoading = false
 }
@@ -54,6 +55,7 @@ const formData = reactive({
   currentStep: <IDipositionProcessItem>processingFlow[0]
 })
 
+// 取得目前步驟在處理流程中的索引
 const currentStepIndex = computed(() =>
   formData.form.processingFlow.findIndex((item) => item.seq === formData.currentStep.seq)
 )

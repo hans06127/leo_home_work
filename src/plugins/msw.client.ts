@@ -1,3 +1,4 @@
+// 僅在開發環境且啟用模擬 API 時啟動 MSW
 export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
 

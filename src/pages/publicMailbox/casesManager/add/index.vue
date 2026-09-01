@@ -10,6 +10,7 @@ const pageData = reactive({
 })
 
 // page methods
+// 初始化頁面資料
 const pageInit = (): void => {
   pageData.isLoading = false
 }
