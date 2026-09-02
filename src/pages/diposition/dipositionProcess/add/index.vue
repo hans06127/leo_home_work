@@ -363,7 +363,7 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
   &__step-seq {
     font-size: 16px;
     font-weight: bold;
-    color: #0f3f85;
+    color: var(--primary);
   }
 
   &__step-title {
@@ -390,7 +390,7 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
     flex-shrink: 0;
     font-size: 16px;
     font-weight: bold;
-    color: #0f3f85;
+    color: var(--primary);
   }
 
   @media (max-width: 900px) {

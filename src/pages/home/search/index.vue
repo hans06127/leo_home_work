@@ -15,50 +15,66 @@ const tabs = [
 const mockFilter_module = [
   { code: 'all', name: '全部' },
   { code: 'diposition', name: '處分案例' },
-  { code: 'customReplyForm', name: '海關達聯單' },
-  { code: 'majorEvents', name: '聲明異議、訴願與行政訴訟' },
-  { code: 'publicMailbox', name: '民眾意見信箱處理' }
+  { code: 'customReplyForm', name: '海關答聯單' },
+  { code: 'administrativeAppeal', name: '聲明異議、訴願與行政訴訟' },
+  { code: 'publicMailbox', name: '民眾意見信箱處理' },
+  { code: 'legislativeInquiry', name: '立法院質詢書面及回應' },
+  { code: 'otherTradeAdministration', name: '其他貿易管理業務' },
+  { code: 'tradeRegulation', name: '貿易法規重要函文、函釋' },
+  { code: 'projectImportExport', name: '專案輸出入' }
 ]
 
-const mockFilter_tags = {
-  // 法規管制
-  regulatoryControl: [
-    { code: 'exportToUs', name: '輸美' },
-    { code: 'cites', name: 'CITES' },
-    { code: 'certificateOfOrigin', name: '產證' },
-    { code: 'importRegulation', name: '輸入規定' },
-    { code: 'controlledGoods', name: '管制貨品' }
-  ],
-  // 案件結果
-  caseResult: [
-    { code: 'noDisposition', name: '不予議處' },
-    { code: 'mitigated', name: '從輕' },
-    { code: 'fine', name: '罰緩' },
-    { code: 'revokeDisposition', name: '撤銷處分' },
-    { code: 'revokeQualification', name: '撤銷資格' },
-    { code: 'disposition', name: '處分' },
-    { code: 'rejected', name: '駁回' },
-    { code: 'approved', name: '同意' },
-    { code: 'disapproved', name: '不同意' }
-  ],
-  // 案件特性
-  caseFeature: [
-    { code: 'continuedDisposition', name: '處份接續' },
-    { code: 'repeatOffense', name: '再犯' },
-    { code: 'recidivism', name: '累犯' },
-    { code: 'jointIntent', name: '共同犯意' },
-    { code: 'multipleBatches', name: '多批' }
-  ],
-  // 商品分類
-  productCategory: [
-    { code: 'chinaFood', name: '大陸食品' },
-    { code: 'chinaGoods', name: '大陸物品' },
-    { code: 'textiles', name: '紡織品' },
-    { code: 'oilsAndFats', name: '油脂' },
-    { code: 'agriculturalProducts', name: '農產品' },
-    { code: 'industrialProducts', name: '工業產品' }
-  ]
-}
+const caseTagGroups: ISystemCaseTagGroup[] = [
+  {
+    key: 'regulatoryControl',
+    label: '法規管制',
+    options: [
+      { value: 'exportToUs', label: '輸美' },
+      { value: 'cites', label: 'CITES' },
+      { value: 'certificateOfOrigin', label: '產證' },
+      { value: 'importRegulation', label: '輸入規定' },
+      { value: 'controlledGoods', label: '管制貨品' }
+    ]
+  },
+  {
+    key: 'caseResult',
+    label: '案件結果',
+    options: [
+      { value: 'noDisposition', label: '不予議處' },
+      { value: 'mitigated', label: '從輕' },
+      { value: 'fine', label: '罰緩' },
+      { value: 'revokeDisposition', label: '撤銷處分' },
+      { value: 'revokeQualification', label: '撤銷資格' },
+      { value: 'disposition', label: '處分' },
+      { value: 'rejected', label: '駁回' },
+      { value: 'approved', label: '同意' },
+      { value: 'disapproved', label: '不同意' }
+    ]
+  },
+  {
+    key: 'caseFeature',
+    label: '案件特性',
+    options: [
+      { value: 'continuedDisposition', label: '處份接續' },
+      { value: 'repeatOffense', label: '再犯' },
+      { value: 'recidivism', label: '累犯' },
+      { value: 'jointIntent', label: '共同犯意' },
+      { value: 'multipleBatches', label: '多批' }
+    ]
+  },
+  {
+    key: 'productCategory',
+    label: '商品分類',
+    options: [
+      { value: 'chinaFood', label: '大陸食品' },
+      { value: 'chinaGoods', label: '大陸物品' },
+      { value: 'textiles', label: '紡織品' },
+      { value: 'oilsAndFats', label: '油脂' },
+      { value: 'agriculturalProducts', label: '農產品' },
+      { value: 'industrialProducts', label: '工業產品' }
+    ]
+  }
+]
 const categories = [{ index: 'all', title: '全部', count: 0 }]
 
 const isFilterOpen = ref(false)
@@ -70,7 +86,12 @@ const fromData = reactive({
   searchQuery: {
     text: [] as string[],
     modules: ['all'],
-    tags: [],
+    tags: {
+      regulatoryControl: [],
+      caseResult: [],
+      caseFeature: [],
+      productCategory: []
+    } as Record<string, string[] | undefined>,
     dateRange: [] as string[]
   },
   activeTrade: 'export',
@@ -169,65 +190,14 @@ onMounted(() => {
             </div>
 
             <div class="system-form__row system-form__row--full">
-              <div class="system-form__title">
-                <p>案例標籤</p>
-              </div>
               <div class="system-form__field">
                 <div class="system-form__item">
                   <el-form-item>
-                    <div class="search-page__filter-tags">
-                      <div>
-                        法規管制
-                        <el-checkbox-group v-model="fromData.searchQuery.tags">
-                          <el-checkbox
-                            v-for="item in mockFilter_tags.regulatoryControl"
-                            :key="item.code"
-                            :label="item.code"
-                          >
-                            {{ item.name }}
-                          </el-checkbox>
-                        </el-checkbox-group>
-                      </div>
-
-                      <div>
-                        案件結果
-                        <el-checkbox-group v-model="fromData.searchQuery.tags">
-                          <el-checkbox
-                            v-for="item in mockFilter_tags.caseResult"
-                            :key="item.code"
-                            :label="item.code"
-                          >
-                            {{ item.name }}
-                          </el-checkbox>
-                        </el-checkbox-group>
-                      </div>
-
-                      <div>
-                        案件特性
-                        <el-checkbox-group v-model="fromData.searchQuery.tags">
-                          <el-checkbox
-                            v-for="item in mockFilter_tags.caseFeature"
-                            :key="item.code"
-                            :label="item.code"
-                          >
-                            {{ item.name }}
-                          </el-checkbox>
-                        </el-checkbox-group>
-                      </div>
-
-                      <div>
-                        商品分類
-                        <el-checkbox-group v-model="fromData.searchQuery.tags">
-                          <el-checkbox
-                            v-for="item in mockFilter_tags.productCategory"
-                            :key="item.code"
-                            :label="item.code"
-                          >
-                            {{ item.name }}
-                          </el-checkbox>
-                        </el-checkbox-group>
-                      </div>
-                    </div>
+                    <system-case-tags
+                      v-model="fromData.searchQuery.tags"
+                      :groups="caseTagGroups"
+                      title="案例標籤"
+                    />
                   </el-form-item>
                 </div>
               </div>

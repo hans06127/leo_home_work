@@ -12,59 +12,59 @@ import type { NavigationItem } from '@/@types/knowledge'
 
 export const featureCards: NavigationItem[] = [
   {
-    id: 'apply',
-    title: '輸出入申辦',
-    description: '申請與案件進度管理',
-    to: '/home',
-    icon: ClipboardList
-  },
-  {
-    id: 'cases',
-    title: '裁罰案例',
-    description: '查詢違規樣態、法規依據與裁罰摘要',
+    id: 'disposition',
+    title: '處分案例',
+    description: '查詢處分案例與辦理紀錄',
     to: '/diposition',
     icon: ClipboardList
   },
   {
-    id: 'contact',
-    title: '聯絡窗口',
-    description: '整理常用承辦窗口與支援資訊',
+    id: 'customReplyForm',
+    title: '海關答聯單',
+    description: '查詢海關答聯單與回覆紀錄',
     to: '/customReplyForm',
     icon: Anchor
   },
   {
-    id: 'laws',
-    title: '貿易法規',
-    description: '彙整公告、命令與相關規範',
-    to: '/home',
-    icon: Scale
-  },
-  {
-    id: 'appeals',
-    title: '陳情與申訴',
-    description: '追蹤陳情、回覆與辦理紀錄',
-    to: '/home',
+    id: 'appeal',
+    title: '聲明異議／訴願／行政訴訟',
+    description: '追蹤聲明異議、訴願與行政訴訟案件',
+    to: '/administrativeAppeal',
     icon: MessageSquareText
   },
   {
-    id: 'mailbox',
-    title: '機關信箱',
-    description: '集中管理外部來信與回覆狀態',
-    to: '/home',
+    id: 'publicMailbox',
+    title: '民眾意見信箱處理',
+    description: '管理民眾意見與回覆紀錄',
+    to: '/publicMailbox',
     icon: Mail
   },
   {
-    id: 'parliament',
-    title: '立院資料',
-    description: '整理質詢、提案與回覆素材',
-    to: '/home',
+    id: 'legislativeInterpellation',
+    title: '立法院質詢書面及回應',
+    description: '整理立法院質詢書面與回應資料',
+    to: '/legislativeInquiry',
     icon: FileText
   },
   {
-    id: 'events',
-    title: '活動與公告',
-    description: '維護近期活動、跑馬燈與公告內容',
-    to: '/majorEvents',
+    id: 'otherTradeAdministration',
+    title: '其他貿易管理業務',
+    description: '彙整其他貿易管理案件與重要大事記',
+    to: '/otherTradeAdministration',
     icon: Star
+  },
+  {
+    id: 'tradeRegulation',
+    title: '貿易法規重要函文／函釋',
+    description: '彙整貿易法規重要函文與函釋',
+    to: '/tradeRegulation',
+    icon: Scale
+  },
+  {
+    id: 'importExportProject',
+    title: '專案輸出入',
+    description: '管理專案輸出入案件與辦理紀錄',
+    to: '/projectImportExport',
+    icon: ClipboardList
   }
 ]

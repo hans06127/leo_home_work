@@ -23,16 +23,44 @@ const mockData = [
   {
     title: '聲明異議/訴願/行政訴訟',
     img: 'icon-003.png',
-    link: '/majorEvents',
+    link: '/administrativeAppeal',
     subtitle: '',
     id: '000-003'
   },
   {
     title: '民眾意見信箱處理',
     img: 'icon-004.png',
-    link: '',
+    link: '/publicMailbox',
     subtitle: '民眾陳情及意見回覆紀錄',
     id: '000-004'
+  },
+  {
+    title: '立法院質詢書面及回應',
+    img: 'icon-001.png',
+    link: '/legislativeInquiry',
+    subtitle: '',
+    id: '000-005'
+  },
+  {
+    title: '其他貿易管理業務',
+    img: 'icon-002.png',
+    link: '/otherTradeAdministration',
+    subtitle: '',
+    id: '000-006'
+  },
+  {
+    title: '貿易法規重要函文/函釋',
+    img: 'icon-003.png',
+    link: '/tradeRegulation',
+    subtitle: '',
+    id: '000-007'
+  },
+  {
+    title: '專案輸出入',
+    img: 'icon-004.png',
+    link: '/projectImportExport',
+    subtitle: '',
+    id: '000-008'
   }
 ]
 

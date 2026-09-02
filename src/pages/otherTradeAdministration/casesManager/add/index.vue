@@ -1,4 +1,6 @@
-﻿<script lang="ts" setup>
+<script setup lang="ts">
+import ShereFrom from '../../components/ShereFrom.vue'
+
 // on mounted
 onMounted(() => {
   pageInit()
@@ -17,7 +19,7 @@ const pageInit = (): void => {
 </script>
 
 <template>
-  <div class=""></div>
+  <ShereFrom />
 </template>
 
 <style lang="scss" scoped>
