@@ -271,7 +271,7 @@ const handleFavoriteClick = (item: IPublicMailboxCase) => {
     gap: 5px;
     min-width: 0;
     font-size: 12px;
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: 700;
 
     .material-symbols-rounded {
@@ -310,7 +310,7 @@ const handleFavoriteClick = (item: IPublicMailboxCase) => {
   &__title {
     margin: 0 0 12px;
     overflow-wrap: anywhere;
-    color: #2f3d50;
+    color: var(--tx-main);
     font-size: 18px;
   }
 
@@ -336,7 +336,7 @@ const handleFavoriteClick = (item: IPublicMailboxCase) => {
 
     &--category1 {
       background-color: #ffe5e5;
-      color: #ff4d4d;
+      color: var(--red);
     }
 
     &--category2 {
@@ -350,7 +350,7 @@ const handleFavoriteClick = (item: IPublicMailboxCase) => {
   }
 
   &__meta-value {
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: 700;
   }
 
@@ -364,7 +364,7 @@ const handleFavoriteClick = (item: IPublicMailboxCase) => {
     overflow-wrap: anywhere;
     white-space: pre-line;
     font-size: 18px;
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: bold;
   }
 
@@ -374,7 +374,7 @@ const handleFavoriteClick = (item: IPublicMailboxCase) => {
     border-radius: 5px;
     border: 1px solid #d7d7d7;
     font-size: 18px;
-    color: #2c8086;
+    color: var(--teal);
     font-weight: bold;
   }
 
@@ -390,17 +390,17 @@ const handleFavoriteClick = (item: IPublicMailboxCase) => {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    color: #fff;
+    color: var(--bg-white);
     font-weight: bold;
     margin-right: 5px;
     font-size: 18px;
 
     &--question {
-      background-color: #2f3d50;
+      background-color: var(--tx-main);
     }
 
     &--answer {
-      background-color: #2c8086;
+      background-color: var(--teal);
     }
   }
 
@@ -408,7 +408,7 @@ const handleFavoriteClick = (item: IPublicMailboxCase) => {
     overflow-wrap: anywhere;
     white-space: pre-line;
     font-size: 14px;
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: 500;
     line-height: 1.9;
   }

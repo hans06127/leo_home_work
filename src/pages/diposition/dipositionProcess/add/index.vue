@@ -76,7 +76,7 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
           <h1 class="diposition-process-add__title">新增處理程序</h1>
         </div>
         <div class="diposition-process-add__header-actions">
-          <el-button color="#0f3f85" size="large">
+          <el-button color="var(--primary)" size="large">
             <span class="material-symbols-rounded" aria-hidden="true">file_copy</span>
             <span>複製既有程序</span>
           </el-button>
@@ -306,7 +306,7 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
   }
 
   &__form-panel {
-    background-color: #edf5f7;
+    background-color: var(--bg-app);
   }
 
   &__process {
@@ -328,7 +328,7 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
     align-items: center;
     gap: 8px;
     padding: 12px 20px;
-    background-color: #fff;
+    background-color: var(--bg-white);
     border: 1px solid #cbcbcb;
     border-radius: 4px;
     cursor: pointer;
@@ -338,7 +338,7 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
     }
 
     &--active {
-      border: 2px dashed #2c8086;
+      border: 2px dashed var(--teal);
       background-color: #e6f7ff;
     }
   }
@@ -369,11 +369,11 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
   &__step-title {
     font-size: 14px;
     font-weight: 500;
-    color: #2f3d50;
+    color: var(--tx-main);
   }
 
   &__step-editor {
-    background-color: #edf5f7;
+    background-color: var(--bg-app);
     border: 1px solid #cbcbcb;
     border-radius: 10px;
     padding: 12px;

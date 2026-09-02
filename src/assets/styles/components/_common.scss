@@ -33,7 +33,7 @@
   gap: 8px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-control);
-  background: white;
+  background: var(--bg-white);
   color: var(--color-primary-800);
   padding: 0 14px;
   font-weight: 700;
@@ -43,13 +43,13 @@
 .system-button--primary {
   border-color: var(--color-primary-800);
   background: var(--color-primary-800);
-  color: white;
+  color: var(--bg-white);
 }
 
 .system-button--success {
   border-color: var(--color-green-600);
   background: var(--color-green-600);
-  color: white;
+  color: var(--bg-white);
 }
 
 .system-button--ghost {

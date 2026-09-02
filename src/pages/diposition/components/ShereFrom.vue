@@ -389,7 +389,7 @@ const formData = reactive({
   &__actions {
     button {
       &:hover {
-        background-color: var(--white);
+        background-color: var(--bg-white);
         border: 1.5px solid var(--primary);
         color: var(--primary);
       }

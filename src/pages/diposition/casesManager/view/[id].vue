@@ -222,7 +222,7 @@ const mockData = {
     padding: 3px 12px;
     border-radius: 20px;
     background-color: var(--teal);
-    color: white;
+    color: var(--bg-white);
     font-size: 14px;
     line-height: 1.4;
   }

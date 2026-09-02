@@ -155,7 +155,7 @@ const handleSearch = (): void => {
 
   &__action-button {
     &--clear {
-      color: #2f3d50;
+      color: var(--tx-main);
     }
   }
 

@@ -268,7 +268,7 @@ onMounted(() => {
   &__search {
     padding: 20px;
     border-radius: 10px;
-    background-color: #ebf1f7;
+    background-color: var(--bg-tree);
   }
 
   &__search-row {
@@ -300,12 +300,12 @@ onMounted(() => {
     &--search,
     &--close {
       background-color: #e7ebff;
-      color: #2f3d50;
+      color: var(--tx-main);
     }
 
     &--tune {
       background-color: #2f589a;
-      color: #fff;
+      color: var(--bg-white);
       cursor: pointer;
       transition: transform 0.24s ease;
     }

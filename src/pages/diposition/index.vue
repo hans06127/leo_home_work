@@ -375,7 +375,7 @@ onMounted(() => {
     gap: 5px;
     min-width: 0;
     font-size: 12px;
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: 700;
 
     .material-symbols-rounded {
@@ -433,7 +433,7 @@ onMounted(() => {
 
     &--category1 {
       background-color: #ffe5e5;
-      color: #ff4d4d;
+      color: var(--red);
     }
 
     &--category2 {
@@ -447,7 +447,7 @@ onMounted(() => {
   }
 
   &__header-meta-value {
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: 700;
   }
 
@@ -467,7 +467,7 @@ onMounted(() => {
   &__field-value {
     min-width: 0;
     overflow-wrap: anywhere;
-    color: #2f3d50;
+    color: var(--tx-main);
     font-weight: 700;
   }
 
@@ -498,14 +498,14 @@ onMounted(() => {
     align-items: center;
     gap: 10px;
     font-size: 14px;
-    color: #2f3d50;
+    color: var(--tx-main);
   }
 
   &__related-case {
     padding: 4px 16px;
     border-radius: 4px;
     background-color: #f5f9ff;
-    color: #0f3f85;
+    color: var(--primary);
     border: 1px solid #dee4eb;
     font-size: 12px;
     display: flex;

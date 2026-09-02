@@ -252,9 +252,9 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
     border-left: 4px solid;
 
     &--notes {
-      border-color: #ff4d4d;
+      border-color: var(--red);
       background-color: #fff0f0;
-      color: #ff4d4d;
+      color: var(--red);
     }
 
     &--key-points {
@@ -314,8 +314,8 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
     padding: 8px 12px;
     border: 1px solid #d0d5dd;
     border-radius: 4px;
-    background-color: #fff;
-    color: #2f3d50;
+    background-color: var(--bg-white);
+    color: var(--tx-main);
     line-height: 1.6;
     overflow-wrap: anywhere;
   }
@@ -344,7 +344,7 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
     width: 100%;
     gap: 8px;
     padding: 12px 20px;
-    background-color: #fff;
+    background-color: var(--bg-white);
     border: 1px solid #cbcbcb;
     border-radius: 4px;
     color: inherit;
@@ -357,7 +357,7 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
     }
 
     &--active {
-      border: 2px dashed #2c8086;
+      border: 2px dashed var(--teal);
       background-color: #e6f7ff;
     }
   }
@@ -389,12 +389,12 @@ const handleStepClick = (item: IDipositionProcessItem): void => {
   &__step-title {
     font-size: 14px;
     font-weight: 500;
-    color: #2f3d50;
+    color: var(--tx-main);
     overflow-wrap: anywhere;
   }
 
   &__editor {
-    background-color: #edf5f7;
+    background-color: var(--bg-app);
     border: 1px solid #cbcbcb;
     border-radius: 10px;
     padding: 12px;

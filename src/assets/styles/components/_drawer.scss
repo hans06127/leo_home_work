@@ -5,24 +5,24 @@
   gap: 10px;
   padding: 0px 16px;
   height: 50px;
-  background-color: #3145a5 !important;
+  background-color: var(--grad-end) !important;
   margin: 0px;
 
   .system-drawer-back {
     max-width: 30px;
     max-height: 30px;
-    color: #fff;
+    color: var(--bg-white);
   }
 
   .system-drawer-title {
     flex: 1;
     font-weight: 600;
     font-size: 16px;
-    color: #fff;
+    color: var(--bg-white);
   }
 
   .system-drawer-expand {
-    color: #fff;
+    color: var(--bg-white);
     font-size: 12px;
 
     &__icon {

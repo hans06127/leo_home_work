@@ -267,7 +267,7 @@ const goTo = (link: string) => {
     transform 0.17s ease,
     background 0.6s ease;
   position: relative;
-  box-shadow: 0 1px 4px rgba(44, 63, 90, 0.09);
+  box-shadow: var(--shadow-card);
   border: 2px solid transparent;
 
   &:hover {
@@ -349,7 +349,7 @@ const goTo = (link: string) => {
   background: var(--bg-white);
   border-radius: 4px;
   padding: 16px 16px;
-  box-shadow: 0 1px 4px rgba(44, 63, 90, 0.09);
+  box-shadow: var(--shadow-card);
   cursor: pointer;
   transition: box-shadow 0.12s ease;
 

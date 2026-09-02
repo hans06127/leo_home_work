@@ -270,7 +270,7 @@ defineExpose({
     align-items: center;
     font-size: 12px;
     font-weight: 700;
-    color: #fff;
+    color: var(--bg-white);
     background-color: var(--green);
     border-radius: 20px;
     padding: 4px 10px;
