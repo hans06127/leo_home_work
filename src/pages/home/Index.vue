@@ -9,7 +9,7 @@ const mockData = [
   {
     title: '處分案例',
     img: 'icon-001.png',
-    link: '/diposition/casesManager',
+    link: '/diposition',
     subtitle: '違規產地標示不明',
     id: '000-001'
   },
@@ -191,7 +191,7 @@ const goTo = (link: string) => {
 
   &__card-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(4, minmax(180px, 1fr));
     gap: 22px;
     width: 100%;
     margin-top: 35px;
@@ -258,7 +258,7 @@ const goTo = (link: string) => {
   flex-direction: column;
   justify-content: space-between;
   background: var(--bg-white);
-  border-radius: 18px;
+  border-radius: 8px;
   padding: 22px 22px 20px;
   min-height: 188px;
   cursor: pointer;
